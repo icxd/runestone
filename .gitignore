@@ -1,0 +1,6 @@
+a.out.dSYM/
+a.out
+
+test.o
+test.S
+test
