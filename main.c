@@ -1,4 +1,5 @@
 #include "runestone.h"
+#include <stdio.h>
 
 int main(void) {
   rs_t rs;
@@ -16,7 +17,17 @@ int main(void) {
   rs_position_at_basic_block(&rs, exit_bb);
   rs_build_ret(&rs, add_result);
 
-  rs_generate(&rs, stdout);
+  {
+    FILE *fp = fopen("test.S", "w");
+    if (!fp) {
+      perror("fopen() failed");
+      return 1;
+    }
+
+    rs_generate(&rs, fp);
+
+    fclose(fp);
+  }
 
   rs_free(&rs);
 

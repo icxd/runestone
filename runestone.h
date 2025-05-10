@@ -229,8 +229,8 @@ void rs_analyze_lifetimes(rs_t *rs);
 
 void rs_finalize(rs_t *rs);
 
-void rs_dump_instr(rs_t *rs, rs_instr_t instr);
-void rs_dump(rs_t *rs);
+void rs_dump_instr(rs_t *rs, FILE *fp, rs_instr_t instr);
+void rs_dump(rs_t *rs, FILE *fp);
 
 void rs_generate(rs_t *rs, FILE *fp);
 

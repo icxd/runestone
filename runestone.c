@@ -246,52 +246,52 @@ void rs_finalize(rs_t *rs) {
     exit(1);
 }
 
-static void rs_operand_print(rs_t *rs, rs_operand_t operand) {
+static void rs_operand_print(rs_t *rs, FILE *fp, rs_operand_t operand) {
   switch (operand.type) {
   case RS_OPERAND_TYPE_NULL:
-    printf("<null>");
+    fprintf(fp, "<null>");
     break;
   case RS_OPERAND_TYPE_INT64:
-    printf("%lld", operand.int64);
+    fprintf(fp, "%lld", operand.int64);
     break;
   case RS_OPERAND_TYPE_ADDR:
-    printf("%p", (void *)operand.addr);
+    fprintf(fp, "%p", (void *)operand.addr);
     break;
   case RS_OPERAND_TYPE_REG:
-    printf("%%%d", operand.vreg);
+    fprintf(fp, "%%%d", operand.vreg);
     break;
   case RS_OPERAND_TYPE_BB:
-    printf("bb_%zu", operand.bb_id);
+    fprintf(fp, "bb_%zu", operand.bb_id);
     break;
   default:
     abort();
   }
 }
 
-void rs_dump_instr(rs_t *rs, rs_instr_t instr) {
+void rs_dump_instr(rs_t *rs, FILE *fp, rs_instr_t instr) {
   if (instr.dst.type != RS_OPERAND_TYPE_NULL) {
-    rs_operand_print(rs, instr.dst);
-    printf(" = ");
+    rs_operand_print(rs, fp, instr.dst);
+    fprintf(fp, " = ");
   }
-  printf("%s ", rs_opcode_names[instr.opcode]);
+  fprintf(fp, "%s ", rs_opcode_names[instr.opcode]);
   if (instr.src1.type != RS_OPERAND_TYPE_NULL)
-    rs_operand_print(rs, instr.src1);
+    rs_operand_print(rs, fp, instr.src1);
   if (instr.src2.type != RS_OPERAND_TYPE_NULL) {
-    printf(", ");
-    rs_operand_print(rs, instr.src2);
+    fprintf(fp, ", ");
+    rs_operand_print(rs, fp, instr.src2);
   }
 }
 
-void rs_dump(rs_t *rs) {
+void rs_dump(rs_t *rs, FILE *fp) {
   for (size_t block_id = 0; block_id < rs->basic_blocks_count; block_id++) {
     rs_basic_block_t *bb = rs->basic_blocks[block_id];
-    printf("%s:\n", bb->name);
+    fprintf(fp, "%s:\n", bb->name);
 
     for (size_t i = 0; i < bb->instrs_count; i++) {
       rs_instr_t instr = bb->instrs[i];
-      printf("  ");
-      rs_dump_instr(rs, instr);
-      printf("\n");
+      fprintf(fp, "  ");
+      rs_dump_instr(rs, fp, instr);
+      fprintf(fp, "\n");
     }
   }
 }

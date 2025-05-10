@@ -17,7 +17,7 @@ void rs_generate_aarch64_macos_gas(rs_t *rs, FILE *fp) {
 
 void rs_generate_instr_aarch64_macos_gas(rs_t *rs, FILE *fp, rs_instr_t instr) {
   fprintf(fp, "  ; ");
-  rs_dump_instr(rs, instr);
+  rs_dump_instr(rs, fp, instr);
   fprintf(fp, "\n");
   switch (instr.opcode) {
   case RS_OPCODE_MOVE:

@@ -16,7 +16,7 @@ void rs_generate_x86_64_linux_nasm(rs_t *rs, FILE *fp) {
 }
 void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
   fprintf(fp, "  ; ");
-  rs_dump_instr(rs, instr);
+  rs_dump_instr(rs, fp, instr);
   fprintf(fp, "\n");
   switch (instr.opcode) {
   /*
