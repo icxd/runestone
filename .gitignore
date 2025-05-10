@@ -1,6 +1,5 @@
-a.out.dSYM/
-a.out
+build/
 
-test.o
-test.S
-test
+simple
+simple.o
+simple.S

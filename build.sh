@@ -1,4 +1,12 @@
-clang -g runestone.c main.c aarch64_macos_gas.c x86_64_linux_nasm.c
-./a.out
-as test.S -o test.o
-ld -arch arm64 -lSystem -syslibroot $(xcrun --sdk macosx --show-sdk-path) -e _start -o test test.o
+set -xe 
+
+mkdir -p build
+clang -shared -o build/librs.so lib/*.c
+
+if [ "$1" = "test" ]; then
+  clang simple.c -Lbuild -lrs -o simple
+  ./simple
+  as simple.S -o simple.o
+  ld -arch arm64 -lSystem -syslibroot $(xcrun --sdk macosx --show-sdk-path) \
+    -e _start -o simple simple.o
+fi

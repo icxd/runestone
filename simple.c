@@ -1,4 +1,4 @@
-#include "runestone.h"
+#include "lib/runestone.h"
 #include <stdio.h>
 
 int main(void) {
@@ -18,7 +18,7 @@ int main(void) {
   rs_build_ret(&rs, add_result);
 
   {
-    FILE *fp = fopen("test.S", "w");
+    FILE *fp = fopen("simple.S", "w");
     if (!fp) {
       perror("fopen() failed");
       return 1;
