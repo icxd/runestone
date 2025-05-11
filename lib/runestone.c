@@ -375,12 +375,136 @@ static rs_register_t rs_get_preferred_register(rs_t *rs, rs_opcode_t opcode)
   return RS_REG_SPILL;
 }
 
+typedef struct
+{
+  size_t pressure;       // Current register pressure
+  size_t max_pressure;   // Maximum register pressure seen
+  size_t spill_count;    // Number of spills performed
+  size_t coalesce_count; // Number of coalescing opportunities found
+} rs_pressure_stats_t;
+
+static rs_pressure_stats_t pressure_stats = {0};
+
+static void rs_track_register_pressure(rs_t *rs, rs_basic_block_t *bb)
+{
+  if (!rs || !bb)
+    return;
+
+  size_t current_pressure = 0;
+  size_t max_pressure = 0;
+
+  // First pass: calculate pressure
+  for (size_t i = 0; i < cvector_size(bb->instructions); i++)
+  {
+    // Count live registers at this point
+    for (size_t j = 0; j < RS_MAX_REGS; j++)
+    {
+      rs_lifetime_t *lifetime = &rs->lifetimes[j];
+      if (lifetime->start != -1 && lifetime->end != -1 &&
+          (size_t)lifetime->start <= i && (size_t)lifetime->end > i)
+      {
+        current_pressure++;
+      }
+    }
+
+    if (current_pressure > max_pressure)
+    {
+      max_pressure = current_pressure;
+    }
+  }
+
+  pressure_stats.pressure = current_pressure;
+  if (max_pressure > pressure_stats.max_pressure)
+  {
+    pressure_stats.max_pressure = max_pressure;
+  }
+
+  debug_log("Block '%s' pressure: current=%zu, max=%zu",
+            bb->name, current_pressure, max_pressure);
+}
+
+// Check if two virtual registers can be coalesced
+static bool rs_can_coalesce(rs_t *rs, size_t vreg1, size_t vreg2)
+{
+  if (!rs || vreg1 >= RS_MAX_REGS || vreg2 >= RS_MAX_REGS)
+    return false;
+
+  rs_lifetime_t *lifetime1 = &rs->lifetimes[vreg1];
+  rs_lifetime_t *lifetime2 = &rs->lifetimes[vreg2];
+
+  // Check if lifetimes overlap
+  if (lifetime1->start == -1 || lifetime1->end == -1 ||
+      lifetime2->start == -1 || lifetime2->end == -1)
+  {
+    return false;
+  }
+
+  // If lifetimes don't overlap, we can coalesce
+  return (lifetime1->end <= lifetime2->start) || (lifetime2->end <= lifetime1->start);
+}
+
+// Try to coalesce registers
+static void rs_try_coalesce(rs_t *rs, rs_basic_block_t *bb)
+{
+  if (!rs || !bb)
+    return;
+
+  for (size_t i = 0; i < cvector_size(bb->instructions); i++)
+  {
+    rs_instr_t instr = bb->instructions[i];
+
+    // Look for move instructions that can be coalesced
+    if (instr.opcode == RS_OPCODE_MOVE &&
+        instr.dest.type == RS_OPERAND_TYPE_REG &&
+        instr.src1.type == RS_OPERAND_TYPE_REG)
+    {
+
+      size_t dest_vreg = instr.dest.vreg;
+      size_t src_vreg = instr.src1.vreg;
+
+      if (rs_can_coalesce(rs, dest_vreg, src_vreg))
+      {
+        // Coalesce the registers
+        rs_lifetime_t *dest_lifetime = &rs->lifetimes[dest_vreg];
+        rs_lifetime_t *src_lifetime = &rs->lifetimes[src_vreg];
+
+        // Merge lifetimes
+        dest_lifetime->start = (dest_lifetime->start < src_lifetime->start) ? dest_lifetime->start : src_lifetime->start;
+        dest_lifetime->end = (dest_lifetime->end > src_lifetime->end) ? dest_lifetime->end : src_lifetime->end;
+
+        // Use the same physical register
+        if (src_lifetime->reg != RS_REG_SPILL)
+        {
+          dest_lifetime->reg = src_lifetime->reg;
+          rs->register_pool[src_lifetime->reg] = true;
+        }
+
+        // Clear source lifetime
+        src_lifetime->start = -1;
+        src_lifetime->end = -1;
+        src_lifetime->reg = RS_REG_SPILL;
+
+        pressure_stats.coalesce_count++;
+        debug_log("Coalesced registers %zu and %zu", dest_vreg, src_vreg);
+      }
+    }
+  }
+}
+
 static rs_register_t rs_allocate_register(rs_t *rs)
 {
   if (!rs)
   {
     fprintf(stderr, "Error: NULL Runestone state pointer\n");
     return RS_REG_SPILL;
+  }
+
+  // Check if we're under pressure
+  size_t reg_count = rs_get_register_count(rs->target);
+  if (pressure_stats.pressure >= reg_count * 0.8)
+  { // 80% threshold
+    debug_log("High register pressure detected: %zu/%zu",
+              pressure_stats.pressure, reg_count);
   }
 
   // First try to find a completely free register
@@ -400,7 +524,6 @@ static rs_register_t rs_allocate_register(rs_t *rs)
   // If no free registers, try to find a register whose lifetime has ended
   static size_t last_checked_reg = 0;
   size_t start_reg = last_checked_reg;
-  size_t reg_count = rs_get_register_count(rs->target);
 
   do
   {
@@ -453,6 +576,7 @@ static rs_register_t rs_allocate_register(rs_t *rs)
   {
     debug_log("Spilling register %zu", lru_reg);
     rs->register_pool[lru_reg] = true;
+    pressure_stats.spill_count++;
     return lru_reg;
   }
 
@@ -672,7 +796,8 @@ void rs_analyze_lifetimes(rs_t *rs)
     return;
   }
 
-  // Reset lifetimes using memset for better performance
+  memset(&pressure_stats, 0, sizeof(pressure_stats));
+
   memset(rs->lifetimes, 0, sizeof(rs->lifetimes));
   for (size_t i = 0; i < RS_MAX_REGS; i++)
   {
@@ -717,6 +842,17 @@ void rs_analyze_lifetimes(rs_t *rs)
         }
       }
     }
+
+    rs_track_register_pressure(rs, bb);
+  }
+
+  // Try to coalesce registers
+  for (size_t block_id = 0; block_id < cvector_size(rs->basic_blocks); block_id++)
+  {
+    rs_basic_block_t *bb = rs->basic_blocks[block_id];
+    if (!bb)
+      continue;
+    rs_try_coalesce(rs, bb);
   }
 
   // Second pass: allocate registers
@@ -725,11 +861,13 @@ void rs_analyze_lifetimes(rs_t *rs)
     rs_basic_block_t *bb = rs->basic_blocks[block_id];
     if (!bb)
       continue;
-
     rs_alloc_and_free_lifetimes(rs, bb);
   }
 
   debug_log("Lifetime analysis complete");
+  debug_log("Register pressure stats: max=%zu, spills=%zu, coalesces=%zu",
+            pressure_stats.max_pressure, pressure_stats.spill_count,
+            pressure_stats.coalesce_count);
 }
 
 void rs_finalize(rs_t *rs)
