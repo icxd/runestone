@@ -1,0 +1,9 @@
+<map id="Runestone IR API" name="Runestone IR API">
+<area shape="rect" id="Node000005" href="$group__RS__Blocks.html" title="IR block structure and virtual register lifetimes." alt="" coords="181,5,363,31"/>
+<area shape="rect" id="Node000002" href="$group__RS__Color.html" title="ANSI escape sequences for terminal output." alt="" coords="198,55,346,80"/>
+<area shape="rect" id="Node000004" href="$group__RS__Opcode.html" title="Opcode definitions and instruction representation." alt="" coords="219,104,325,129"/>
+<area shape="rect" id="Node000003" href="$group__RS__Operand.html" title="Types and constructors for instruction operands." alt="" coords="233,153,311,179"/>
+<area shape="rect" id="Node000006" href="$group__RS__RegisterMap.html" title="Mapping between virtual and physical registers." alt="" coords="222,203,322,228"/>
+<area shape="rect" id="Node000007" href="$group__RS__Targets.html" title="Supported architecture/OS/assembler triplets." alt="" coords="189,252,355,277"/>
+<area shape="rect" id="Node000001" title="Core types and functions for the Runestone IR." alt="" coords="5,129,133,155"/>
+</map>

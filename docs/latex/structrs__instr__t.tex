@@ -1,0 +1,68 @@
+\doxysection{rs\+\_\+instr\+\_\+t Struct Reference}
+\hypertarget{structrs__instr__t}{}\label{structrs__instr__t}\index{rs\_instr\_t@{rs\_instr\_t}}
+
+
+Represents a Runestone instruction.  
+
+
+
+
+{\ttfamily \#include $<$runestone.\+h$>$}
+
+
+
+Collaboration diagram for rs\+\_\+instr\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{structrs__instr__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} \mbox{\hyperlink{structrs__instr__t_ab4352bdcdb5a71d9a0dd3e0fa26d1bb9}{opcode}}
+\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{structrs__instr__t_acac0da6af9ada7d95fe28d907c1e5ade}{dest}}
+\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{structrs__instr__t_a7e4e4b111cd6b92cae6af86bdc1a9e1f}{src1}}
+\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{structrs__instr__t_a12b3a7f43ae2ffac4427d316cd17dad5}{src2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a Runestone instruction. 
+
+This structure represents an instruction in the Runestone IR. It contains the opcode (operation to perform) and up to three operands (destination, and two source operands). 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structrs__instr__t_acac0da6af9ada7d95fe28d907c1e5ade}\label{structrs__instr__t_acac0da6af9ada7d95fe28d907c1e5ade} 
+\index{rs\_instr\_t@{rs\_instr\_t}!dest@{dest}}
+\index{dest@{dest}!rs\_instr\_t@{rs\_instr\_t}}
+\doxysubsubsection{\texorpdfstring{dest}{dest}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+instr\+\_\+t\+::dest}
+
+Operand for destination . \Hypertarget{structrs__instr__t_ab4352bdcdb5a71d9a0dd3e0fa26d1bb9}\label{structrs__instr__t_ab4352bdcdb5a71d9a0dd3e0fa26d1bb9} 
+\index{rs\_instr\_t@{rs\_instr\_t}!opcode@{opcode}}
+\index{opcode@{opcode}!rs\_instr\_t@{rs\_instr\_t}}
+\doxysubsubsection{\texorpdfstring{opcode}{opcode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} rs\+\_\+instr\+\_\+t\+::opcode}
+
+The opcode of the instruction. \Hypertarget{structrs__instr__t_a7e4e4b111cd6b92cae6af86bdc1a9e1f}\label{structrs__instr__t_a7e4e4b111cd6b92cae6af86bdc1a9e1f} 
+\index{rs\_instr\_t@{rs\_instr\_t}!src1@{src1}}
+\index{src1@{src1}!rs\_instr\_t@{rs\_instr\_t}}
+\doxysubsubsection{\texorpdfstring{src1}{src1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+instr\+\_\+t\+::src1}
+
+Operand for first source. \Hypertarget{structrs__instr__t_a12b3a7f43ae2ffac4427d316cd17dad5}\label{structrs__instr__t_a12b3a7f43ae2ffac4427d316cd17dad5} 
+\index{rs\_instr\_t@{rs\_instr\_t}!src2@{src2}}
+\index{src2@{src2}!rs\_instr\_t@{rs\_instr\_t}}
+\doxysubsubsection{\texorpdfstring{src2}{src2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+instr\+\_\+t\+::src2}
+
+Operand for second source. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{runestone_8h}{runestone.\+h}}\end{DoxyCompactItemize}

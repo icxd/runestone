@@ -1,0 +1,108 @@
+\doxysection{rs\+\_\+t Struct Reference}
+\hypertarget{structrs__t}{}\label{structrs__t}\index{rs\_t@{rs\_t}}
+
+
+Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers, and the register map.  
+
+
+
+
+{\ttfamily \#include $<$runestone.\+h$>$}
+
+
+
+Collaboration diagram for rs\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structrs__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} \mbox{\hyperlink{structrs__t_ac33ab9c442f98a02a2a9c0cdea19ccb5}{target}}
+\item 
+\mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structrs__t_a602fd8de76134aab28f99caf04433953}{basic\+\_\+blocks}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structrs__t_a6505e41a183b8fed33332f866294abf1}{basic\+\_\+blocks\+\_\+count}}
+\item 
+ptrdiff\+\_\+t \mbox{\hyperlink{structrs__t_aaa3da1d0a964352d5064f9e7bbfa76af}{current\+\_\+basic\+\_\+block}}
+\item 
+\mbox{\hyperlink{structrs__lifetime__t}{rs\+\_\+lifetime\+\_\+t}} \mbox{\hyperlink{structrs__t_af8e678c081a08d60526e7275a78bc265}{lifetimes}} \mbox{[}256\mbox{]}
+\item 
+bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structrs__t_aaf80dfb1b9608aa68264cda5460b053d}{register\+\_\+pool}}
+\item 
+\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \mbox{\hyperlink{structrs__t_ab72e9158f3ccccf52886def0d62914dd}{register\+\_\+map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structrs__t_a11d72e6638f2a55f3712460d292f7b65}{stack\+\_\+size}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structrs__t_a64071ef4d41305787d3cc9d5357ad92b}{next\+\_\+dst\+\_\+vreg}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers, and the register map. 
+
+This structure holds the main data for managing the IR, including basic block sequences, register allocation, and the target architecture for code generation. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structrs__t_a602fd8de76134aab28f99caf04433953}\label{structrs__t_a602fd8de76134aab28f99caf04433953} 
+\index{rs\_t@{rs\_t}!basic\_blocks@{basic\_blocks}}
+\index{basic\_blocks@{basic\_blocks}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{basic\_blocks}{basic\_blocks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} rs\+\_\+t\+::basic\+\_\+blocks}
+
+List of all the basic blocks. \Hypertarget{structrs__t_a6505e41a183b8fed33332f866294abf1}\label{structrs__t_a6505e41a183b8fed33332f866294abf1} 
+\index{rs\_t@{rs\_t}!basic\_blocks\_count@{basic\_blocks\_count}}
+\index{basic\_blocks\_count@{basic\_blocks\_count}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{basic\_blocks\_count}{basic\_blocks\_count}}
+{\footnotesize\ttfamily size\+\_\+t rs\+\_\+t\+::basic\+\_\+blocks\+\_\+count}
+
+Number of basic blocks in the program. \Hypertarget{structrs__t_aaa3da1d0a964352d5064f9e7bbfa76af}\label{structrs__t_aaa3da1d0a964352d5064f9e7bbfa76af} 
+\index{rs\_t@{rs\_t}!current\_basic\_block@{current\_basic\_block}}
+\index{current\_basic\_block@{current\_basic\_block}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{current\_basic\_block}{current\_basic\_block}}
+{\footnotesize\ttfamily ptrdiff\+\_\+t rs\+\_\+t\+::current\+\_\+basic\+\_\+block}
+
+Index of the currently selected basic block, -\/1 if no block is selected. \Hypertarget{structrs__t_af8e678c081a08d60526e7275a78bc265}\label{structrs__t_af8e678c081a08d60526e7275a78bc265} 
+\index{rs\_t@{rs\_t}!lifetimes@{lifetimes}}
+\index{lifetimes@{lifetimes}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{lifetimes}{lifetimes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__lifetime__t}{rs\+\_\+lifetime\+\_\+t}} rs\+\_\+t\+::lifetimes\mbox{[}256\mbox{]}}
+
+Array of virtual register lifetimes, used for register allocation. \Hypertarget{structrs__t_a64071ef4d41305787d3cc9d5357ad92b}\label{structrs__t_a64071ef4d41305787d3cc9d5357ad92b} 
+\index{rs\_t@{rs\_t}!next\_dst\_vreg@{next\_dst\_vreg}}
+\index{next\_dst\_vreg@{next\_dst\_vreg}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{next\_dst\_vreg}{next\_dst\_vreg}}
+{\footnotesize\ttfamily size\+\_\+t rs\+\_\+t\+::next\+\_\+dst\+\_\+vreg}
+
+The index for the next destination virtual register. \Hypertarget{structrs__t_ab72e9158f3ccccf52886def0d62914dd}\label{structrs__t_ab72e9158f3ccccf52886def0d62914dd} 
+\index{rs\_t@{rs\_t}!register\_map@{register\_map}}
+\index{register\_map@{register\_map}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{register\_map}{register\_map}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} rs\+\_\+t\+::register\+\_\+map}
+
+The register map used during register allocation. \Hypertarget{structrs__t_aaf80dfb1b9608aa68264cda5460b053d}\label{structrs__t_aaf80dfb1b9608aa68264cda5460b053d} 
+\index{rs\_t@{rs\_t}!register\_pool@{register\_pool}}
+\index{register\_pool@{register\_pool}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{register\_pool}{register\_pool}}
+{\footnotesize\ttfamily bool\texorpdfstring{$\ast$}{*} rs\+\_\+t\+::register\+\_\+pool}
+
+Array of usable hardware registers, representing free and used states. \Hypertarget{structrs__t_a11d72e6638f2a55f3712460d292f7b65}\label{structrs__t_a11d72e6638f2a55f3712460d292f7b65} 
+\index{rs\_t@{rs\_t}!stack\_size@{stack\_size}}
+\index{stack\_size@{stack\_size}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{stack\_size}{stack\_size}}
+{\footnotesize\ttfamily size\+\_\+t rs\+\_\+t\+::stack\+\_\+size}
+
+The size of the stack. \Hypertarget{structrs__t_ac33ab9c442f98a02a2a9c0cdea19ccb5}\label{structrs__t_ac33ab9c442f98a02a2a9c0cdea19ccb5} 
+\index{rs\_t@{rs\_t}!target@{target}}
+\index{target@{target}!rs\_t@{rs\_t}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} rs\+\_\+t\+::target}
+
+The currently selected target architecture. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{runestone_8h}{runestone.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="rs_instr_t" name="rs_instr_t">
+<area shape="rect" id="Node000001" title="Represents a Runestone instruction." alt="" coords="16,123,92,148"/>
+<area shape="rect" id="Node000002" href="$structrs__operand__t.html" title="Represents a polymorphic operand used in instructions." alt="" coords="5,5,103,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,44,57,123,51,123,51,44"/>
+</map>

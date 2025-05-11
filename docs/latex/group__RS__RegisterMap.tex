@@ -1,0 +1,168 @@
+\doxysubsection{Register Map}
+\hypertarget{group__RS__RegisterMap}{}\label{group__RS__RegisterMap}\index{Register Map@{Register Map}}
+
+
+Mapping between virtual and physical registers.  
+
+
+Collaboration diagram for Register Map\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__RS__RegisterMap}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrs__map__entry__t}{rs\+\_\+map\+\_\+entry\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure representing a mapping entry between a virtual and physical register. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure representing the register map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RS__RegisterMap_ga6894c9ff51e71b0f8cb8eef7b65ecb60}{rs\+\_\+regmap\+\_\+init}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map)
+\begin{DoxyCompactList}\small\item\em Initialize a register map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RS__RegisterMap_gaf6399b2334da2bed72bc872413739f97}{rs\+\_\+regmap\+\_\+free}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map)
+\begin{DoxyCompactList}\small\item\em Free the memory used by the register map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RS__RegisterMap_ga66d7fbd6152f1f4493258f64f442880e}{rs\+\_\+regmap\+\_\+insert}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map, size\+\_\+t key, \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} value)
+\begin{DoxyCompactList}\small\item\em Insert a mapping between a virtual and physical register. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{group__RS__RegisterMap_ga9da531c55bb9593729cb5466f8dbad8d}{rs\+\_\+regmap\+\_\+get}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map, size\+\_\+t key)
+\begin{DoxyCompactList}\small\item\em Retrieve the physical register associated with a virtual register. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RS__RegisterMap_gaae4bc14dccdd7da71fca49f45559256f}{rs\+\_\+regmap\+\_\+contains}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map, size\+\_\+t key)
+\begin{DoxyCompactList}\small\item\em Check if a virtual register ID exists in the register map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RS__RegisterMap_ga2de431eddc92fc1e0b06df6010024ea8}{rs\+\_\+regmap\+\_\+remove}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map, size\+\_\+t key)
+\begin{DoxyCompactList}\small\item\em Remove a mapping for a given virtual register ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Mapping between virtual and physical registers. 
+
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__RS__RegisterMap_gaae4bc14dccdd7da71fca49f45559256f}\label{group__RS__RegisterMap_gaae4bc14dccdd7da71fca49f45559256f} 
+\index{Register Map@{Register Map}!rs\_regmap\_contains@{rs\_regmap\_contains}}
+\index{rs\_regmap\_contains@{rs\_regmap\_contains}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_contains()}{rs\_regmap\_contains()}}
+{\footnotesize\ttfamily bool rs\+\_\+regmap\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{size\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+
+
+Check if a virtual register ID exists in the register map. 
+
+This function checks if a mapping exists for the given virtual register ID ({\ttfamily key}).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & The virtual register ID to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the key exists in the map, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__RS__RegisterMap_gaf6399b2334da2bed72bc872413739f97}\label{group__RS__RegisterMap_gaf6399b2334da2bed72bc872413739f97} 
+\index{Register Map@{Register Map}!rs\_regmap\_free@{rs\_regmap\_free}}
+\index{rs\_regmap\_free@{rs\_regmap\_free}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_free()}{rs\_regmap\_free()}}
+{\footnotesize\ttfamily void rs\+\_\+regmap\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+
+
+Free the memory used by the register map. 
+
+This function frees the memory allocated for the entries in the register map and resets the map to an uninitialized state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map to free. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__RS__RegisterMap_ga9da531c55bb9593729cb5466f8dbad8d}\label{group__RS__RegisterMap_ga9da531c55bb9593729cb5466f8dbad8d} 
+\index{Register Map@{Register Map}!rs\_regmap\_get@{rs\_regmap\_get}}
+\index{rs\_regmap\_get@{rs\_regmap\_get}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_get()}{rs\_regmap\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} rs\+\_\+regmap\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{size\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+
+
+Retrieve the physical register associated with a virtual register. 
+
+This function returns the physical register associated with a given virtual register ID ({\ttfamily key}).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & The virtual register ID whose physical register is to be retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The physical register associated with the given virtual register ID.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If the key does not exist in the map, the behavior is undefined. 
+\end{DoxyNote}
+\Hypertarget{group__RS__RegisterMap_ga6894c9ff51e71b0f8cb8eef7b65ecb60}\label{group__RS__RegisterMap_ga6894c9ff51e71b0f8cb8eef7b65ecb60} 
+\index{Register Map@{Register Map}!rs\_regmap\_init@{rs\_regmap\_init}}
+\index{rs\_regmap\_init@{rs\_regmap\_init}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_init()}{rs\_regmap\_init()}}
+{\footnotesize\ttfamily void rs\+\_\+regmap\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+
+
+Initialize a register map. 
+
+This function initializes a register map, allocating memory for the map entries and setting the count and capacity.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map to initialize.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The map should be freed later using {\ttfamily rs\+\_\+regmap\+\_\+free}. 
+\end{DoxyNote}
+\Hypertarget{group__RS__RegisterMap_ga66d7fbd6152f1f4493258f64f442880e}\label{group__RS__RegisterMap_ga66d7fbd6152f1f4493258f64f442880e} 
+\index{Register Map@{Register Map}!rs\_regmap\_insert@{rs\_regmap\_insert}}
+\index{rs\_regmap\_insert@{rs\_regmap\_insert}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_insert()}{rs\_regmap\_insert()}}
+{\footnotesize\ttfamily void rs\+\_\+regmap\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{size\+\_\+t}]{key,  }\item[{\mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}}}]{value }\end{DoxyParamCaption})}
+
+
+
+Insert a mapping between a virtual and physical register. 
+
+This function inserts a new entry into the register map, associating a virtual register ID ({\ttfamily key}) with a physical register ({\ttfamily value}).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map where the entry will be inserted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & The virtual register ID to insert. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The physical register to associate with the virtual register. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__RS__RegisterMap_ga2de431eddc92fc1e0b06df6010024ea8}\label{group__RS__RegisterMap_ga2de431eddc92fc1e0b06df6010024ea8} 
+\index{Register Map@{Register Map}!rs\_regmap\_remove@{rs\_regmap\_remove}}
+\index{rs\_regmap\_remove@{rs\_regmap\_remove}!Register Map@{Register Map}}
+\doxysubsubsubsection{\texorpdfstring{rs\_regmap\_remove()}{rs\_regmap\_remove()}}
+{\footnotesize\ttfamily void rs\+\_\+regmap\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{size\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+
+
+Remove a mapping for a given virtual register ID. 
+
+This function removes the entry associated with the given virtual register ID ({\ttfamily key}) from the register map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em key} & The virtual register ID whose mapping should be removed. \\
+\hline
+\end{DoxyParams}

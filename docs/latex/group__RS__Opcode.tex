@@ -1,0 +1,156 @@
+\doxysubsection{Instruction Set}
+\hypertarget{group__RS__Opcode}{}\label{group__RS__Opcode}\index{Instruction Set@{Instruction Set}}
+
+
+Opcode definitions and instruction representation.  
+
+
+Collaboration diagram for Instruction Set\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{group__RS__Opcode}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Represents a Runestone instruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RS__Opcode_ga8c1834c4f9033c4366f6bfab4f188a55}{RS\+\_\+\+OPCODES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eac0f1345639b1bcafe6c81e9818ef5f43}{RS\+\_\+\+OPCODE\+\_\+\+MOVE}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eae34f147c15daa82d200ecbd967122f18}{RS\+\_\+\+OPCODE\+\_\+\+COPY}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea381f336b55b56f8e87efba6297e199e5}{RS\+\_\+\+OPCODE\+\_\+\+LOAD}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead90ae467aa4bc6a5944c0606d414fffc}{RS\+\_\+\+OPCODE\+\_\+\+STORE}}
+, \newline
+\mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead568b0356fc90f0834c4812f3e84d665}{RS\+\_\+\+OPCODE\+\_\+\+ADD}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea403adc3ecbfc5dbef8f5d7929726a4fb}{RS\+\_\+\+OPCODE\+\_\+\+SUB}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea3ab777b46b7113d1adc94a33548dc349}{RS\+\_\+\+OPCODE\+\_\+\+MULT}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea2fdbc95cbd4f235f62e7ee1f258739e7}{RS\+\_\+\+OPCODE\+\_\+\+DIV}}
+, \newline
+\mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc}{RS\+\_\+\+OPCODE\+\_\+\+RET}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4}{RS\+\_\+\+OPCODE\+\_\+\+BR}}
+, \mbox{\hyperlink{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\+\_\+\+OPCODE\+\_\+\+COUNT}}
+ \}
+\begin{DoxyCompactList}\small\item\em The available instructions in the Runestone IR. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__RS__Opcode_ga1199f2d132744b4b7dfd06403e5d40f1}{rs\+\_\+opcode\+\_\+to\+\_\+str}} (\mbox{\hyperlink{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} opcode)
+\begin{DoxyCompactList}\small\item\em Converts an opcode enum value to its corresponding string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Opcode definitions and instruction representation. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__RS__Opcode_ga8c1834c4f9033c4366f6bfab4f188a55}\label{group__RS__Opcode_ga8c1834c4f9033c4366f6bfab4f188a55} 
+\index{Instruction Set@{Instruction Set}!RS\_OPCODES@{RS\_OPCODES}}
+\index{RS\_OPCODES@{RS\_OPCODES}!Instruction Set@{Instruction Set}}
+\doxysubsubsubsection{\texorpdfstring{RS\_OPCODES}{RS\_OPCODES}}
+{\footnotesize\ttfamily \#define RS\+\_\+\+OPCODES(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(MOVE,\ \textcolor{stringliteral}{"{}move"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(COPY,\ \textcolor{stringliteral}{"{}copy"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(LOAD,\ \textcolor{stringliteral}{"{}load"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(STORE,\ \textcolor{stringliteral}{"{}store"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(ADD,\ \textcolor{stringliteral}{"{}add"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(SUB,\ \textcolor{stringliteral}{"{}sub"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(MULT,\ \textcolor{stringliteral}{"{}mult"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(DIV,\ \textcolor{stringliteral}{"{}div"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(RET,\ \textcolor{stringliteral}{"{}ret"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(BR,\ \textcolor{stringliteral}{"{}br"{}})}
+
+\end{DoxyCode}
+Branch opcode. 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e}\label{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e} 
+\index{Instruction Set@{Instruction Set}!rs\_opcode\_t@{rs\_opcode\_t}}
+\index{rs\_opcode\_t@{rs\_opcode\_t}!Instruction Set@{Instruction Set}}
+\doxysubsubsubsection{\texorpdfstring{rs\_opcode\_t}{rs\_opcode\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}}}
+
+
+
+The available instructions in the Runestone IR. 
+
+This enum defines the available opcodes (or instructions) in the Runestone IR. Each opcode corresponds to a basic operation that can be performed in the intermediate representation, such as move, load, add, and branch. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_MOVE@{RS\_OPCODE\_MOVE}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_MOVE@{RS\_OPCODE\_MOVE}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eac0f1345639b1bcafe6c81e9818ef5f43}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eac0f1345639b1bcafe6c81e9818ef5f43} 
+RS\+\_\+\+OPCODE\+\_\+\+MOVE&Move opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_COPY@{RS\_OPCODE\_COPY}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_COPY@{RS\_OPCODE\_COPY}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eae34f147c15daa82d200ecbd967122f18}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eae34f147c15daa82d200ecbd967122f18} 
+RS\+\_\+\+OPCODE\+\_\+\+COPY&Copy opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_LOAD@{RS\_OPCODE\_LOAD}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_LOAD@{RS\_OPCODE\_LOAD}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea381f336b55b56f8e87efba6297e199e5}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea381f336b55b56f8e87efba6297e199e5} 
+RS\+\_\+\+OPCODE\+\_\+\+LOAD&Load opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_STORE@{RS\_OPCODE\_STORE}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_STORE@{RS\_OPCODE\_STORE}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead90ae467aa4bc6a5944c0606d414fffc}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead90ae467aa4bc6a5944c0606d414fffc} 
+RS\+\_\+\+OPCODE\+\_\+\+STORE&Store opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_ADD@{RS\_OPCODE\_ADD}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_ADD@{RS\_OPCODE\_ADD}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead568b0356fc90f0834c4812f3e84d665}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ead568b0356fc90f0834c4812f3e84d665} 
+RS\+\_\+\+OPCODE\+\_\+\+ADD&Add opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_SUB@{RS\_OPCODE\_SUB}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_SUB@{RS\_OPCODE\_SUB}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea403adc3ecbfc5dbef8f5d7929726a4fb}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea403adc3ecbfc5dbef8f5d7929726a4fb} 
+RS\+\_\+\+OPCODE\+\_\+\+SUB&Sub opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_MULT@{RS\_OPCODE\_MULT}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_MULT@{RS\_OPCODE\_MULT}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea3ab777b46b7113d1adc94a33548dc349}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea3ab777b46b7113d1adc94a33548dc349} 
+RS\+\_\+\+OPCODE\+\_\+\+MULT&Mult opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_DIV@{RS\_OPCODE\_DIV}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_DIV@{RS\_OPCODE\_DIV}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea2fdbc95cbd4f235f62e7ee1f258739e7}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea2fdbc95cbd4f235f62e7ee1f258739e7} 
+RS\+\_\+\+OPCODE\+\_\+\+DIV&Div opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_RET@{RS\_OPCODE\_RET}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_RET@{RS\_OPCODE\_RET}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc} 
+RS\+\_\+\+OPCODE\+\_\+\+RET&Return opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_BR@{RS\_OPCODE\_BR}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_BR@{RS\_OPCODE\_BR}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4} 
+RS\+\_\+\+OPCODE\+\_\+\+BR&Branch opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_COUNT@{RS\_OPCODE\_COUNT}!Instruction Set@{Instruction Set}}\index{Instruction Set@{Instruction Set}!RS\_OPCODE\_COUNT@{RS\_OPCODE\_COUNT}}}\Hypertarget{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}\label{group__RS__Opcode_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47} 
+RS\+\_\+\+OPCODE\+\_\+\+COUNT&Number of defined opcodes. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__RS__Opcode_ga1199f2d132744b4b7dfd06403e5d40f1}\label{group__RS__Opcode_ga1199f2d132744b4b7dfd06403e5d40f1} 
+\index{Instruction Set@{Instruction Set}!rs\_opcode\_to\_str@{rs\_opcode\_to\_str}}
+\index{rs\_opcode\_to\_str@{rs\_opcode\_to\_str}!Instruction Set@{Instruction Set}}
+\doxysubsubsubsection{\texorpdfstring{rs\_opcode\_to\_str()}{rs\_opcode\_to\_str()}}
+{\footnotesize\ttfamily static const char \texorpdfstring{$\ast$}{*} rs\+\_\+opcode\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RS__Opcode_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}}}]{opcode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Converts an opcode enum value to its corresponding string representation. 
+
+This function maps an {\ttfamily rs\+\_\+opcode\+\_\+t} enumeration value to its human-\/readable string name, such as "{}move"{}, "{}add"{}, or "{}ret"{}. These names are used for debugging, diagnostics, or assembly output. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em opcode} & The opcode to convert. Must be a valid {\ttfamily rs\+\_\+opcode\+\_\+t} value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a constant string representing the opcode name. If the input value is out of range, the string "{}unknown"{} is returned. 
+\end{DoxyReturn}

@@ -1,0 +1,11 @@
+<map id="lib/runestone.h" name="lib/runestone.h">
+<area shape="rect" id="Node000001" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="131,5,237,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,33,79,75,77,70,160,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="104,79,173,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,32,156,69,151,66,174,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="198,79,263,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="194,30,218,66,213,69,189,32"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="288,79,349,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="207,28,286,70,283,74,204,33"/>
+</map>

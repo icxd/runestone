@@ -33,8 +33,8 @@ void rs_free(rs_t *rs) {
 
 size_t rs_append_basic_block(rs_t *rs, const char *name) {
   rs_basic_block_t *bb = malloc(sizeof(rs_basic_block_t));
-  bb->instrs = malloc(sizeof(rs_instr_t) * RS_MAX_INSTR);
-  bb->instrs_count = 0;
+  bb->instructions = malloc(sizeof(rs_instr_t) * RS_MAX_INSTR);
+  bb->instruction_count = 0;
 
   if (name == NULL) {
     char buffer[20];
@@ -55,7 +55,7 @@ void rs_position_at_basic_block(rs_t *rs, size_t block_id) {
 void rs_build_instr(rs_t *rs, rs_instr_t instr) {
   assert(rs->current_basic_block != -1);
   rs_basic_block_t *bb = rs->basic_blocks[rs->current_basic_block];
-  bb->instrs[bb->instrs_count++] = instr;
+  bb->instructions[bb->instruction_count++] = instr;
 }
 
 rs_operand_t rs_build_move(rs_t *rs, rs_operand_t src) {
@@ -169,7 +169,7 @@ size_t rs_get_register_count(rs_target_t target) {
     RS_TARGETS
 #undef RS_TARGET
 
-  case RS_COUNT_TARGETS:
+  case RS_TARGET_COUNT:
     assert(false && "unreachable");
   }
 }
@@ -182,13 +182,13 @@ const char **rs_get_register_names(rs_target_t target) {
     RS_TARGETS
 #undef RS_TARGET
 
-  case RS_COUNT_TARGETS:
+  case RS_TARGET_COUNT:
     assert(false && "unreachable");
   }
 }
 
 static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
-  for (size_t ip = 0; ip < block->instrs_count; ip++) {
+  for (size_t ip = 0; ip < block->instruction_count; ip++) {
     for (size_t lifetime_index = 0; lifetime_index < 256; lifetime_index++) {
       rs_lifetime_t lifetime = rs->lifetimes[lifetime_index];
       if (lifetime.start == -1 || lifetime.end == -1)
@@ -215,10 +215,10 @@ void rs_analyze_lifetimes(rs_t *rs) {
   for (size_t block_id = 0; block_id < rs->basic_blocks_count; block_id++) {
     rs_basic_block_t *bb = rs->basic_blocks[block_id];
 
-    for (size_t i = 0; i < bb->instrs_count; i++) {
-      rs_instr_t instr = bb->instrs[i];
-      if (instr.dst.type == RS_OPERAND_TYPE_REG)
-        rs_analyze_operand(rs, i, instr.dst);
+    for (size_t i = 0; i < bb->instruction_count; i++) {
+      rs_instr_t instr = bb->instructions[i];
+      if (instr.dest.type == RS_OPERAND_TYPE_REG)
+        rs_analyze_operand(rs, i, instr.dest);
       if (instr.src1.type == RS_OPERAND_TYPE_REG)
         rs_analyze_operand(rs, i, instr.src1);
       if (instr.src2.type == RS_OPERAND_TYPE_REG)
@@ -233,7 +233,7 @@ void rs_finalize(rs_t *rs) {
   bool has_error = false;
   for (size_t i = 0; i < rs->basic_blocks_count; i++) {
     rs_basic_block_t *bb = rs->basic_blocks[i];
-    if (!rs_instr_is_terminator(bb->instrs[bb->instrs_count - 1])) {
+    if (!rs_instr_is_terminator(bb->instructions[bb->instruction_count - 1])) {
       fprintf(stderr,
               "ERROR: missing terminator instruction in basic block `%s`\n",
               bb->name);
@@ -252,7 +252,7 @@ static void rs_operand_print(rs_t *rs, FILE *fp, rs_operand_t operand) {
     fprintf(fp, "<null>");
     break;
   case RS_OPERAND_TYPE_INT64:
-    fprintf(fp, "%lld", operand.int64);
+    fprintf(fp, "%ld", operand.int64);
     break;
   case RS_OPERAND_TYPE_ADDR:
     fprintf(fp, "%p", (void *)operand.addr);
@@ -269,11 +269,11 @@ static void rs_operand_print(rs_t *rs, FILE *fp, rs_operand_t operand) {
 }
 
 void rs_dump_instr(rs_t *rs, FILE *fp, rs_instr_t instr) {
-  if (instr.dst.type != RS_OPERAND_TYPE_NULL) {
-    rs_operand_print(rs, fp, instr.dst);
+  if (instr.dest.type != RS_OPERAND_TYPE_NULL) {
+    rs_operand_print(rs, fp, instr.dest);
     fprintf(fp, " = ");
   }
-  fprintf(fp, "%s ", rs_opcode_names[instr.opcode]);
+  fprintf(fp, "%s ", rs_opcode_to_str(instr.opcode));
   if (instr.src1.type != RS_OPERAND_TYPE_NULL)
     rs_operand_print(rs, fp, instr.src1);
   if (instr.src2.type != RS_OPERAND_TYPE_NULL) {
@@ -287,8 +287,8 @@ void rs_dump(rs_t *rs, FILE *fp) {
     rs_basic_block_t *bb = rs->basic_blocks[block_id];
     fprintf(fp, "%s:\n", bb->name);
 
-    for (size_t i = 0; i < bb->instrs_count; i++) {
-      rs_instr_t instr = bb->instrs[i];
+    for (size_t i = 0; i < bb->instruction_count; i++) {
+      rs_instr_t instr = bb->instructions[i];
       fprintf(fp, "  ");
       rs_dump_instr(rs, fp, instr);
       fprintf(fp, "\n");
@@ -307,7 +307,7 @@ void rs_generate(rs_t *rs, FILE *fp) {
   case RS_TARGET_AARCH64_MACOS_GAS:
     rs_generate_aarch64_macos_gas(rs, fp);
     break;
-  case RS_COUNT_TARGETS:
+  case RS_TARGET_COUNT:
     break;
   }
 }

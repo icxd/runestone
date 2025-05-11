@@ -8,8 +8,8 @@ void rs_generate_x86_64_linux_nasm(rs_t *rs, FILE *fp) {
     rs_basic_block_t *bb = rs->basic_blocks[i];
     fprintf(fp, ".%s:\n", bb->name);
 
-    for (size_t j = 0; j < bb->instrs_count; j++) {
-      rs_instr_t instr = bb->instrs[j];
+    for (size_t j = 0; j < bb->instruction_count; j++) {
+      rs_instr_t instr = bb->instructions[j];
       rs_generate_instr_x86_64_linux_nasm(rs, fp, instr);
     }
   }
@@ -24,7 +24,7 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
    **/
   case RS_OPCODE_MOVE:
     fprintf(fp, "  mov ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, false);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, false);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
@@ -41,7 +41,7 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, true);
     fprintf(fp, "\n");
     fprintf(fp, "  mov ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, true);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, true);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src2, false);
     fprintf(fp, "\n");
@@ -52,7 +52,7 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
    **/
   case RS_OPCODE_LOAD:
     fprintf(fp, "  mov ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, false);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, false);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, true);
     fprintf(fp, "\n");
@@ -63,7 +63,7 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
    **/
   case RS_OPCODE_STORE:
     fprintf(fp, "  mov ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, true);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, true);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
@@ -75,12 +75,12 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
    **/
   case RS_OPCODE_ADD:
     fprintf(fp, "  mov ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, false);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, false);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
     fprintf(fp, "  add ");
-    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dst, false);
+    rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.dest, false);
     fprintf(fp, ", ");
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src2, false);
     fprintf(fp, "\n");
@@ -109,6 +109,8 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
     break;
+  case RS_OPCODE_COUNT:
+    break;
   }
 }
 void rs_generate_operand_x86_64_linux_nasm(rs_t *rs, FILE *fp,
@@ -118,7 +120,7 @@ void rs_generate_operand_x86_64_linux_nasm(rs_t *rs, FILE *fp,
   case RS_OPERAND_TYPE_NULL:
     break;
   case RS_OPERAND_TYPE_INT64:
-    fprintf(fp, "%lld", operand.int64);
+    fprintf(fp, "%ld", operand.int64);
     break;
   case RS_OPERAND_TYPE_ADDR:
     fprintf(fp, "%zu", operand.addr);
@@ -131,6 +133,8 @@ void rs_generate_operand_x86_64_linux_nasm(rs_t *rs, FILE *fp,
     break;
   case RS_OPERAND_TYPE_BB:
     fprintf(fp, ".%s", rs->basic_blocks[operand.bb_id]->name);
+    break;
+  case RS_OPERAND_TYPE_COUNT:
     break;
   }
 }
