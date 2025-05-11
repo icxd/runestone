@@ -1,0 +1,20 @@
+<map id="lib/runestone.c" name="lib/runestone.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="335,5,441,31"/>
+<area shape="rect" id="Node000002" href="$runestone_8h.html" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="185,79,276,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="364,33,270,75,268,71,362,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="288,152,349,177"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="378,33,360,54,344,80,332,110,325,139,320,138,327,108,339,77,356,51,374,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="353,79,423,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="391,31,391,65,385,65,385,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="447,79,511,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="404,29,455,68,451,72,401,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="535,79,601,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="418,28,527,71,525,76,416,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,80,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,107,87,149,85,144,200,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="104,152,173,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="218,106,166,146,163,141,214,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="198,152,263,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="233,104,233,138,228,138,228,104"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="246,102,295,141,292,145,243,106"/>
+</map>

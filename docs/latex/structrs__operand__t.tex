@@ -1,0 +1,73 @@
+\doxysection{rs\+\_\+operand\+\_\+t Struct Reference}
+\hypertarget{structrs__operand__t}{}\label{structrs__operand__t}\index{rs\_operand\_t@{rs\_operand\_t}}
+
+
+Represents a polymorphic operand used in instructions.  
+
+
+
+
+{\ttfamily \#include $<$runestone.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__Runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\+\_\+operand\+\_\+type\+\_\+t}} \mbox{\hyperlink{structrs__operand__t_a13405c78740a902c46fd165806ba58c4}{type}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>int64\_t \mbox{\hyperlink{structrs__operand__t_af46f6c55eaa904cf72a0329f1ff14346}{int64}}\\
+\>size\_t \mbox{\hyperlink{structrs__operand__t_adf43921ffff7d68b746b231c1a6bfbbe}{addr}}\\
+\>uint8\_t \mbox{\hyperlink{structrs__operand__t_a155a1f561f401fca90c32cfe71a62224}{vreg}}\\
+\>size\_t \mbox{\hyperlink{structrs__operand__t_af9ebf497e4af8fdc4222f6f865b7c926}{bb\_id}}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a polymorphic operand used in instructions. 
+
+This structure represents an operand in the Runestone IR. The operand type is stored in the {\ttfamily type} field, and the actual value of the operand is stored in the union, which can hold an integer, address, register, or basic block ID. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structrs__operand__t_aefed10ea5c5347f8d06725e2cf949658}\label{structrs__operand__t_aefed10ea5c5347f8d06725e2cf949658} 
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily union  \{ ... \}  \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}
+
+\Hypertarget{structrs__operand__t_adf43921ffff7d68b746b231c1a6bfbbe}\label{structrs__operand__t_adf43921ffff7d68b746b231c1a6bfbbe} 
+\index{rs\_operand\_t@{rs\_operand\_t}!addr@{addr}}
+\index{addr@{addr}!rs\_operand\_t@{rs\_operand\_t}}
+\doxysubsubsection{\texorpdfstring{addr}{addr}}
+{\footnotesize\ttfamily size\+\_\+t rs\+\_\+operand\+\_\+t\+::addr}
+
+Address. \Hypertarget{structrs__operand__t_af9ebf497e4af8fdc4222f6f865b7c926}\label{structrs__operand__t_af9ebf497e4af8fdc4222f6f865b7c926} 
+\index{rs\_operand\_t@{rs\_operand\_t}!bb\_id@{bb\_id}}
+\index{bb\_id@{bb\_id}!rs\_operand\_t@{rs\_operand\_t}}
+\doxysubsubsection{\texorpdfstring{bb\_id}{bb\_id}}
+{\footnotesize\ttfamily size\+\_\+t rs\+\_\+operand\+\_\+t\+::bb\+\_\+id}
+
+Basic block ID. \Hypertarget{structrs__operand__t_af46f6c55eaa904cf72a0329f1ff14346}\label{structrs__operand__t_af46f6c55eaa904cf72a0329f1ff14346} 
+\index{rs\_operand\_t@{rs\_operand\_t}!int64@{int64}}
+\index{int64@{int64}!rs\_operand\_t@{rs\_operand\_t}}
+\doxysubsubsection{\texorpdfstring{int64}{int64}}
+{\footnotesize\ttfamily int64\+\_\+t rs\+\_\+operand\+\_\+t\+::int64}
+
+64-\/bit integer value. \Hypertarget{structrs__operand__t_a13405c78740a902c46fd165806ba58c4}\label{structrs__operand__t_a13405c78740a902c46fd165806ba58c4} 
+\index{rs\_operand\_t@{rs\_operand\_t}!type@{type}}
+\index{type@{type}!rs\_operand\_t@{rs\_operand\_t}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\+\_\+operand\+\_\+type\+\_\+t}} rs\+\_\+operand\+\_\+t\+::type}
+
+The type of the operand. \Hypertarget{structrs__operand__t_a155a1f561f401fca90c32cfe71a62224}\label{structrs__operand__t_a155a1f561f401fca90c32cfe71a62224} 
+\index{rs\_operand\_t@{rs\_operand\_t}!vreg@{vreg}}
+\index{vreg@{vreg}!rs\_operand\_t@{rs\_operand\_t}}
+\doxysubsubsection{\texorpdfstring{vreg}{vreg}}
+{\footnotesize\ttfamily uint8\+\_\+t rs\+\_\+operand\+\_\+t\+::vreg}
+
+Virtual register index. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{runestone_8h}{runestone.\+h}}\end{DoxyCompactItemize}
