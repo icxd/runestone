@@ -1,4 +1,5 @@
 #include "runestone.h"
+#include <assert.h>
 
 void rs_generate_x86_64_linux_nasm(rs_t *rs, FILE *fp) {
   fprintf(fp, "section .text\n");
@@ -87,12 +88,9 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
     break;
 
   case RS_OPCODE_SUB:
-    break;
-
   case RS_OPCODE_MULT:
-    break;
-
   case RS_OPCODE_DIV:
+    assert(false && "unimplemented");
     break;
 
   case RS_OPCODE_RET:
@@ -109,7 +107,16 @@ void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
     rs_generate_operand_x86_64_linux_nasm(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
     break;
+
+  case RS_OPCODE_BR_IF:
+  case RS_OPCODE_CMP_EQ:
+  case RS_OPCODE_CMP_LT:
+  case RS_OPCODE_CMP_GT:
+    assert(false && "unimplemented");
+    break;
+
   case RS_OPCODE_COUNT:
+    assert(false && "unreachable");
     break;
   }
 }
