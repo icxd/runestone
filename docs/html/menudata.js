@@ -64,6 +64,7 @@ var menudata={children:[
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
 {text:"_",url:"globals.html#index__5F"},
+{text:"c",url:"globals.html#index_c"},
 {text:"r",url:"globals.html#index_r"},
 {text:"x",url:"globals.html#index_x"}]},
 {text:"Functions",url:"globals_func.html",children:[
@@ -74,5 +75,6 @@ var menudata={children:[
 {text:"Enumerator",url:"globals_eval.html"},
 {text:"Macros",url:"globals_defs.html",children:[
 {text:"_",url:"globals_defs.html#index__5F"},
+{text:"c",url:"globals_defs.html#index_c"},
 {text:"r",url:"globals_defs.html#index_r"},
 {text:"x",url:"globals_defs.html#index_x"}]}]}]}]}

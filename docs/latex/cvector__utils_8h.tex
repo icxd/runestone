@@ -1,0 +1,80 @@
+\doxysection{lib/cvector\+\_\+utils.h File Reference}
+\hypertarget{cvector__utils_8h}{}\label{cvector__utils_8h}\index{lib/cvector\_utils.h@{lib/cvector\_utils.h}}
+
+
+extends the cvector library  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cvector__utils_8h_ae8355d9c459c8a3f4bc6722e685d49ee}{cvector\+\_\+for\+\_\+each\+\_\+in}}(it,  vec)~   for (it = \mbox{\hyperlink{cvector_8h_a30eec18d65f78194b3c72217b83f4334}{cvector\+\_\+begin}}(vec); it $<$ \mbox{\hyperlink{cvector_8h_af0c4654a78847e695ccff00a6a5a1e5d}{cvector\+\_\+end}}(vec); it++)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+for\+\_\+each\+\_\+in -\/ for header to iterate over vector each element\textquotesingle{}s address \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector__utils_8h_a9175cfe3372e65036658b2d77cf5a24a}{cvector\+\_\+for\+\_\+each}}(vec,  func)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+for\+\_\+each -\/ call function func on each element of the vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+extends the cvector library 
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 Evan Teran, License\+: The MIT License (MIT) 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{cvector__utils_8h_a9175cfe3372e65036658b2d77cf5a24a}\label{cvector__utils_8h_a9175cfe3372e65036658b2d77cf5a24a} 
+\index{cvector\_utils.h@{cvector\_utils.h}!cvector\_for\_each@{cvector\_for\_each}}
+\index{cvector\_for\_each@{cvector\_for\_each}!cvector\_utils.h@{cvector\_utils.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_for\_each}{cvector\_for\_each}}
+{\footnotesize\ttfamily \#define cvector\+\_\+for\+\_\+each(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{func }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ ((vec)\ \&\&\ (func)\ !=\ NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ for\ (i\ =\ 0;\ i\ <\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec);\ i++)\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ func((vec)[i]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+for\+\_\+each -\/ call function func on each element of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em func} & -\/ function to be called on each element that takes each element as argument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector__utils_8h_ae8355d9c459c8a3f4bc6722e685d49ee}\label{cvector__utils_8h_ae8355d9c459c8a3f4bc6722e685d49ee} 
+\index{cvector\_utils.h@{cvector\_utils.h}!cvector\_for\_each\_in@{cvector\_for\_each\_in}}
+\index{cvector\_for\_each\_in@{cvector\_for\_each\_in}!cvector\_utils.h@{cvector\_utils.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_for\_each\_in}{cvector\_for\_each\_in}}
+{\footnotesize\ttfamily \#define cvector\+\_\+for\+\_\+each\+\_\+in(\begin{DoxyParamCaption}\item[{}]{it,  }\item[{}]{vec }\end{DoxyParamCaption})~   for (it = \mbox{\hyperlink{cvector_8h_a30eec18d65f78194b3c72217b83f4334}{cvector\+\_\+begin}}(vec); it $<$ \mbox{\hyperlink{cvector_8h_af0c4654a78847e695ccff00a6a5a1e5d}{cvector\+\_\+end}}(vec); it++)}
+
+
+
+cvector\+\_\+for\+\_\+each\+\_\+in -\/ for header to iterate over vector each element\textquotesingle{}s address 
+
+
+\begin{DoxyParams}{Parameters}
+{\em it} & -\/ iterator of type pointer to vector element \\
+\hline
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

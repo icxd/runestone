@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['api_0',['Runestone IR API',['../group___runestone.html',1,'']]]
+  ['api_0',['Runestone IR API',['../group__Runestone.html',1,'']]]
 ];

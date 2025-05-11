@@ -1,7 +1,7 @@
 <map id="rs_basic_block_t" name="rs_basic_block_t">
-<area shape="rect" id="Node000001" title="Represents a basic block in the Runestone IR." alt="" coords="5,211,125,236"/>
-<area shape="rect" id="Node000002" href="$structrs__instr__t.html" title="Represents a Runestone instruction." alt="" coords="27,123,103,148"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,162,68,210,63,210,63,162"/>
+<area shape="rect" id="Node000001" title="Represents a basic block in the Runestone IR." alt="" coords="5,225,125,251"/>
+<area shape="rect" id="Node000002" href="$structrs__instr__t.html" title="Represents a Runestone instruction." alt="" coords="27,137,103,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,177,68,225,63,225,63,177"/>
 <area shape="rect" id="Node000003" href="$structrs__operand__t.html" title="Represents a polymorphic operand used in instructions." alt="" coords="17,5,114,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,44,68,123,63,123,63,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,44,68,137,63,137,63,44"/>
 </map>

@@ -1,15 +1,15 @@
 <map id="rs_t" name="rs_t">
-<area shape="rect" id="Node000001" title="Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers,..." alt="" coords="174,299,218,324"/>
-<area shape="rect" id="Node000002" href="$structrs__basic__block__t.html" title="Represents a basic block in the Runestone IR." alt="" coords="5,211,125,236"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,246,111,273,143,290,175,302,173,307,141,295,108,277,80,249"/>
-<area shape="rect" id="Node000003" href="$structrs__instr__t.html" title="Represents a Runestone instruction." alt="" coords="27,123,103,148"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,162,68,210,63,210,63,162"/>
+<area shape="rect" id="Node000001" title="Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers,..." alt="" coords="174,313,218,339"/>
+<area shape="rect" id="Node000002" href="$structrs__basic__block__t.html" title="Represents a basic block in the Runestone IR." alt="" coords="5,225,125,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,260,111,287,143,305,175,316,173,321,141,310,108,291,80,264"/>
+<area shape="rect" id="Node000003" href="$structrs__instr__t.html" title="Represents a Runestone instruction." alt="" coords="27,137,103,163"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,177,68,225,63,225,63,177"/>
 <area shape="rect" id="Node000004" href="$structrs__operand__t.html" title="Represents a polymorphic operand used in instructions." alt="" coords="17,5,114,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="68,44,68,123,63,123,63,44"/>
-<area shape="rect" id="Node000005" href="$structrs__lifetime__t.html" title="Represents the lifetime of a virtual register in the Runestone IR." alt="" coords="149,211,243,236"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="199,250,199,298,193,298,193,250"/>
-<area shape="rect" id="Node000006" href="$structrs__register__map__t.html" title="Structure representing the register map." alt="" coords="267,211,394,236"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="303,246,256,277,217,301,214,296,253,272,300,242"/>
-<area shape="rect" id="Node000007" href="$structrs__map__entry__t.html" title="Structure representing a mapping entry between a virtual and physical register." alt="" coords="275,123,387,148"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="333,162,333,210,328,210,328,162"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="68,44,68,137,63,137,63,44"/>
+<area shape="rect" id="Node000005" href="$structrs__lifetime__t.html" title="Represents the lifetime of a virtual register in the Runestone IR." alt="" coords="149,225,243,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="199,265,199,313,193,313,193,265"/>
+<area shape="rect" id="Node000006" href="$structrs__register__map__t.html" title="Structure representing the register map." alt="" coords="267,225,394,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="303,261,256,292,217,315,214,311,253,287,300,256"/>
+<area shape="rect" id="Node000007" href="$structrs__map__entry__t.html" title="Structure representing a mapping entry between a virtual and physical register." alt="" coords="275,137,387,163"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="333,177,333,225,328,225,328,177"/>
 </map>
