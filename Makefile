@@ -36,4 +36,4 @@ test: all
 
 # Clean everything
 clean:
-	rm -rf $(BUILD_DIR) simple simple.o
+	rm -rf $(BUILD_DIR) simple simple.S simple.o
