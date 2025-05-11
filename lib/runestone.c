@@ -13,7 +13,7 @@ void rs_init(rs_t *rs, rs_target_t target) {
   rs->current_basic_block = -1;
 
   for (size_t i = 0; i < 256; i++)
-    rs->lifetimes[i] = (rs_lifetime_t){0, -1, -1};
+    rs->lifetimes[i] = (rs_lifetime_t){0, 0, -1, -1};
 
   rs->register_pool = malloc(rs_get_register_count(target));
   for (size_t i = 0; i < rs_get_register_count(target); i++)
@@ -194,7 +194,7 @@ static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
       if (lifetime.start == -1 || lifetime.end == -1)
         continue;
 
-      if (lifetime.start == ip) {
+      if ((size_t)lifetime.start == ip) {
         rs_register_t reg = rs_get_register(rs, lifetime.vreg);
         if (reg == RS_REG_SPILL) {
           printf("REGALLOC [ip: %zu]: spilling vreg %zu\n", ip, lifetime_index);
@@ -205,7 +205,7 @@ static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
         rs->lifetimes[lifetime_index].reg = reg;
       }
 
-      if (lifetime.end == ip)
+      if ((size_t)lifetime.end == ip)
         rs_free_register(rs, rs->lifetimes[lifetime_index].reg);
     }
   }
@@ -247,12 +247,13 @@ void rs_finalize(rs_t *rs) {
 }
 
 static void rs_operand_print(rs_t *rs, FILE *fp, rs_operand_t operand) {
+  (void)rs;
   switch (operand.type) {
   case RS_OPERAND_TYPE_NULL:
     fprintf(fp, "<null>");
     break;
   case RS_OPERAND_TYPE_INT64:
-    fprintf(fp, "%ld", operand.int64);
+    fprintf(fp, "%lld", operand.int64);
     break;
   case RS_OPERAND_TYPE_ADDR:
     fprintf(fp, "%p", (void *)operand.addr);
