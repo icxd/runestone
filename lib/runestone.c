@@ -60,60 +60,67 @@ void rs_build_instr(rs_t *rs, rs_instr_t instr) {
 
 rs_operand_t rs_build_move(rs_t *rs, rs_operand_t src) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_MOVE, dst, src, RS_OPERAND_NULL});
+  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_MOVE, dst, src, RS_OPERAND_NULL,
+                                  RS_OPERAND_NULL});
   return dst;
 }
 
 rs_operand_t rs_build_copy(rs_t *rs, rs_operand_t src) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
   rs_build_instr(rs, (rs_instr_t){RS_OPCODE_COPY, dst, src,
-                                  RS_OPERAND_REG(RS_TEMPORARY_VREG)});
+                                  RS_OPERAND_REG(RS_TEMPORARY_VREG),
+                                  RS_OPERAND_NULL});
   return dst;
 }
 
 rs_operand_t rs_build_load(rs_t *rs, rs_operand_t src) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_LOAD, dst, src, RS_OPERAND_NULL});
+  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_LOAD, dst, src, RS_OPERAND_NULL,
+                                  RS_OPERAND_NULL});
   return dst;
 }
 
 void rs_build_store(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
-  rs_build_instr(rs,
-                 (rs_instr_t){RS_OPCODE_STORE, RS_OPERAND_NULL, src1, src2});
+  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_STORE, RS_OPERAND_NULL, src1, src2,
+                                  RS_OPERAND_NULL});
 }
 
 rs_operand_t rs_build_add(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_ADD, dst, src1, src2});
+  rs_build_instr(rs,
+                 (rs_instr_t){RS_OPCODE_ADD, dst, src1, src2, RS_OPERAND_NULL});
   return dst;
 }
 
 rs_operand_t rs_build_sub(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_SUB, dst, src1, src2});
+  rs_build_instr(rs,
+                 (rs_instr_t){RS_OPCODE_SUB, dst, src1, src2, RS_OPERAND_NULL});
   return dst;
 }
 
 rs_operand_t rs_build_mult(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_MULT, dst, src1, src2});
+  rs_build_instr(
+      rs, (rs_instr_t){RS_OPCODE_MULT, dst, src1, src2, RS_OPERAND_NULL});
   return dst;
 }
 
 rs_operand_t rs_build_div(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
   rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
-  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_DIV, dst, src1, src2});
+  rs_build_instr(rs,
+                 (rs_instr_t){RS_OPCODE_DIV, dst, src1, src2, RS_OPERAND_NULL});
   return dst;
 }
 
 void rs_build_ret(rs_t *rs, rs_operand_t src) {
-  rs_build_instr(
-      rs, (rs_instr_t){RS_OPCODE_RET, RS_OPERAND_NULL, src, RS_OPERAND_NULL});
+  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_RET, RS_OPERAND_NULL, src,
+                                  RS_OPERAND_NULL, RS_OPERAND_NULL});
 }
 
 void rs_build_br(rs_t *rs, rs_operand_t src) {
-  rs_build_instr(
-      rs, (rs_instr_t){RS_OPCODE_BR, RS_OPERAND_NULL, src, RS_OPERAND_NULL});
+  rs_build_instr(rs, (rs_instr_t){RS_OPCODE_BR, RS_OPERAND_NULL, src,
+                                  RS_OPERAND_NULL, RS_OPERAND_NULL});
 }
 
 bool rs_instr_is_terminator(rs_instr_t instr) {
@@ -223,6 +230,8 @@ void rs_analyze_lifetimes(rs_t *rs) {
         rs_analyze_operand(rs, i, instr.src1);
       if (instr.src2.type == RS_OPERAND_TYPE_REG)
         rs_analyze_operand(rs, i, instr.src2);
+      if (instr.src3.type == RS_OPERAND_TYPE_REG)
+        rs_analyze_operand(rs, i, instr.src3);
     }
 
     rs_alloc_and_free_lifetimes(rs, bb);
@@ -280,6 +289,10 @@ void rs_dump_instr(rs_t *rs, FILE *fp, rs_instr_t instr) {
   if (instr.src2.type != RS_OPERAND_TYPE_NULL) {
     fprintf(fp, ", ");
     rs_operand_print(rs, fp, instr.src2);
+  }
+  if (instr.src3.type != RS_OPERAND_TYPE_NULL) {
+    fprintf(fp, ", ");
+    rs_operand_print(rs, fp, instr.src3);
   }
 }
 
