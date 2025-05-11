@@ -1,6 +1,5 @@
 # runestone
 
-![Build](https://img.shields.io/github/workflow/status/icxd/runestone/CI)
 ![License](https://img.shields.io/github/license/icxd/runestone)
 
 Modern Compiler Backend written using pure C.
