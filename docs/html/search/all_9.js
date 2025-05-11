@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['name_0',['name',['../structrs__basic__block__t.html#ae422bdb54037c5ad88753a8d458b6d79',1,'rs_basic_block_t']]],
-  ['next_5fdst_5fvreg_1',['next_dst_vreg',['../structrs__t.html#a64071ef4d41305787d3cc9d5357ad92b',1,'rs_t']]]
+  ['lifetimes_0',['lifetimes',['../structrs__t.html#af8e678c081a08d60526e7275a78bc265',1,'rs_t']]]
 ];

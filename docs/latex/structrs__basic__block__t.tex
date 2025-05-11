@@ -24,9 +24,7 @@ Collaboration diagram for rs\+\_\+basic\+\_\+block\+\_\+t\+:
 \item 
 char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structrs__basic__block__t_ae422bdb54037c5ad88753a8d458b6d79}{name}}
 \item 
-\mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structrs__basic__block__t_a81b216627baaf1defc4adfeb138c1bc4}{instructions}}
-\item 
-size\+\_\+t \mbox{\hyperlink{structrs__basic__block__t_a07ac10e1eb9c943081b14d1de7ea4760}{instruction\+\_\+count}}
+\mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}} \mbox{\hyperlink{structrs__basic__block__t_a546c11dd0c7ad8f5f2c4c2c97bb68e8e}{instructions}}
 \end{DoxyCompactItemize}
 
 
@@ -36,17 +34,11 @@ Represents a basic block in the Runestone IR.
 A basic block is a sequence of instructions that is executed sequentially. This structure contains information about the block\textquotesingle{}s name (optional), the instructions it contains, and the number of instructions. 
 
 \doxysubsection{Field Documentation}
-\Hypertarget{structrs__basic__block__t_a07ac10e1eb9c943081b14d1de7ea4760}\label{structrs__basic__block__t_a07ac10e1eb9c943081b14d1de7ea4760} 
-\index{rs\_basic\_block\_t@{rs\_basic\_block\_t}!instruction\_count@{instruction\_count}}
-\index{instruction\_count@{instruction\_count}!rs\_basic\_block\_t@{rs\_basic\_block\_t}}
-\doxysubsubsection{\texorpdfstring{instruction\_count}{instruction\_count}}
-{\footnotesize\ttfamily size\+\_\+t rs\+\_\+basic\+\_\+block\+\_\+t\+::instruction\+\_\+count}
-
-The number of instructions in the basic block. This helps in iterating over the block\textquotesingle{}s instructions. \Hypertarget{structrs__basic__block__t_a81b216627baaf1defc4adfeb138c1bc4}\label{structrs__basic__block__t_a81b216627baaf1defc4adfeb138c1bc4} 
+\Hypertarget{structrs__basic__block__t_a546c11dd0c7ad8f5f2c4c2c97bb68e8e}\label{structrs__basic__block__t_a546c11dd0c7ad8f5f2c4c2c97bb68e8e} 
 \index{rs\_basic\_block\_t@{rs\_basic\_block\_t}!instructions@{instructions}}
 \index{instructions@{instructions}!rs\_basic\_block\_t@{rs\_basic\_block\_t}}
 \doxysubsubsection{\texorpdfstring{instructions}{instructions}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}}\texorpdfstring{$\ast$}{*} rs\+\_\+basic\+\_\+block\+\_\+t\+::instructions}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}} rs\+\_\+basic\+\_\+block\+\_\+t\+::instructions}
 
 List of instructions in the basic block. The instructions are executed sequentially. \Hypertarget{structrs__basic__block__t_ae422bdb54037c5ad88753a8d458b6d79}\label{structrs__basic__block__t_ae422bdb54037c5ad88753a8d458b6d79} 
 \index{rs\_basic\_block\_t@{rs\_basic\_block\_t}!name@{name}}

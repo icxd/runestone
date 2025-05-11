@@ -90,20 +90,29 @@ $(function() {
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="cvector_8h_source.html">cvector.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for runestone.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="runestone_8h__incl.png" border="0" usemap="#alib_2runestone_8h" alt=""/></div>
 <map name="alib_2runestone_8h" id="alib_2runestone_8h">
-<area shape="rect" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="131,5,237,31"/>
+<area shape="rect" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="177,5,284,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,80,104"/>
-<area shape="poly" title=" " alt="" coords="162,33,79,75,77,70,160,28"/>
+<area shape="poly" title=" " alt="" coords="201,33,87,76,85,71,200,28"/>
 <area shape="rect" title=" " alt="" coords="104,79,173,104"/>
-<area shape="poly" title=" " alt="" coords="179,32,156,69,151,66,174,30"/>
+<area shape="poly" title=" " alt="" coords="218,33,166,72,163,68,214,29"/>
 <area shape="rect" title=" " alt="" coords="198,79,263,104"/>
-<area shape="poly" title=" " alt="" coords="194,30,218,66,213,69,189,32"/>
+<area shape="poly" title=" " alt="" coords="233,31,233,65,228,65,228,31"/>
 <area shape="rect" title=" " alt="" coords="288,79,349,104"/>
-<area shape="poly" title=" " alt="" coords="207,28,286,70,283,74,204,33"/>
+<area shape="poly" title=" " alt="" coords="246,29,295,68,292,72,243,33"/>
+<area shape="rect" href="cvector_8h.html" title="cvector heap implemented using C library malloc()" alt="" coords="374,79,450,104"/>
+<area shape="poly" title=" " alt="" coords="261,28,371,71,369,76,259,33"/>
+<area shape="rect" title=" " alt="" coords="289,152,353,177"/>
+<area shape="poly" title=" " alt="" coords="399,106,349,145,345,141,396,102"/>
+<area shape="rect" title=" " alt="" coords="377,152,447,177"/>
+<area shape="poly" title=" " alt="" coords="415,104,415,138,409,138,409,104"/>
+<area shape="rect" title=" " alt="" coords="471,152,537,177"/>
+<area shape="poly" title=" " alt="" coords="428,102,480,141,477,146,425,106"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -226,6 +235,14 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga6d95fa5cb03e3737df867b707f39a21d" id="r_ga6d95fa5cb03e3737df867b707f39a21d"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a></td></tr>
 <tr class="separator:ga6d95fa5cb03e3737df867b707f39a21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2085e91c8b692c6df33f41894b4c298" id="r_gaa2085e91c8b692c6df33f41894b4c298"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__instr__t.html">rs_instr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaa2085e91c8b692c6df33f41894b4c298">rs_instructions_t</a></td></tr>
+<tr class="separator:gaa2085e91c8b692c6df33f41894b4c298"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga850bf20a07257cd897c2e16ed29bc750" id="r_ga850bf20a07257cd897c2e16ed29bc750"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga850bf20a07257cd897c2e16ed29bc750">rs_basic_blocks_t</a></td></tr>
+<tr class="separator:ga850bf20a07257cd897c2e16ed29bc750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84a681857f0ab41c81aba0dd08095710" id="r_ga84a681857f0ab41c81aba0dd08095710"><td class="memItemLeft" align="right" valign="top">typedef bool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga84a681857f0ab41c81aba0dd08095710">rs_register_pool_t</a></td></tr>
+<tr class="separator:ga84a681857f0ab41c81aba0dd08095710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73ddc235c75c788931bb2e5fedc46339" id="r_ga73ddc235c75c788931bb2e5fedc46339"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__map__entry__t.html">rs_map_entry_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga73ddc235c75c788931bb2e5fedc46339">rs_map_entries_t</a></td></tr>
+<tr class="separator:ga73ddc235c75c788931bb2e5fedc46339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -298,6 +315,9 @@ Functions</h2></td></tr>
 <tr class="separator:ga58b5d44d5e8f8df106c687e360539852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0c77e806cea7763fc4fd1a9a404d333f" id="r_ga0c77e806cea7763fc4fd1a9a404d333f"><td class="memItemLeft" align="right" valign="top">const char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga0c77e806cea7763fc4fd1a9a404d333f">rs_get_register_names</a> (<a class="el" href="group__Runestone.html#ga5598ceb8ac9eb90edc0fb1ac43d531bf">rs_target_t</a> target)</td></tr>
 <tr class="separator:ga0c77e806cea7763fc4fd1a9a404d333f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaedda2b36f99baf0648687974b81449e5" id="r_gaedda2b36f99baf0648687974b81449e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaedda2b36f99baf0648687974b81449e5">rs_set_debug</a> (bool enabled, FILE *stream)</td></tr>
+<tr class="memdesc:gaedda2b36f99baf0648687974b81449e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets debug logging options.  <br /></td></tr>
+<tr class="separator:gaedda2b36f99baf0648687974b81449e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad4f2783578f194c177a097d5cbcee52a" id="r_gad4f2783578f194c177a097d5cbcee52a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gad4f2783578f194c177a097d5cbcee52a">rs_init</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga5598ceb8ac9eb90edc0fb1ac43d531bf">rs_target_t</a> target)</td></tr>
 <tr class="memdesc:gad4f2783578f194c177a097d5cbcee52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Runestone IR state.  <br /></td></tr>
 <tr class="separator:gad4f2783578f194c177a097d5cbcee52a"><td class="memSeparator" colspan="2">&#160;</td></tr>

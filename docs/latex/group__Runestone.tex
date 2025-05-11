@@ -87,6 +87,14 @@ struct \mbox{\hyperlink{structrs__t}{rs\+\_\+t}}
 \begin{DoxyCompactItemize}
 \item 
 typedef uint8\+\_\+t \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}{rs\+\_\+basic\+\_\+blocks\+\_\+t}}
+\item 
+typedef bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}{rs\+\_\+register\+\_\+pool\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__map__entry__t}{rs\+\_\+map\+\_\+entry\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}{rs\+\_\+map\+\_\+entries\+\_\+t}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -148,6 +156,8 @@ size\+\_\+t \mbox{\hyperlink{group__Runestone_ga58b5d44d5e8f8df106c687e360539852
 \item 
 const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga0c77e806cea7763fc4fd1a9a404d333f}{rs\+\_\+get\+\_\+register\+\_\+names}} (\mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \item 
+void \mbox{\hyperlink{group__Runestone_gaedda2b36f99baf0648687974b81449e5}{rs\+\_\+set\+\_\+debug}} (bool enabled, FILE \texorpdfstring{$\ast$}{*}stream)
+\begin{DoxyCompactList}\small\item\em Sets debug logging options. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__Runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\+\_\+init}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \begin{DoxyCompactList}\small\item\em Initializes the Runestone IR state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__Runestone_gab0f592439168f8ccac37be8f8392eb75}{rs\+\_\+free}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
@@ -327,19 +337,19 @@ Maximum number of registers. \Hypertarget{group__Runestone_ga8c1834c4f9033c4366f
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(MOVE,\ \textcolor{stringliteral}{"{}move"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(COPY,\ \textcolor{stringliteral}{"{}copy"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(LOAD,\ \textcolor{stringliteral}{"{}load"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(STORE,\ \textcolor{stringliteral}{"{}store"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(ADD,\ \textcolor{stringliteral}{"{}add"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(SUB,\ \textcolor{stringliteral}{"{}sub"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(MULT,\ \textcolor{stringliteral}{"{}mult"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(DIV,\ \textcolor{stringliteral}{"{}div"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(RET,\ \textcolor{stringliteral}{"{}ret"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(BR,\ \textcolor{stringliteral}{"{}br"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(BR\_IF,\ \textcolor{stringliteral}{"{}br\_if"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(CMP\_EQ,\ \textcolor{stringliteral}{"{}cmp\_eq"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(CMP\_LT,\ \textcolor{stringliteral}{"{}cmp\_lt"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(MOVE,\ \textcolor{stringliteral}{"{}move"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(COPY,\ \textcolor{stringliteral}{"{}copy"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(LOAD,\ \textcolor{stringliteral}{"{}load"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(STORE,\ \textcolor{stringliteral}{"{}store"{}})\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(ADD,\ \textcolor{stringliteral}{"{}add"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(SUB,\ \textcolor{stringliteral}{"{}sub"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(MULT,\ \textcolor{stringliteral}{"{}mult"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(DIV,\ \textcolor{stringliteral}{"{}div"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(RET,\ \textcolor{stringliteral}{"{}ret"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(BR,\ \textcolor{stringliteral}{"{}br"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(BR\_IF,\ \textcolor{stringliteral}{"{}br\_if"{}})\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(CMP\_EQ,\ \textcolor{stringliteral}{"{}cmp\_eq"{}})\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(CMP\_LT,\ \textcolor{stringliteral}{"{}cmp\_lt"{}})\ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ X(CMP\_GT,\ \textcolor{stringliteral}{"{}cmp\_gt"{}})}
 
 \end{DoxyCode}
@@ -401,10 +411,10 @@ Operand constructor for register.
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(INT64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(ADDR)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(REG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(INT64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(ADDR)\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(REG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ X(BB)}
 
 \end{DoxyCode}
@@ -459,7 +469,7 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \(\backslash\)}
 \DoxyCodeLine{\ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *rs\_target\_\#\#lower\#\#\_reg\_names[]\ =\ \{\_\_VA\_ARGS\_\_\};}
 
 \end{DoxyCode}
@@ -491,10 +501,10 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-                                                                          \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_instr\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);\ \ \ \ \ \ \ \ \(\backslash\)}
-                                                                          \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_operand\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ operand,\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+                                                                        \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_instr\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);\ \ \ \ \ \ \(\backslash\)}
+                                                                        \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_operand\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ operand,\ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dereference);}
 
 \end{DoxyCode}
@@ -526,11 +536,11 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{group__Runestone_gad6a67337461280e8d42013c4d0f753ea}{RS\_TARGET}}(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ \textcolor{stringliteral}{"{}rax"{}},\ \textcolor{stringliteral}{"{}rbx"{}},\ \textcolor{stringliteral}{"{}rcx"{}},\ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rdx"{}},\ \textcolor{stringliteral}{"{}rsi"{}},\ \textcolor{stringliteral}{"{}rdi"{}},\ \textcolor{stringliteral}{"{}r8"{}},\ \textcolor{stringliteral}{"{}r9"{}},\ \textcolor{stringliteral}{"{}r10"{}},\ \textcolor{stringliteral}{"{}r11"{}},\ \textcolor{stringliteral}{"{}r12"{}},\ \textcolor{stringliteral}{"{}r13"{}},\ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}r14"{}},\ \textcolor{stringliteral}{"{}r15"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ \textcolor{stringliteral}{"{}x9"{}},\ \textcolor{stringliteral}{"{}x10"{}},\ \textcolor{stringliteral}{"{}x11"{}},\ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x12"{}},\ \textcolor{stringliteral}{"{}x13"{}},\ \textcolor{stringliteral}{"{}x14"{}},\ \textcolor{stringliteral}{"{}x15"{}},\ \textcolor{stringliteral}{"{}x19"{}},\ \textcolor{stringliteral}{"{}x20"{}},\ \textcolor{stringliteral}{"{}x21"{}},\ \textcolor{stringliteral}{"{}x22"{}},\ \textcolor{stringliteral}{"{}x23"{}},\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{group__Runestone_gad6a67337461280e8d42013c4d0f753ea}{RS\_TARGET}}(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ \textcolor{stringliteral}{"{}rax"{}},\ \textcolor{stringliteral}{"{}rbx"{}},\ \textcolor{stringliteral}{"{}rcx"{}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rdx"{}},\ \textcolor{stringliteral}{"{}rsi"{}},\ \textcolor{stringliteral}{"{}rdi"{}},\ \textcolor{stringliteral}{"{}r8"{}},\ \textcolor{stringliteral}{"{}r9"{}},\ \textcolor{stringliteral}{"{}r10"{}},\ \textcolor{stringliteral}{"{}r11"{}},\ \textcolor{stringliteral}{"{}r12"{}},\ \textcolor{stringliteral}{"{}r13"{}},\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}r14"{}},\ \textcolor{stringliteral}{"{}r15"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ \textcolor{stringliteral}{"{}x9"{}},\ \textcolor{stringliteral}{"{}x10"{}},\ \textcolor{stringliteral}{"{}x11"{}},\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x12"{}},\ \textcolor{stringliteral}{"{}x13"{}},\ \textcolor{stringliteral}{"{}x14"{}},\ \textcolor{stringliteral}{"{}x15"{}},\ \textcolor{stringliteral}{"{}x19"{}},\ \textcolor{stringliteral}{"{}x20"{}},\ \textcolor{stringliteral}{"{}x21"{}},\ \textcolor{stringliteral}{"{}x22"{}},\ \textcolor{stringliteral}{"{}x23"{}},\ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x24"{}},\ \textcolor{stringliteral}{"{}x25"{}},\ \textcolor{stringliteral}{"{}x26"{}},\ \textcolor{stringliteral}{"{}x27"{}},\ \textcolor{stringliteral}{"{}x28"{}})}
 
 \end{DoxyCode}
@@ -556,6 +566,30 @@ Placeholder for temporary registers. ~\newline
  
 
 \doxysubsection{Typedef Documentation}
+\Hypertarget{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}\label{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750} 
+\index{Runestone IR API@{Runestone IR API}!rs\_basic\_blocks\_t@{rs\_basic\_blocks\_t}}
+\index{rs\_basic\_blocks\_t@{rs\_basic\_blocks\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_basic\_blocks\_t}{rs\_basic\_blocks\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}}\texorpdfstring{$\ast$}{*} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}{rs\+\_\+basic\+\_\+blocks\+\_\+t}}}
+
+\Hypertarget{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}\label{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298} 
+\index{Runestone IR API@{Runestone IR API}!rs\_instructions\_t@{rs\_instructions\_t}}
+\index{rs\_instructions\_t@{rs\_instructions\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_instructions\_t}{rs\_instructions\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}}}
+
+\Hypertarget{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}\label{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339} 
+\index{Runestone IR API@{Runestone IR API}!rs\_map\_entries\_t@{rs\_map\_entries\_t}}
+\index{rs\_map\_entries\_t@{rs\_map\_entries\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_map\_entries\_t}{rs\_map\_entries\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__map__entry__t}{rs\+\_\+map\+\_\+entry\+\_\+t}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}{rs\+\_\+map\+\_\+entries\+\_\+t}}}
+
+\Hypertarget{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}\label{group__Runestone_ga84a681857f0ab41c81aba0dd08095710} 
+\index{Runestone IR API@{Runestone IR API}!rs\_register\_pool\_t@{rs\_register\_pool\_t}}
+\index{rs\_register\_pool\_t@{rs\_register\_pool\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_register\_pool\_t}{rs\_register\_pool\_t}}
+{\footnotesize\ttfamily typedef bool\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}{rs\+\_\+register\+\_\+pool\+\_\+t}}}
+
 \Hypertarget{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}\label{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d} 
 \index{Runestone IR API@{Runestone IR API}!rs\_register\_t@{rs\_register\_t}}
 \index{rs\_register\_t@{rs\_register\_t}!Runestone IR API@{Runestone IR API}}
@@ -1501,6 +1535,23 @@ This function removes the entry associated with the given virtual register ID ({
 \mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map. \\
 \hline
 \mbox{\texttt{ in}}  & {\em key} & The virtual register ID whose mapping should be removed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__Runestone_gaedda2b36f99baf0648687974b81449e5}\label{group__Runestone_gaedda2b36f99baf0648687974b81449e5} 
+\index{Runestone IR API@{Runestone IR API}!rs\_set\_debug@{rs\_set\_debug}}
+\index{rs\_set\_debug@{rs\_set\_debug}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_set\_debug()}{rs\_set\_debug()}}
+{\footnotesize\ttfamily void rs\+\_\+set\+\_\+debug (\begin{DoxyParamCaption}\item[{bool}]{enabled,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{stream }\end{DoxyParamCaption})}
+
+
+
+Sets debug logging options. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em enabled} & Whether debug logging should be enabled. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stream} & The file stream to write debug messages to (NULL for stderr). \\
 \hline
 \end{DoxyParams}
 

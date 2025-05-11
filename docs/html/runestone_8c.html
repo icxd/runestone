@@ -75,7 +75,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">runestone.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -84,29 +85,42 @@ $(function() {
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="cvector__utils_8h_source.html">cvector_utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cvector_8h_source.html">cvector.h</a>&quot;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for runestone.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="runestone_8c__incl.png" border="0" usemap="#alib_2runestone_8c" alt=""/></div>
 <map name="alib_2runestone_8c" id="alib_2runestone_8c">
-<area shape="rect" title=" " alt="" coords="335,5,441,31"/>
-<area shape="rect" href="runestone_8h.html" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="185,79,276,104"/>
-<area shape="poly" title=" " alt="" coords="364,33,270,75,268,71,362,28"/>
+<area shape="rect" title=" " alt="" coords="459,5,565,31"/>
+<area shape="rect" href="runestone_8h.html" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="192,79,283,104"/>
+<area shape="poly" title=" " alt="" coords="469,33,296,78,294,73,467,28"/>
 <area shape="rect" title=" " alt="" coords="288,152,349,177"/>
-<area shape="poly" title=" " alt="" coords="378,33,360,54,344,80,332,110,325,139,320,138,327,108,339,77,356,51,374,29"/>
-<area shape="rect" title=" " alt="" coords="353,79,423,104"/>
-<area shape="poly" title=" " alt="" coords="391,31,391,65,385,65,385,31"/>
-<area shape="rect" title=" " alt="" coords="447,79,511,104"/>
-<area shape="poly" title=" " alt="" coords="404,29,455,68,451,72,401,33"/>
-<area shape="rect" title=" " alt="" coords="535,79,601,104"/>
-<area shape="poly" title=" " alt="" coords="418,28,527,71,525,76,416,33"/>
+<area shape="poly" title=" " alt="" coords="465,33,416,52,392,65,370,81,346,110,330,140,325,138,342,107,366,77,389,60,414,47,463,28"/>
+<area shape="rect" href="cvector_8h.html" title="cvector heap implemented using C library malloc()" alt="" coords="425,152,501,177"/>
+<area shape="poly" title=" " alt="" coords="510,32,473,140,468,138,505,30"/>
+<area shape="rect" title=" " alt="" coords="364,225,428,251"/>
+<area shape="poly" title=" " alt="" coords="502,33,459,82,434,116,414,153,405,183,400,212,395,211,400,182,410,151,430,113,454,79,498,29"/>
+<area shape="rect" title=" " alt="" coords="457,225,527,251"/>
+<area shape="poly" title=" " alt="" coords="516,31,520,94,519,135,515,178,505,213,500,212,509,177,514,135,514,94,511,31"/>
+<area shape="rect" title=" " alt="" coords="554,225,619,251"/>
+<area shape="poly" title=" " alt="" coords="520,30,539,78,582,211,577,213,533,80,515,32"/>
+<area shape="rect" href="cvector__utils_8h.html" title="extends the cvector library" alt="" coords="627,79,733,104"/>
+<area shape="poly" title=" " alt="" coords="540,28,641,71,639,76,538,33"/>
+<area shape="rect" title=" " alt="" coords="757,79,827,104"/>
+<area shape="poly" title=" " alt="" coords="558,28,745,75,744,81,556,33"/>
 <area shape="rect" title=" " alt="" coords="5,152,80,177"/>
-<area shape="poly" title=" " alt="" coords="201,107,87,149,85,144,200,102"/>
+<area shape="poly" title=" " alt="" coords="207,107,88,150,86,145,205,102"/>
 <area shape="rect" title=" " alt="" coords="104,152,173,177"/>
-<area shape="poly" title=" " alt="" coords="218,106,166,146,163,141,214,102"/>
+<area shape="poly" title=" " alt="" coords="223,106,167,146,164,142,220,102"/>
 <area shape="rect" title=" " alt="" coords="198,152,263,177"/>
-<area shape="poly" title=" " alt="" coords="233,104,233,138,228,138,228,104"/>
-<area shape="poly" title=" " alt="" coords="246,102,295,141,292,145,243,106"/>
+<area shape="poly" title=" " alt="" coords="239,105,236,139,230,138,234,104"/>
+<area shape="poly" title=" " alt="" coords="252,102,297,141,293,145,249,106"/>
+<area shape="poly" title=" " alt="" coords="274,101,414,145,412,150,273,107"/>
+<area shape="poly" title=" " alt="" coords="454,179,418,217,414,213,450,176"/>
+<area shape="poly" title=" " alt="" coords="470,177,484,212,480,214,465,179"/>
+<area shape="poly" title=" " alt="" coords="484,175,556,216,553,221,481,180"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -119,6 +133,13 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gaedda2b36f99baf0648687974b81449e5" id="r_gaedda2b36f99baf0648687974b81449e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaedda2b36f99baf0648687974b81449e5">rs_set_debug</a> (bool enabled, FILE *stream)</td></tr>
+<tr class="memdesc:gaedda2b36f99baf0648687974b81449e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets debug logging options.  <br /></td></tr>
+<tr class="separator:gaedda2b36f99baf0648687974b81449e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ef1a908f8be9252be7f7beb893d3f7" id="r_ae1ef1a908f8be9252be7f7beb893d3f7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#ae1ef1a908f8be9252be7f7beb893d3f7">debug_log</a> (const char *format,...)</td></tr>
+<tr class="separator:ae1ef1a908f8be9252be7f7beb893d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a34feb6a7493d6027a6998de7d7223e" id="r_a2a34feb6a7493d6027a6998de7d7223e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a2a34feb6a7493d6027a6998de7d7223e">free_basic_block</a> (void *ptr)</td></tr>
+<tr class="separator:a2a34feb6a7493d6027a6998de7d7223e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad4f2783578f194c177a097d5cbcee52a" id="r_gad4f2783578f194c177a097d5cbcee52a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gad4f2783578f194c177a097d5cbcee52a">rs_init</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga5598ceb8ac9eb90edc0fb1ac43d531bf">rs_target_t</a> target)</td></tr>
 <tr class="memdesc:gad4f2783578f194c177a097d5cbcee52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Runestone IR state.  <br /></td></tr>
 <tr class="separator:gad4f2783578f194c177a097d5cbcee52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +152,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ga5ea095ec06e5d27ded04f63cc57a57e1" id="r_ga5ea095ec06e5d27ded04f63cc57a57e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga5ea095ec06e5d27ded04f63cc57a57e1">rs_position_at_basic_block</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, size_t block_id)</td></tr>
 <tr class="memdesc:ga5ea095ec06e5d27ded04f63cc57a57e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions the cursor at the specified basic block.  <br /></td></tr>
 <tr class="separator:ga5ea095ec06e5d27ded04f63cc57a57e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18fcc63ecd25ee3fb574aeb13eb1fa26" id="r_a18fcc63ecd25ee3fb574aeb13eb1fa26"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a18fcc63ecd25ee3fb574aeb13eb1fa26">is_valid_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a> reg)</td></tr>
+<tr class="separator:a18fcc63ecd25ee3fb574aeb13eb1fa26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b863a4edba8e6c9c145545d79dd8f52" id="r_a0b863a4edba8e6c9c145545d79dd8f52"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a0b863a4edba8e6c9c145545d79dd8f52">is_valid_operand</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> operand)</td></tr>
+<tr class="separator:a0b863a4edba8e6c9c145545d79dd8f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4fe12acb074001521208d6bf82ff5f4" id="r_ad4fe12acb074001521208d6bf82ff5f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#ad4fe12acb074001521208d6bf82ff5f4">rs_build_instr</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__instr__t.html">rs_instr_t</a> instr)</td></tr>
 <tr class="separator:ad4fe12acb074001521208d6bf82ff5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac07ff699ec340fd6592b6ce8851013d3" id="r_gac07ff699ec340fd6592b6ce8851013d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gac07ff699ec340fd6592b6ce8851013d3">rs_build_move</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src)</td></tr>
@@ -231,6 +256,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2de431eddc92fc1e0b06df6010024ea8" id="r_ga2de431eddc92fc1e0b06df6010024ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga2de431eddc92fc1e0b06df6010024ea8">rs_regmap_remove</a> (<a class="el" href="structrs__register__map__t.html">rs_register_map_t</a> *map, size_t key)</td></tr>
 <tr class="memdesc:ga2de431eddc92fc1e0b06df6010024ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a mapping for a given virtual register ID.  <br /></td></tr>
 <tr class="separator:ga2de431eddc92fc1e0b06df6010024ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a98e79f62b94f76380cabb7be356ea0c8" id="r_a98e79f62b94f76380cabb7be356ea0c8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a98e79f62b94f76380cabb7be356ea0c8">debug_enabled</a> = false</td></tr>
+<tr class="separator:a98e79f62b94f76380cabb7be356ea0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace0eac9001b68a07fed909aac83ac8de" id="r_ace0eac9001b68a07fed909aac83ac8de"><td class="memItemLeft" align="right" valign="top">static FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#ace0eac9001b68a07fed909aac83ac8de">debug_stream</a> = NULL</td></tr>
+<tr class="separator:ace0eac9001b68a07fed909aac83ac8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a9922dbc0a1cc217fd34196a554a9d8b8" name="a9922dbc0a1cc217fd34196a554a9d8b8"></a>
@@ -270,7 +302,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">case</span> RS_TARGET_##upper:                                                      \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">case</span> RS_TARGET_##upper:               \</div>
 <div class="line">    <span class="keywordflow">return</span> count;</div>
 </div><!-- fragment -->
 </div>
@@ -306,12 +338,146 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">case</span> RS_TARGET_##upper:                                                      \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">case</span> RS_TARGET_##upper:            \</div>
 <div class="line">    <span class="keywordflow">return</span> rs_target_##lower##_reg_names;</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ae1ef1a908f8be9252be7f7beb893d3f7" name="ae1ef1a908f8be9252be7f7beb893d3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ef1a908f8be9252be7f7beb893d3f7">&#9670;&#160;</a></span>debug_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debug_log </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a34feb6a7493d6027a6998de7d7223e" name="a2a34feb6a7493d6027a6998de7d7223e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a34feb6a7493d6027a6998de7d7223e">&#9670;&#160;</a></span>free_basic_block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void free_basic_block </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b863a4edba8e6c9c145545d79dd8f52" name="a0b863a4edba8e6c9c145545d79dd8f52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b863a4edba8e6c9c145545d79dd8f52">&#9670;&#160;</a></span>is_valid_operand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool is_valid_operand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>operand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18fcc63ecd25ee3fb574aeb13eb1fa26" name="a18fcc63ecd25ee3fb574aeb13eb1fa26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18fcc63ecd25ee3fb574aeb13eb1fa26">&#9670;&#160;</a></span>is_valid_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool is_valid_register </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td>
+          <td class="paramname"><em>reg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a410aab2f186219141c3d2a977e00fed4" name="a410aab2f186219141c3d2a977e00fed4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a410aab2f186219141c3d2a977e00fed4">&#9670;&#160;</a></span>rs_alloc_and_free_lifetimes()</h2>
 
@@ -511,6 +677,51 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a98e79f62b94f76380cabb7be356ea0c8" name="a98e79f62b94f76380cabb7be356ea0c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98e79f62b94f76380cabb7be356ea0c8">&#9670;&#160;</a></span>debug_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool debug_enabled = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace0eac9001b68a07fed909aac83ac8de" name="ace0eac9001b68a07fed909aac83ac8de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace0eac9001b68a07fed909aac83ac8de">&#9670;&#160;</a></span>debug_stream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* debug_stream = NULL</td>
         </tr>
       </table>
   </td>

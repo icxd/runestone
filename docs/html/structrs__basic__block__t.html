@@ -96,38 +96,21 @@ Collaboration diagram for rs_basic_block_t:</div>
 Data Fields</h2></td></tr>
 <tr class="memitem:ae422bdb54037c5ad88753a8d458b6d79" id="r_ae422bdb54037c5ad88753a8d458b6d79"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrs__basic__block__t.html#ae422bdb54037c5ad88753a8d458b6d79">name</a></td></tr>
 <tr class="separator:ae422bdb54037c5ad88753a8d458b6d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81b216627baaf1defc4adfeb138c1bc4" id="r_a81b216627baaf1defc4adfeb138c1bc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrs__instr__t.html">rs_instr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrs__basic__block__t.html#a81b216627baaf1defc4adfeb138c1bc4">instructions</a></td></tr>
-<tr class="separator:a81b216627baaf1defc4adfeb138c1bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07ac10e1eb9c943081b14d1de7ea4760" id="r_a07ac10e1eb9c943081b14d1de7ea4760"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrs__basic__block__t.html#a07ac10e1eb9c943081b14d1de7ea4760">instruction_count</a></td></tr>
-<tr class="separator:a07ac10e1eb9c943081b14d1de7ea4760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546c11dd0c7ad8f5f2c4c2c97bb68e8e" id="r_a546c11dd0c7ad8f5f2c4c2c97bb68e8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Runestone.html#gaa2085e91c8b692c6df33f41894b4c298">rs_instructions_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrs__basic__block__t.html#a546c11dd0c7ad8f5f2c4c2c97bb68e8e">instructions</a></td></tr>
+<tr class="separator:a546c11dd0c7ad8f5f2c4c2c97bb68e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a basic block in the Runestone IR. </p>
 <p>A basic block is a sequence of instructions that is executed sequentially. This structure contains information about the block's name (optional), the instructions it contains, and the number of instructions. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a07ac10e1eb9c943081b14d1de7ea4760" name="a07ac10e1eb9c943081b14d1de7ea4760"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07ac10e1eb9c943081b14d1de7ea4760">&#9670;&#160;</a></span>instruction_count</h2>
+<a id="a546c11dd0c7ad8f5f2c4c2c97bb68e8e" name="a546c11dd0c7ad8f5f2c4c2c97bb68e8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a546c11dd0c7ad8f5f2c4c2c97bb68e8e">&#9670;&#160;</a></span>instructions</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t rs_basic_block_t::instruction_count</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The number of instructions in the basic block. This helps in iterating over the block's instructions. </p>
-
-</div>
-</div>
-<a id="a81b216627baaf1defc4adfeb138c1bc4" name="a81b216627baaf1defc4adfeb138c1bc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81b216627baaf1defc4adfeb138c1bc4">&#9670;&#160;</a></span>instructions</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structrs__instr__t.html">rs_instr_t</a>* rs_basic_block_t::instructions</td>
+          <td class="memname"><a class="el" href="group__Runestone.html#gaa2085e91c8b692c6df33f41894b4c298">rs_instructions_t</a> rs_basic_block_t::instructions</td>
         </tr>
       </table>
 </div><div class="memdoc">
