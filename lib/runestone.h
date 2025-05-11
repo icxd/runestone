@@ -209,6 +209,7 @@ typedef struct {
   rs_operand_t dest;  /**< Operand for destination . */
   rs_operand_t src1;  /**< Operand for first source. */
   rs_operand_t src2;  /**< Operand for second source. */
+  rs_operand_t src3;  /**< Operand for third source. */
 } rs_instr_t;
 
 /**
