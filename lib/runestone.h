@@ -13,7 +13,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
-
+#include "cvector.h"
 /**
  * @defgroup Runestone Runestone IR API
  * @brief Core types and functions for the Runestone IR.
@@ -54,7 +54,6 @@
 #define RS_COLOR_UNDERLINE _RS_ANSI(4)
 
 // Configuration constants for the Runestone IR.
-// TODO: should probably be dynamically resizable
 
 /** Maximum number of instructions. */
 #define RS_MAX_INSTR 1024
@@ -81,11 +80,11 @@ typedef uint8_t rs_register_t;
  * instructions. It is used to generate the `rs_operand_type_t` enum and to
  * define constructor macros for different operand types.
  */
-#define RS_OPERAND_TYPES(X)                                                    \
-  X(NULL)  /**< No operand (void). */                                          \
-  X(INT64) /**< Immediate 64-bit integer. */                                   \
-  X(ADDR)  /**< Address (e.g., label or absolute address). */                  \
-  X(REG)   /**< Virtual register. */                                           \
+#define RS_OPERAND_TYPES(X)                                   \
+  X(NULL)  /**< No operand (void). */                         \
+  X(INT64) /**< Immediate 64-bit integer. */                  \
+  X(ADDR)  /**< Address (e.g., label or absolute address). */ \
+  X(REG)   /**< Virtual register. */                          \
   X(BB)    /**< Basic block reference. */
 
 /**
@@ -96,7 +95,8 @@ typedef uint8_t rs_register_t;
  * instructions, such as integer constants, virtual registers, addresses, and
  * basic block references.
  */
-typedef enum {
+typedef enum
+{
 
 #define X(name) RS_OPERAND_TYPE_##name,
   RS_OPERAND_TYPES(X)
@@ -114,9 +114,11 @@ typedef enum {
  * in the union, which can hold an integer, address, register, or basic block
  * ID.
  */
-typedef struct {
+typedef struct
+{
   rs_operand_type_t type; /**< The type of the operand. */
-  union {
+  union
+  {
     int64_t int64; /**< 64-bit integer value. */
     size_t addr;   /**< Address. */
     uint8_t vreg;  /**< Virtual register index. */
@@ -128,19 +130,19 @@ typedef struct {
 #define RS_OPERAND_NULL ((rs_operand_t){.type = RS_OPERAND_TYPE_NULL})
 
 /// @brief Operand constructor for a 64-bit integer value.
-#define RS_OPERAND_INT64(value)                                                \
+#define RS_OPERAND_INT64(value) \
   ((rs_operand_t){.type = RS_OPERAND_TYPE_INT64, .int64 = (value)})
 
 /// @brief Operand constructor for address.
-#define RS_OPERAND_ADDR(value)                                                 \
+#define RS_OPERAND_ADDR(value) \
   ((rs_operand_t){.type = RS_OPERAND_TYPE_ADDR, .addr = (value)})
 
 /// @brief Operand constructor for register.
-#define RS_OPERAND_REG(value)                                                  \
+#define RS_OPERAND_REG(value) \
   ((rs_operand_t){.type = RS_OPERAND_TYPE_REG, .vreg = (value)})
 
 /// @brief Operand constructor for basic block.
-#define RS_OPERAND_BB(value)                                                   \
+#define RS_OPERAND_BB(value) \
   ((rs_operand_t){.type = RS_OPERAND_TYPE_BB, .bb_id = (value)})
 
 /**
@@ -152,27 +154,28 @@ typedef struct {
  * Each opcode corresponds to a basic operation that can be performed in the
  * intermediate representation, such as move, load, add, and branch.
  */
-#define RS_OPCODES(X)                                                          \
-  X(MOVE, "move")     /**< Move opcode. */                                     \
-  X(COPY, "copy")     /**< Copy opcode. */                                     \
-  X(LOAD, "load")     /**< Load opcode. */                                     \
-  X(STORE, "store")   /**< Store opcode. */                                    \
-  X(ADD, "add")       /**< Add opcode. */                                      \
-  X(SUB, "sub")       /**< Sub opcode. */                                      \
-  X(MULT, "mult")     /**< Mult opcode. */                                     \
-  X(DIV, "div")       /**< Div opcode. */                                      \
-  X(RET, "ret")       /**< Return opcode. */                                   \
-  X(BR, "br")         /**< Branch opcode. */                                   \
-  X(BR_IF, "br_if")   /**< Branch if value != 0. */                            \
-  X(CMP_EQ, "cmp_eq") /**< result = (a == b) */                                \
-  X(CMP_LT, "cmp_lt") /**< result = (a < b) */                                 \
+#define RS_OPCODES(X)                               \
+  X(MOVE, "move")     /**< Move opcode. */          \
+  X(COPY, "copy")     /**< Copy opcode. */          \
+  X(LOAD, "load")     /**< Load opcode. */          \
+  X(STORE, "store")   /**< Store opcode. */         \
+  X(ADD, "add")       /**< Add opcode. */           \
+  X(SUB, "sub")       /**< Sub opcode. */           \
+  X(MULT, "mult")     /**< Mult opcode. */          \
+  X(DIV, "div")       /**< Div opcode. */           \
+  X(RET, "ret")       /**< Return opcode. */        \
+  X(BR, "br")         /**< Branch opcode. */        \
+  X(BR_IF, "br_if")   /**< Branch if value != 0. */ \
+  X(CMP_EQ, "cmp_eq") /**< result = (a == b) */     \
+  X(CMP_LT, "cmp_lt") /**< result = (a < b) */      \
   X(CMP_GT, "cmp_gt") /**< result = (a > b) */
 
 /**
  * @enum rs_opcode_t
  * @brief The available instructions in the Runestone IR.
  */
-typedef enum {
+typedef enum
+{
 #define X(name, str) RS_OPCODE_##name,
   RS_OPCODES(X)
 #undef X
@@ -189,7 +192,8 @@ typedef enum {
  * @return A pointer to a constant string representing the opcode name.
  * If the input value is out of range, the string "unknown" is returned.
  */
-static inline const char *rs_opcode_to_str(rs_opcode_t opcode) {
+static inline const char *rs_opcode_to_str(rs_opcode_t opcode)
+{
   /// @cond
   static const char *names[] = {
 #define X(name, str) [RS_OPCODE_##name] = str,
@@ -208,13 +212,16 @@ static inline const char *rs_opcode_to_str(rs_opcode_t opcode) {
  * the opcode (operation to perform) and up to three operands (destination,
  * and two source operands).
  */
-typedef struct {
+typedef struct
+{
   rs_opcode_t opcode; /**< The opcode of the instruction. */
   rs_operand_t dest;  /**< Operand for destination . */
   rs_operand_t src1;  /**< Operand for first source. */
   rs_operand_t src2;  /**< Operand for second source. */
   rs_operand_t src3;  /**< Operand for third source. */
 } rs_instr_t;
+
+typedef cvector(rs_instr_t) rs_instructions_t;
 
 /**
  * @struct rs_basic_block_t
@@ -224,15 +231,16 @@ typedef struct {
  * This structure contains information about the block's name (optional),
  * the instructions it contains, and the number of instructions.
  */
-typedef struct {
-  char *name; /**< Optional name of the block. This is used for debugging or
-                 labeling purposes. */
-  rs_instr_t *instructions; /**< List of instructions in the basic block. The
+typedef struct
+{
+  char *name;                      /**< Optional name of the block. This is used for debugging or
+                                      labeling purposes. */
+  rs_instructions_t instructions; /**< List of instructions in the basic block. The
                          instructions are executed sequentially. */
-  size_t
-      instruction_count; /**< The number of instructions in the basic block.
-                       This helps in iterating over the block's instructions. */
 } rs_basic_block_t;
+
+typedef cvector(rs_basic_block_t *) rs_basic_blocks_t;
+typedef cvector(bool) rs_register_pool_t;
 
 /**
  * @struct rs_lifetime_t
@@ -242,12 +250,13 @@ typedef struct {
  * A virtual register is assigned a physical register during allocation, and its
  * lifetime is tracked across basic blocks and instructions.
  */
-typedef struct {
+typedef struct
+{
   rs_register_t
-      reg; /**< Physical register assigned to the virtual register. This maps a
-              virtual register to a real hardware register. */
-  uint8_t vreg; /**< The index of the virtual register. This uniquely identifies
-                   the virtual register within the system. */
+      reg;         /**< Physical register assigned to the virtual register. This maps a
+                      virtual register to a real hardware register. */
+  uint8_t vreg;    /**< The index of the virtual register. This uniquely identifies
+                      the virtual register within the system. */
   ptrdiff_t start; /**< The index of the first instruction in the block where
                       the virtual register is used. */
   ptrdiff_t end;   /**< The index of the last instruction in the block where the
@@ -261,10 +270,13 @@ typedef struct {
  * This structure defines a single entry in the register map, associating a
  * virtual register ID (`key`) with a physical register (`value`).
  */
-typedef struct {
+typedef struct
+{
   size_t key;          /**< Virtual register ID. */
   rs_register_t value; /**< Assigned physical register. */
 } rs_map_entry_t;
+
+typedef cvector(rs_map_entry_t) rs_map_entries_t;
 
 /**
  * @brief Structure representing the register map.
@@ -273,10 +285,9 @@ typedef struct {
  * maintaining the mappings between virtual registers and their assigned
  * physical registers.
  */
-typedef struct {
-  rs_map_entry_t *entries; /**< List of register mappings. */
-  size_t count;            /**< Number of mappings. */
-  size_t capacity;         /**< Allocated capacity. */
+typedef struct
+{
+  rs_map_entries_t entries; /**< List of register mappings. */
 } rs_register_map_t;
 
 /**
@@ -368,12 +379,12 @@ void rs_regmap_remove(rs_register_map_t *map, size_t key);
  *
  * @see RS_TARGET
  */
-#define RS_TARGETS                                                             \
-  RS_TARGET(x86_64_linux_nasm, X86_64_LINUX_NASM, 14, "rax", "rbx", "rcx",     \
-            "rdx", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13",       \
-            "r14", "r15")                                                      \
-  RS_TARGET(aarch64_macos_gas, AARCH64_MACOS_GAS, 17, "x9", "x10", "x11",      \
-            "x12", "x13", "x14", "x15", "x19", "x20", "x21", "x22", "x23",     \
+#define RS_TARGETS                                                         \
+  RS_TARGET(x86_64_linux_nasm, X86_64_LINUX_NASM, 14, "rax", "rbx", "rcx", \
+            "rdx", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13",   \
+            "r14", "r15")                                                  \
+  RS_TARGET(aarch64_macos_gas, AARCH64_MACOS_GAS, 17, "x9", "x10", "x11",  \
+            "x12", "x13", "x14", "x15", "x19", "x20", "x21", "x22", "x23", \
             "x24", "x25", "x26", "x27", "x28")
 
 /**
@@ -394,8 +405,8 @@ void rs_regmap_remove(rs_register_map_t *map, size_t key);
  * RS_TARGET(x86_64_linux_nasm, X86_64_LINUX_NASM, 14, "rax", "rbx", ...);
  * @endcode
  */
-#define RS_TARGET(lower, _, count, ...)                                        \
-  /** Register names for target `lower`.*/                                     \
+#define RS_TARGET(lower, _, count, ...)    \
+  /** Register names for target `lower`.*/ \
   static const char *rs_target_##lower##_reg_names[] = {__VA_ARGS__};
 RS_TARGETS
 #undef RS_TARGET
@@ -416,7 +427,8 @@ RS_TARGETS
  *
  * @see RS_TARGETS
  */
-typedef enum {
+typedef enum
+{
 
 #define RS_TARGET(_1, x, _2, ...) RS_TARGET_##x,
   RS_TARGETS
@@ -437,29 +449,34 @@ const char **rs_get_register_names(rs_target_t target);
  * sequences, register allocation, and the target architecture for code
  * generation.
  */
-typedef struct {
+typedef struct
+{
   rs_target_t target; /**< The currently selected target architecture. */
 
-  rs_basic_block_t **basic_blocks; /**< List of all the basic blocks. */
-  size_t basic_blocks_count; /**< Number of basic blocks in the program. */
-
-  ptrdiff_t current_basic_block; /**< Index of the currently selected basic
-                                    block, -1 if no block is selected. */
+  rs_basic_blocks_t basic_blocks; /**< List of all the basic blocks. */
+  ptrdiff_t current_basic_block;  /**< Index of the currently selected basic
+                                     block, -1 if no block is selected. */
 
   rs_lifetime_t lifetimes[256]; /**< Array of virtual register lifetimes, used
                                    for register allocation. */
 
-  bool *register_pool; /**< Array of usable hardware registers, representing
+  rs_register_pool_t register_pool; /**< Array of usable hardware registers, representing
                           free and used states. */
 
-  rs_register_map_t
-      register_map; /**< The register map used during register allocation. */
+  rs_register_map_t register_map; /**< The register map used during register allocation. */
 
   size_t stack_size; /**< The size of the stack. */
 
   size_t next_dst_vreg; /**< The index for the next destination virtual
                            register. */
 } rs_t;
+
+/**
+ * @brief Sets debug logging options.
+ * @param[in] enabled Whether debug logging should be enabled.
+ * @param[in] stream The file stream to write debug messages to (NULL for stderr).
+ */
+void rs_set_debug(bool enabled, FILE *stream);
 
 /**
  * @brief Initializes the Runestone IR state.
@@ -690,28 +707,28 @@ void rs_dump(rs_t *rs, FILE *fp);
  */
 void rs_generate(rs_t *rs, FILE *fp);
 
-#define RS_TARGET(lower, ...)                                                  \
-  /**                                                                          \
-    @brief Generates code for for target `lower`.                              \
-    @param[inout] rs The Runestone state.                                      \
-    @param[out] fp The file to write the generated code to.                    \
-   */                                                                          \
-  void rs_generate_##lower(rs_t *rs, FILE *fp);                                \
-  /**                                                                          \
-    @brief Generates an instruction for target `lower`.                        \
-    @param[inout] rs The Runestone state.                                      \
-    @param[out] fp The file to write the instruction to.                       \
-    @param[in] instr The instruction to generate.                              \
-   */                                                                          \
-  void rs_generate_instr_##lower(rs_t *rs, FILE *fp, rs_instr_t instr);        \
-  /**                                                                          \
-    @brief Generates an operand for for target `lower`.                        \
-    @param[inout] rs The Runestone state.                                      \
-    @param[out] fp The file to write the operand to.                           \
-    @param[in] operand The operand to generate.                                \
-    @param[in] dereference Whether to dereference the operand.                 \
-   */                                                                          \
-  void rs_generate_operand_##lower(rs_t *rs, FILE *fp, rs_operand_t operand,   \
+#define RS_TARGET(lower, ...)                                                \
+  /**                                                                        \
+    @brief Generates code for for target `lower`.                            \
+    @param[inout] rs The Runestone state.                                    \
+    @param[out] fp The file to write the generated code to.                  \
+   */                                                                        \
+  void rs_generate_##lower(rs_t *rs, FILE *fp);                              \
+  /**                                                                        \
+    @brief Generates an instruction for target `lower`.                      \
+    @param[inout] rs The Runestone state.                                    \
+    @param[out] fp The file to write the instruction to.                     \
+    @param[in] instr The instruction to generate.                            \
+   */                                                                        \
+  void rs_generate_instr_##lower(rs_t *rs, FILE *fp, rs_instr_t instr);      \
+  /**                                                                        \
+    @brief Generates an operand for for target `lower`.                      \
+    @param[inout] rs The Runestone state.                                    \
+    @param[out] fp The file to write the operand to.                         \
+    @param[in] operand The operand to generate.                              \
+    @param[in] dereference Whether to dereference the operand.               \
+   */                                                                        \
+  void rs_generate_operand_##lower(rs_t *rs, FILE *fp, rs_operand_t operand, \
                                    bool dereference);
 RS_TARGETS
 #undef RS_TARGET
