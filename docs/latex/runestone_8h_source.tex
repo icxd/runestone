@@ -3,6 +3,7 @@
 \mbox{\hyperlink{runestone_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ RUNESTONE\_H}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ RUNESTONE\_H}}
 \DoxyCodeLine{00011\ }
@@ -11,6 +12,7 @@
 \DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
 \DoxyCodeLine{00016\ }
+\DoxyCodeLine{00022\ }
 \DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_RS\_ANSI(CODE)\ "{}\(\backslash\)033["{}\ \#CODE\ "{}m"{}}}
 \DoxyCodeLine{00025\ }
 \DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ RS\_COLOR\_RESET\ \_RS\_ANSI(0)}}
@@ -36,39 +38,40 @@
 \DoxyCodeLine{00056\ \textcolor{comment}{//\ Configuration\ constants\ for\ the\ Runestone\ IR.}}
 \DoxyCodeLine{00057\ \textcolor{comment}{//\ TODO:\ should\ probably\ be\ dynamically\ resizable}}
 \DoxyCodeLine{00058\ }
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ RS\_MAX\_INSTR\ 1024}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ RS\_MAX\_BB\ 1024}}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ RS\_MAX\_REGS\ 256}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ RS\_MAX\_INSTR\ 1024}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ RS\_MAX\_BB\ 1024}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ RS\_MAX\_REGS\ 256}\textcolor{preprocessor}{}}
 \DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ RS\_REGMAP\_INIT\_CAPACITY\ 16}}
 \DoxyCodeLine{00067\ }
-\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ RS\_INVALID\_VREG\ UINT8\_MAX}}
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ RS\_REG\_SPILL\ RS\_INVALID\_VREG}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ RS\_INVALID\_VREG\ UINT8\_MAX}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ RS\_REG\_SPILL\ RS\_INVALID\_VREG}\textcolor{preprocessor}{}}
 \DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ RS\_TEMPORARY\_VREG\ RS\_INVALID\_VREG}}
 \DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{typedef}\ uint8\_t\ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}};}
+\DoxyCodeLine{00075\ \textcolor{keyword}{typedef}\ uint8\_t\ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}};}
 \DoxyCodeLine{00076\ }
 \DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ RS\_OPERAND\_TYPES(X)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ X(NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ X(INT64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ X(ADDR)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ X(REG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ X(BB)\ \ \ \ }}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ X(NULL)\ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ X(INT64)\ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ X(ADDR)\ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ X(REG)\ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ X(BB)\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00090\ }
 \DoxyCodeLine{00099\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
 \DoxyCodeLine{00100\ }
 \DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ X(name)\ RS\_OPERAND\_TYPE\_\#\#name,}}
-\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{group__Runestone_ga1735e19d48e13b496d499e9f24b484d8}{RS\_OPERAND\_TYPES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
+\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{group___runestone_ga1735e19d48e13b496d499e9f24b484d8}{RS\_OPERAND\_TYPES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
 \DoxyCodeLine{00103\ \textcolor{preprocessor}{\#undef\ X}}
 \DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \mbox{\hyperlink{group__Runestone_ggac25ea882362c45f452242f0ce898e6e4a1745cbf3e9785d948d0b1c2c76026f0b}{RS\_OPERAND\_TYPE\_COUNT}}\ }
-\DoxyCodeLine{00106\ \}\ \mbox{\hyperlink{group__Runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\_operand\_type\_t}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \mbox{\hyperlink{group___runestone_ggac25ea882362c45f452242f0ce898e6e4a1745cbf3e9785d948d0b1c2c76026f0b}{RS\_OPERAND\_TYPE\_COUNT}}\ }
+\DoxyCodeLine{00106\ \}\ \mbox{\hyperlink{group___runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\_operand\_type\_t}};}
 \DoxyCodeLine{00107\ }
 \DoxyCodeLine{00117\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{group__Runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\_operand\_type\_t}}\ type;\ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{group___runestone_gac25ea882362c45f452242f0ce898e6e4}{rs\_operand\_type\_t}}\ \mbox{\hyperlink{structrs__operand__t_a13405c78740a902c46fd165806ba58c4}{type}};\ }
 \DoxyCodeLine{00119\ \ \ \textcolor{keyword}{union\ }\{}
-\DoxyCodeLine{00120\ \ \ \ \ int64\_t\ int64;\ }
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ addr;\ \ \ }
-\DoxyCodeLine{00122\ \ \ \ \ uint8\_t\ vreg;\ \ }
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bb\_id;\ \ }
+\DoxyCodeLine{00120\ \ \ \ \ int64\_t\ \mbox{\hyperlink{structrs__operand__t_af46f6c55eaa904cf72a0329f1ff14346}{int64}};\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__operand__t_adf43921ffff7d68b746b231c1a6bfbbe}{addr}};\ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structrs__operand__t_a155a1f561f401fca90c32cfe71a62224}{vreg}};\ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__operand__t_af9ebf497e4af8fdc4222f6f865b7c926}{bb\_id}};\ \ }
 \DoxyCodeLine{00124\ \ \ \};}
 \DoxyCodeLine{00125\ \}\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}};}
 \DoxyCodeLine{00126\ }
@@ -87,171 +90,194 @@
 \DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ ((rs\_operand\_t)\{.type\ =\ RS\_OPERAND\_TYPE\_BB,\ .bb\_id\ =\ (value)\})}}
 \DoxyCodeLine{00145\ }
 \DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ RS\_OPCODES(X)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ X(MOVE,\ "{}move"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ X(COPY,\ "{}copy"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ X(LOAD,\ "{}load"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ X(STORE,\ "{}store"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ X(ADD,\ "{}add"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ X(SUB,\ "{}sub"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ X(MULT,\ "{}mult"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ X(DIV,\ "{}div"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ X(RET,\ "{}ret"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ X(BR,\ "{}br"{})\ \ \ \ \ \ \ }}
-\DoxyCodeLine{00171\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
-\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ X(name,\ str)\ RS\_OPCODE\_\#\#name,}}
-\DoxyCodeLine{00173\ \ \ \mbox{\hyperlink{group__Runestone_ga8c1834c4f9033c4366f6bfab4f188a55}{RS\_OPCODES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
-\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#undef\ X}}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\_OPCODE\_COUNT}}\ }
-\DoxyCodeLine{00176\ \}\ \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}};}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00188\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__Runestone_ga1199f2d132744b4b7dfd06403e5d40f1}{rs\_opcode\_to\_str}}(\mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}}\ opcode)\ \{}
-\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *names[]\ =\ \{}
-\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ X(name,\ str)\ [RS\_OPCODE\_\#\#name]\ =\ str,}}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \mbox{\hyperlink{group__Runestone_ga8c1834c4f9033c4366f6bfab4f188a55}{RS\_OPCODES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
-\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#undef\ X}}
-\DoxyCodeLine{00194\ \ \ \};}
-\DoxyCodeLine{00196\ \ \ \textcolor{keywordflow}{return}\ (opcode\ <\ \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\_OPCODE\_COUNT}})\ ?\ names[opcode]\ :\ \textcolor{stringliteral}{"{}unknown"{}};}
-\DoxyCodeLine{00197\ \}}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00207\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00208\ \ \ \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}}\ opcode;\ }
-\DoxyCodeLine{00209\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ dest;\ \ }
-\DoxyCodeLine{00210\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1;\ \ }
-\DoxyCodeLine{00211\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2;\ \ }
-\DoxyCodeLine{00212\ \}\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}};}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00222\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00223\ \ \ \textcolor{keywordtype}{char}\ *name;\ }
-\DoxyCodeLine{00225\ \ \ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ *instructions;\ }
-\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ instruction\_count;\ }
-\DoxyCodeLine{00230\ \}\ \mbox{\hyperlink{structrs__basic__block__t}{rs\_basic\_block\_t}};}
-\DoxyCodeLine{00231\ }
-\DoxyCodeLine{00240\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00241\ \ \ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ reg;\ }
-\DoxyCodeLine{00244\ \ \ uint8\_t\ vreg;\ }
-\DoxyCodeLine{00246\ \ \ ptrdiff\_t\ start;\ }
-\DoxyCodeLine{00248\ \ \ ptrdiff\_t\ end;\ \ \ }
-\DoxyCodeLine{00250\ \}\ \mbox{\hyperlink{structrs__lifetime__t}{rs\_lifetime\_t}};}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00259\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00260\ \ \ \textcolor{keywordtype}{size\_t}\ key;\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00261\ \ \ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ value;\ }
-\DoxyCodeLine{00262\ \}\ \mbox{\hyperlink{structrs__map__entry__t}{rs\_map\_entry\_t}};}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00271\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{structrs__map__entry__t}{rs\_map\_entry\_t}}\ *entries;\ }
-\DoxyCodeLine{00273\ \ \ \textcolor{keywordtype}{size\_t}\ count;\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00274\ \ \ \textcolor{keywordtype}{size\_t}\ capacity;\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00275\ \}\ \mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}};}
-\DoxyCodeLine{00276\ }
-\DoxyCodeLine{00287\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga6894c9ff51e71b0f8cb8eef7b65ecb60}{rs\_regmap\_init}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map);}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00297\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gaf6399b2334da2bed72bc872413739f97}{rs\_regmap\_free}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map);}
-\DoxyCodeLine{00298\ }
-\DoxyCodeLine{00311\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga66d7fbd6152f1f4493258f64f442880e}{rs\_regmap\_insert}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key,\ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ value);}
-\DoxyCodeLine{00312\ }
-\DoxyCodeLine{00326\ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group__Runestone_ga9da531c55bb9593729cb5466f8dbad8d}{rs\_regmap\_get}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
-\DoxyCodeLine{00327\ }
-\DoxyCodeLine{00338\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__Runestone_gaae4bc14dccdd7da71fca49f45559256f}{rs\_regmap\_contains}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00349\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga2de431eddc92fc1e0b06df6010024ea8}{rs\_regmap\_remove}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
-\DoxyCodeLine{00350\ }
-\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#define\ RS\_TARGETS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00367\ \textcolor{preprocessor}{\ \ RS\_TARGET(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ "{}rax"{},\ "{}rbx"{},\ "{}rcx"{},\ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00368\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}rdx"{},\ "{}rsi"{},\ "{}rdi"{},\ "{}r8"{},\ "{}r9"{},\ "{}r10"{},\ "{}r11"{},\ "{}r12"{},\ "{}r13"{},\ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00369\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}r14"{},\ "{}r15"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00370\ \textcolor{preprocessor}{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ "{}x9"{},\ "{}x10"{},\ "{}x11"{},\ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00371\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}x12"{},\ "{}x13"{},\ "{}x14"{},\ "{}x15"{},\ "{}x19"{},\ "{}x20"{},\ "{}x21"{},\ "{}x22"{},\ "{}x23"{},\ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00372\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}x24"{},\ "{}x25"{},\ "{}x26"{},\ "{}x27"{},\ "{}x28"{})}}
-\DoxyCodeLine{00373\ }
-\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ RS\_TARGET(lower,\ \_,\ count,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00393\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00394\ \textcolor{preprocessor}{\ \ static\ const\ char\ *rs\_target\_\#\#lower\#\#\_reg\_names[]\ =\ \{\_\_VA\_ARGS\_\_\};}}
-\DoxyCodeLine{00395\ \mbox{\hyperlink{group__Runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
-\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
-\DoxyCodeLine{00397\ }
-\DoxyCodeLine{00414\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
-\DoxyCodeLine{00415\ }
-\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#define\ RS\_TARGET(\_1,\ x,\ \_2,\ ...)\ RS\_TARGET\_\#\#x,}}
-\DoxyCodeLine{00417\ \ \ \mbox{\hyperlink{group__Runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
-\DoxyCodeLine{00418\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
-\DoxyCodeLine{00419\ }
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \mbox{\hyperlink{group__Runestone_gga5598ceb8ac9eb90edc0fb1ac43d531bfaf60539ce2644f509e68f252c73440554}{RS\_TARGET\_COUNT}},\ }
-\DoxyCodeLine{00421\ \}\ \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}};}
-\DoxyCodeLine{00422\ }
-\DoxyCodeLine{00423\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__Runestone_ga58b5d44d5e8f8df106c687e360539852}{rs\_get\_register\_count}}(\mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
-\DoxyCodeLine{00424\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ **\mbox{\hyperlink{group__Runestone_ga0c77e806cea7763fc4fd1a9a404d333f}{rs\_get\_register\_names}}(\mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
-\DoxyCodeLine{00425\ }
-\DoxyCodeLine{00435\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00436\ \ \ \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target;\ }
-\DoxyCodeLine{00438\ \ \ \mbox{\hyperlink{structrs__basic__block__t}{rs\_basic\_block\_t}}\ **basic\_blocks;\ }
-\DoxyCodeLine{00439\ \ \ \textcolor{keywordtype}{size\_t}\ basic\_blocks\_count;\ }
-\DoxyCodeLine{00441\ \ \ ptrdiff\_t\ current\_basic\_block;\ }
-\DoxyCodeLine{00444\ \ \ \mbox{\hyperlink{structrs__lifetime__t}{rs\_lifetime\_t}}\ lifetimes[256];\ }
-\DoxyCodeLine{00447\ \ \ \textcolor{keywordtype}{bool}\ *register\_pool;\ }
-\DoxyCodeLine{00450\ \ \ \mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ register\_map;\ }
-\DoxyCodeLine{00453\ \ \ \textcolor{keywordtype}{size\_t}\ stack\_size;\ }
-\DoxyCodeLine{00455\ \ \ \textcolor{keywordtype}{size\_t}\ next\_dst\_vreg;\ }
-\DoxyCodeLine{00457\ \}\ \mbox{\hyperlink{structrs__t}{rs\_t}};}
-\DoxyCodeLine{00458\ }
-\DoxyCodeLine{00464\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\_init}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
-\DoxyCodeLine{00465\ }
-\DoxyCodeLine{00470\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gab0f592439168f8ccac37be8f8392eb75}{rs\_free}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
-\DoxyCodeLine{00471\ }
-\DoxyCodeLine{00478\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__Runestone_gae94ad3f4b0764d8824a57aae32d79ab4}{rs\_append\_basic\_block}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name);}
-\DoxyCodeLine{00479\ }
-\DoxyCodeLine{00485\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga5ea095ec06e5d27ded04f63cc57a57e1}{rs\_position\_at\_basic\_block}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keywordtype}{size\_t}\ block\_id);}
-\DoxyCodeLine{00486\ }
-\DoxyCodeLine{00492\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga064833b22ec2ea48801f2da9f93b185e}{rs\_build\_instruction}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instruction);}
-\DoxyCodeLine{00493\ }
-\DoxyCodeLine{00500\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_gac07ff699ec340fd6592b6ce8851013d3}{rs\_build\_move}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
-\DoxyCodeLine{00501\ }
-\DoxyCodeLine{00508\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_gae420b181cc470de475b2663040c46d16}{rs\_build\_copy}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
-\DoxyCodeLine{00509\ }
-\DoxyCodeLine{00516\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_ga49f2011fb1246a7c1fbf9b0a18c22700}{rs\_build\_load}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
-\DoxyCodeLine{00517\ }
-\DoxyCodeLine{00524\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gac4b1e644b9f3a8844ae8dc75a0a5f1c8}{rs\_build\_store}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
-\DoxyCodeLine{00525\ }
-\DoxyCodeLine{00533\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_gaf331868cd5a5d39d64b4fd8627bfeff4}{rs\_build\_add}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
-\DoxyCodeLine{00534\ }
-\DoxyCodeLine{00542\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_ga1c10d0df862fddb8a47b981eebfa0402}{rs\_build\_sub}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
-\DoxyCodeLine{00543\ }
-\DoxyCodeLine{00551\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_ga683fdd8b025a9c6deb36ed3cea9498d9}{rs\_build\_mult}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
-\DoxyCodeLine{00552\ }
-\DoxyCodeLine{00560\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group__Runestone_ga013df9d558eefdc0145f22a2022f03c0}{rs\_build\_div}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
-\DoxyCodeLine{00561\ }
-\DoxyCodeLine{00567\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gadb1083765b8f1336be52e59e2d634b1c}{rs\_build\_ret}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
-\DoxyCodeLine{00568\ }
-\DoxyCodeLine{00574\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga9e8d21ba83dfc18c1dd792f5aac3cf99}{rs\_build\_br}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
-\DoxyCodeLine{00575\ }
-\DoxyCodeLine{00581\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__Runestone_ga99ff5be0b1666a34954468ab6ec86268}{rs\_instr\_is\_terminator}}(\mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);}
-\DoxyCodeLine{00582\ }
-\DoxyCodeLine{00588\ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group__Runestone_ga1241715f8b5f9767ae55bec794e28f83}{rs\_get\_free\_register}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
-\DoxyCodeLine{00595\ \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group__Runestone_ga134400f2ab34a21b321aee4de74e6392}{rs\_get\_register}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keywordtype}{size\_t}\ vreg);}
-\DoxyCodeLine{00596\ }
-\DoxyCodeLine{00602\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gad65a8fe463f065ce298ca5ab43a93977}{rs\_analyze\_lifetimes}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
-\DoxyCodeLine{00603\ }
-\DoxyCodeLine{00614\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga605bdd8ef26f438366e1b797ca940428}{rs\_finalize}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
-\DoxyCodeLine{00615\ }
-\DoxyCodeLine{00629\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_ga8a7493eb39170041637df5b8b542e33e}{rs\_dump\_instr}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);}
-\DoxyCodeLine{00640\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gadd6d390153f8da57e9ac0b6372c74821}{rs\_dump}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);}
-\DoxyCodeLine{00641\ }
-\DoxyCodeLine{00647\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__Runestone_gab7267a318d134361e0ae134bf2c6eb1f}{rs\_generate}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);}
-\DoxyCodeLine{00648\ }
-\DoxyCodeLine{00649\ \textcolor{preprocessor}{\#define\ RS\_TARGET(lower,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00650\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00655\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00656\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00662\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_instr\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp,\ rs\_instr\_t\ instr);\ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00663\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00670\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_operand\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp,\ rs\_operand\_t\ operand,\ \ \ \(\backslash\)}}
-\DoxyCodeLine{00671\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bool\ dereference);}}
-\DoxyCodeLine{00672\ \mbox{\hyperlink{group__Runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
-\DoxyCodeLine{00673\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
-\DoxyCodeLine{00674\ }
-\DoxyCodeLine{00679\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RUNESTONE\_H}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ X(MOVE,\ "{}move"{})\ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ X(COPY,\ "{}copy"{})\ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ X(LOAD,\ "{}load"{})\ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ X(STORE,\ "{}store"{})\ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ X(ADD,\ "{}add"{})\ \ \ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ X(SUB,\ "{}sub"{})\ \ \ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ X(MULT,\ "{}mult"{})\ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ X(DIV,\ "{}div"{})\ \ \ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ X(RET,\ "{}ret"{})\ \ \ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ X(BR,\ "{}br"{})\ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ X(BR\_IF,\ "{}br\_if"{})\ \ \ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ X(CMP\_EQ,\ "{}cmp\_eq"{})\ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ X(CMP\_LT,\ "{}cmp\_lt"{})\ }\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\ \ X(CMP\_GT,\ "{}cmp\_gt"{})\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ X(name,\ str)\ RS\_OPCODE\_\#\#name,}}
+\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{group___runestone_ga8c1834c4f9033c4366f6bfab4f188a55}{RS\_OPCODES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#undef\ X}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \mbox{\hyperlink{group___runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\_OPCODE\_COUNT}}\ }
+\DoxyCodeLine{00180\ \}\ \mbox{\hyperlink{group___runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group___runestone_ga1199f2d132744b4b7dfd06403e5d40f1}{rs\_opcode\_to\_str}}(\mbox{\hyperlink{group___runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}}\ opcode)\ \{}
+\DoxyCodeLine{00194\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *names[]\ =\ \{}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ X(name,\ str)\ [RS\_OPCODE\_\#\#name]\ =\ str,}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \mbox{\hyperlink{group___runestone_ga8c1834c4f9033c4366f6bfab4f188a55}{RS\_OPCODES}}(\mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}})}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#undef\ X}}
+\DoxyCodeLine{00198\ \ \ \};}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{return}\ (opcode\ <\ \mbox{\hyperlink{group___runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\_OPCODE\_COUNT}})\ ?\ names[opcode]\ :\ \textcolor{stringliteral}{"{}unknown"{}};}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00211\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00212\ \ \ \mbox{\hyperlink{group___runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\_opcode\_t}}\ \mbox{\hyperlink{structrs__instr__t_ab4352bdcdb5a71d9a0dd3e0fa26d1bb9}{opcode}};\ }
+\DoxyCodeLine{00213\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{structrs__instr__t_acac0da6af9ada7d95fe28d907c1e5ade}{dest}};\ \ }
+\DoxyCodeLine{00214\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{structrs__instr__t_a7e4e4b111cd6b92cae6af86bdc1a9e1f}{src1}};\ \ }
+\DoxyCodeLine{00215\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{structrs__instr__t_a12b3a7f43ae2ffac4427d316cd17dad5}{src2}};\ \ }
+\DoxyCodeLine{00216\ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{structrs__instr__t_ac294912a84ed0fa40f27e8069d9c29f8}{src3}};\ \ }
+\DoxyCodeLine{00217\ \}\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}};}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structrs__basic__block__t_ae422bdb54037c5ad88753a8d458b6d79}{name}};\ }
+\DoxyCodeLine{00230\ \ \ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ *\mbox{\hyperlink{structrs__basic__block__t_a81b216627baaf1defc4adfeb138c1bc4}{instructions}};\ }
+\DoxyCodeLine{00232\ \ \ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \mbox{\hyperlink{structrs__basic__block__t_a07ac10e1eb9c943081b14d1de7ea4760}{instruction\_count}};\ }
+\DoxyCodeLine{00235\ \}\ \mbox{\hyperlink{structrs__basic__block__t}{rs\_basic\_block\_t}};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00246\ \ \ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \mbox{\hyperlink{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550}{reg}};\ }
+\DoxyCodeLine{00249\ \ \ uint8\_t\ \mbox{\hyperlink{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf}{vreg}};\ }
+\DoxyCodeLine{00251\ \ \ ptrdiff\_t\ \mbox{\hyperlink{structrs__lifetime__t_a5710fe955e98a5a67ea30f58880d0c0a}{start}};\ }
+\DoxyCodeLine{00253\ \ \ ptrdiff\_t\ \mbox{\hyperlink{structrs__lifetime__t_aa0299bf2db6982cef78d5419efcbbd0b}{end}};\ \ \ }
+\DoxyCodeLine{00255\ \}\ \mbox{\hyperlink{structrs__lifetime__t}{rs\_lifetime\_t}};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00264\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00265\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__map__entry__t_a6d9b30da5fc6424c921e3eb02a0f8361}{key}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{structrs__map__entry__t_a6b08c9c97b5f112849b33e99db01a1bb}{value}};\ }
+\DoxyCodeLine{00267\ \}\ \mbox{\hyperlink{structrs__map__entry__t}{rs\_map\_entry\_t}};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00276\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00277\ \ \ \mbox{\hyperlink{structrs__map__entry__t}{rs\_map\_entry\_t}}\ *\mbox{\hyperlink{structrs__register__map__t_a08ea2506c93874403192e6dcbb4295f8}{entries}};\ }
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__register__map__t_a06ac22454d36bf304e2e6ec2d61787e0}{count}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__register__map__t_a6361e77b17ec0b126b1f1d15b175cc95}{capacity}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00280\ \}\ \mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00292\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga6894c9ff51e71b0f8cb8eef7b65ecb60}{rs\_regmap\_init}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gaf6399b2334da2bed72bc872413739f97}{rs\_regmap\_free}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00316\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga66d7fbd6152f1f4493258f64f442880e}{rs\_regmap\_insert}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key,\ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ value);}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00331\ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group___runestone_ga9da531c55bb9593729cb5466f8dbad8d}{rs\_regmap\_get}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00343\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group___runestone_gaae4bc14dccdd7da71fca49f45559256f}{rs\_regmap\_contains}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00354\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga2de431eddc92fc1e0b06df6010024ea8}{rs\_regmap\_remove}}(\mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}\ *map,\ \textcolor{keywordtype}{size\_t}\ key);}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#define\ RS\_TARGETS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\ \ RS\_TARGET(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ "{}rax"{},\ "{}rbx"{},\ "{}rcx"{},\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}rdx"{},\ "{}rsi"{},\ "{}rdi"{},\ "{}r8"{},\ "{}r9"{},\ "{}r10"{},\ "{}r11"{},\ "{}r12"{},\ "{}r13"{},\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}r14"{},\ "{}r15"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ "{}x9"{},\ "{}x10"{},\ "{}x11"{},\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}x12"{},\ "{}x13"{},\ "{}x14"{},\ "{}x15"{},\ "{}x19"{},\ "{}x20"{},\ "{}x21"{},\ "{}x22"{},\ "{}x23"{},\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}x24"{},\ "{}x25"{},\ "{}x26"{},\ "{}x27"{},\ "{}x28"{})}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ RS\_TARGET(lower,\ \_,\ count,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\ \ static\ const\ char\ *rs\_target\_\#\#lower\#\#\_reg\_names[]\ =\ \{\_\_VA\_ARGS\_\_\};}}
+\DoxyCodeLine{00400\ \mbox{\hyperlink{group___runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00419\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#define\ RS\_TARGET(\_1,\ x,\ \_2,\ ...)\ RS\_TARGET\_\#\#x,}}
+\DoxyCodeLine{00422\ \ \ \mbox{\hyperlink{group___runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \mbox{\hyperlink{group___runestone_gga5598ceb8ac9eb90edc0fb1ac43d531bfaf60539ce2644f509e68f252c73440554}{RS\_TARGET\_COUNT}},\ }
+\DoxyCodeLine{00426\ \}\ \mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}};}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group___runestone_ga58b5d44d5e8f8df106c687e360539852}{rs\_get\_register\_count}}(\mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
+\DoxyCodeLine{00429\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ **\mbox{\hyperlink{group___runestone_ga0c77e806cea7763fc4fd1a9a404d333f}{rs\_get\_register\_names}}(\mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00440\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00441\ \ \ \mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ \mbox{\hyperlink{structrs__t_ac33ab9c442f98a02a2a9c0cdea19ccb5}{target}};\ }
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \mbox{\hyperlink{structrs__basic__block__t}{rs\_basic\_block\_t}}\ **\mbox{\hyperlink{structrs__t_a602fd8de76134aab28f99caf04433953}{basic\_blocks}};\ }
+\DoxyCodeLine{00444\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__t_a6505e41a183b8fed33332f866294abf1}{basic\_blocks\_count}};\ }
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ ptrdiff\_t\ \mbox{\hyperlink{structrs__t_aaa3da1d0a964352d5064f9e7bbfa76af}{current\_basic\_block}};\ }
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \mbox{\hyperlink{structrs__lifetime__t}{rs\_lifetime\_t}}\ \mbox{\hyperlink{structrs__t_af8e678c081a08d60526e7275a78bc265}{lifetimes}}[256];\ }
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \textcolor{keywordtype}{bool}\ *\mbox{\hyperlink{structrs__t_aaf80dfb1b9608aa68264cda5460b053d}{register\_pool}};\ }
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \mbox{\hyperlink{structrs__register__map__t}{rs\_register\_map\_t}}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \mbox{\hyperlink{structrs__t_ab72e9158f3ccccf52886def0d62914dd}{register\_map}};\ }
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__t_a11d72e6638f2a55f3712460d292f7b65}{stack\_size}};\ }
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structrs__t_a64071ef4d41305787d3cc9d5357ad92b}{next\_dst\_vreg}};\ }
+\DoxyCodeLine{00462\ \}\ \mbox{\hyperlink{structrs__t}{rs\_t}};}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00469\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\_init}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\_target\_t}}\ target);}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00475\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gab0f592439168f8ccac37be8f8392eb75}{rs\_free}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00483\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group___runestone_gae94ad3f4b0764d8824a57aae32d79ab4}{rs\_append\_basic\_block}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00490\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga5ea095ec06e5d27ded04f63cc57a57e1}{rs\_position\_at\_basic\_block}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keywordtype}{size\_t}\ block\_id);}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00497\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga064833b22ec2ea48801f2da9f93b185e}{rs\_build\_instruction}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instruction);}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00505\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_gac07ff699ec340fd6592b6ce8851013d3}{rs\_build\_move}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00513\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_gae420b181cc470de475b2663040c46d16}{rs\_build\_copy}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00521\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_ga49f2011fb1246a7c1fbf9b0a18c22700}{rs\_build\_load}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00529\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gac4b1e644b9f3a8844ae8dc75a0a5f1c8}{rs\_build\_store}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00538\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_gaf331868cd5a5d39d64b4fd8627bfeff4}{rs\_build\_add}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00547\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_ga1c10d0df862fddb8a47b981eebfa0402}{rs\_build\_sub}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00556\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_ga683fdd8b025a9c6deb36ed3cea9498d9}{rs\_build\_mult}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00565\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_ga013df9d558eefdc0145f22a2022f03c0}{rs\_build\_div}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00572\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gadb1083765b8f1336be52e59e2d634b1c}{rs\_build\_ret}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00579\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga9e8d21ba83dfc18c1dd792f5aac3cf99}{rs\_build\_br}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src);}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00590\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga7f57cdb44274b9771dff0fbc3bd22349}{rs\_build\_br\_if}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2,}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src3);}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00600\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_gaf2bd08a22dfd456c49e42150755d57fb}{rs\_build\_cmp\_eq}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00609\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_gadb3a287b47c3bf2cb81fa9227013e886}{rs\_build\_cmp\_lt}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00618\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ \mbox{\hyperlink{group___runestone_ga30c1da0227bf6df4231bda905f3d0d24}{rs\_build\_cmp\_gt}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src1,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ src2);}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00625\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group___runestone_ga99ff5be0b1666a34954468ab6ec86268}{rs\_instr\_is\_terminator}}(\mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00632\ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group___runestone_ga1241715f8b5f9767ae55bec794e28f83}{rs\_get\_free\_register}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
+\DoxyCodeLine{00639\ \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\_register\_t}}\ \mbox{\hyperlink{group___runestone_ga134400f2ab34a21b321aee4de74e6392}{rs\_get\_register}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ \textcolor{keywordtype}{size\_t}\ vreg);}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00646\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gad65a8fe463f065ce298ca5ab43a93977}{rs\_analyze\_lifetimes}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00658\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga605bdd8ef26f438366e1b797ca940428}{rs\_finalize}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs);}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00673\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_ga8a7493eb39170041637df5b8b542e33e}{rs\_dump\_instr}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);}
+\DoxyCodeLine{00684\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gadd6d390153f8da57e9ac0b6372c74821}{rs\_dump}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00691\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___runestone_gab7267a318d134361e0ae134bf2c6eb1f}{rs\_generate}}(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \textcolor{preprocessor}{\#define\ RS\_TARGET(lower,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00694\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00699\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00700\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00706\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_instr\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp,\ rs\_instr\_t\ instr);\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00707\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00714\ \textcolor{preprocessor}{\ \ void\ rs\_generate\_operand\_\#\#lower(rs\_t\ *rs,\ FILE\ *fp,\ rs\_operand\_t\ operand,\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00715\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bool\ dereference);}}
+\DoxyCodeLine{00716\ \mbox{\hyperlink{group___runestone_ga2f90ce5323dca991d04eb4feaad64ffb}{RS\_TARGETS}}}
+\DoxyCodeLine{00717\ \textcolor{preprocessor}{\#undef\ RS\_TARGET}}
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RUNESTONE\_H}}
 
 \end{DoxyCode}

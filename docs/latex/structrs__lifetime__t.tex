@@ -12,7 +12,7 @@ Represents the lifetime of a virtual register in the Runestone IR.
 \doxysubsubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550}{reg}}
+\mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550}{reg}}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf}{vreg}}
 \item 
@@ -28,29 +28,29 @@ Represents the lifetime of a virtual register in the Runestone IR.
 This structure tracks the start and end points of a virtual register\textquotesingle{}s usage. A virtual register is assigned a physical register during allocation, and its lifetime is tracked across basic blocks and instructions. 
 
 \doxysubsection{Field Documentation}
-\Hypertarget{structrs__lifetime__t_aa0299bf2db6982cef78d5419efcbbd0b}\label{structrs__lifetime__t_aa0299bf2db6982cef78d5419efcbbd0b} 
-\index{rs\_lifetime\_t@{rs\_lifetime\_t}!end@{end}}
+\Hypertarget{structrs__lifetime__t_aa0299bf2db6982cef78d5419efcbbd0b}\index{rs\_lifetime\_t@{rs\_lifetime\_t}!end@{end}}
 \index{end@{end}!rs\_lifetime\_t@{rs\_lifetime\_t}}
 \doxysubsubsection{\texorpdfstring{end}{end}}
-{\footnotesize\ttfamily ptrdiff\+\_\+t rs\+\_\+lifetime\+\_\+t\+::end}
+{\footnotesize\ttfamily \label{structrs__lifetime__t_aa0299bf2db6982cef78d5419efcbbd0b} 
+ptrdiff\+\_\+t rs\+\_\+lifetime\+\_\+t\+::end}
 
-The index of the last instruction in the block where the virtual register is used. \Hypertarget{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550}\label{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550} 
-\index{rs\_lifetime\_t@{rs\_lifetime\_t}!reg@{reg}}
+The index of the last instruction in the block where the virtual register is used. \Hypertarget{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550}\index{rs\_lifetime\_t@{rs\_lifetime\_t}!reg@{reg}}
 \index{reg@{reg}!rs\_lifetime\_t@{rs\_lifetime\_t}}
 \doxysubsubsection{\texorpdfstring{reg}{reg}}
-{\footnotesize\ttfamily \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} rs\+\_\+lifetime\+\_\+t\+::reg}
+{\footnotesize\ttfamily \label{structrs__lifetime__t_ab29b827f64a2daa425f5332c43b80550} 
+\mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} rs\+\_\+lifetime\+\_\+t\+::reg}
 
-Physical register assigned to the virtual register. This maps a virtual register to a real hardware register. \Hypertarget{structrs__lifetime__t_a5710fe955e98a5a67ea30f58880d0c0a}\label{structrs__lifetime__t_a5710fe955e98a5a67ea30f58880d0c0a} 
-\index{rs\_lifetime\_t@{rs\_lifetime\_t}!start@{start}}
+Physical register assigned to the virtual register. This maps a virtual register to a real hardware register. \Hypertarget{structrs__lifetime__t_a5710fe955e98a5a67ea30f58880d0c0a}\index{rs\_lifetime\_t@{rs\_lifetime\_t}!start@{start}}
 \index{start@{start}!rs\_lifetime\_t@{rs\_lifetime\_t}}
 \doxysubsubsection{\texorpdfstring{start}{start}}
-{\footnotesize\ttfamily ptrdiff\+\_\+t rs\+\_\+lifetime\+\_\+t\+::start}
+{\footnotesize\ttfamily \label{structrs__lifetime__t_a5710fe955e98a5a67ea30f58880d0c0a} 
+ptrdiff\+\_\+t rs\+\_\+lifetime\+\_\+t\+::start}
 
-The index of the first instruction in the block where the virtual register is used. \Hypertarget{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf}\label{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf} 
-\index{rs\_lifetime\_t@{rs\_lifetime\_t}!vreg@{vreg}}
+The index of the first instruction in the block where the virtual register is used. \Hypertarget{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf}\index{rs\_lifetime\_t@{rs\_lifetime\_t}!vreg@{vreg}}
 \index{vreg@{vreg}!rs\_lifetime\_t@{rs\_lifetime\_t}}
 \doxysubsubsection{\texorpdfstring{vreg}{vreg}}
-{\footnotesize\ttfamily uint8\+\_\+t rs\+\_\+lifetime\+\_\+t\+::vreg}
+{\footnotesize\ttfamily \label{structrs__lifetime__t_a5d9b5f0e0d709bd8bc0b85e9bd5bc0cf} 
+uint8\+\_\+t rs\+\_\+lifetime\+\_\+t\+::vreg}
 
 The index of the virtual register. This uniquely identifies the virtual register within the system. 
 
