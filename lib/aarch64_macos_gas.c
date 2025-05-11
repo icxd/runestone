@@ -1,4 +1,5 @@
 #include "runestone.h"
+#include <assert.h>
 
 void rs_generate_aarch64_macos_gas(rs_t *rs, FILE *fp) {
   fprintf(fp, ".text\n");
@@ -21,9 +22,11 @@ void rs_generate_instr_aarch64_macos_gas(rs_t *rs, FILE *fp, rs_instr_t instr) {
   fprintf(fp, "\n");
   switch (instr.opcode) {
   case RS_OPCODE_MOVE:
+    assert(false && "unimplemented");
     break;
 
   case RS_OPCODE_COPY:
+    assert(false && "unimplemented");
     break;
 
   case RS_OPCODE_LOAD:
@@ -35,6 +38,7 @@ void rs_generate_instr_aarch64_macos_gas(rs_t *rs, FILE *fp, rs_instr_t instr) {
     break;
 
   case RS_OPCODE_STORE:
+    assert(false && "unimplemented");
     break;
 
   case RS_OPCODE_ADD:
@@ -48,12 +52,9 @@ void rs_generate_instr_aarch64_macos_gas(rs_t *rs, FILE *fp, rs_instr_t instr) {
     break;
 
   case RS_OPCODE_SUB:
-    break;
-
   case RS_OPCODE_MULT:
-    break;
-
   case RS_OPCODE_DIV:
+    assert(false && "unimplemented");
     break;
 
   case RS_OPCODE_RET:
@@ -70,7 +71,53 @@ void rs_generate_instr_aarch64_macos_gas(rs_t *rs, FILE *fp, rs_instr_t instr) {
     rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src1, false);
     fprintf(fp, "\n");
     break;
+
+  case RS_OPCODE_BR_IF:
+    fprintf(fp, "  cbnz ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src1, false);
+    fprintf(fp, ", ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src2, false);
+    fprintf(fp, "\n");
+    fprintf(fp, "  b ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src3, false);
+    fprintf(fp, "\n");
+    break;
+
+  case RS_OPCODE_CMP_EQ:
+    fprintf(fp, "  cmp ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src1, false);
+    fprintf(fp, ", ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src2, false);
+    fprintf(fp, "\n");
+    fprintf(fp, "  cset ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.dest, false);
+    fprintf(fp, ", eq\n");
+    break;
+
+  case RS_OPCODE_CMP_LT:
+    fprintf(fp, "  cmp ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src1, false);
+    fprintf(fp, ", ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src2, false);
+    fprintf(fp, "\n");
+    fprintf(fp, "  cset ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.dest, false);
+    fprintf(fp, ", lt\n");
+    break;
+
+  case RS_OPCODE_CMP_GT:
+    fprintf(fp, "  cmp ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src1, false);
+    fprintf(fp, ", ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.src2, false);
+    fprintf(fp, "\n");
+    fprintf(fp, "  cset ");
+    rs_generate_operand_aarch64_macos_gas(rs, fp, instr.dest, false);
+    fprintf(fp, ", gt\n");
+    break;
+
   case RS_OPCODE_COUNT:
+    assert(false && "unreachable");
     break;
   }
 }
