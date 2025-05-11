@@ -120,7 +120,7 @@ void rs_generate_operand_x86_64_linux_nasm(rs_t *rs, FILE *fp,
   case RS_OPERAND_TYPE_NULL:
     break;
   case RS_OPERAND_TYPE_INT64:
-    fprintf(fp, "%ld", operand.int64);
+    fprintf(fp, "%lld", operand.int64);
     break;
   case RS_OPERAND_TYPE_ADDR:
     fprintf(fp, "%zu", operand.addr);
