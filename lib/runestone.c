@@ -123,8 +123,36 @@ void rs_build_br(rs_t *rs, rs_operand_t src) {
                                   RS_OPERAND_NULL, RS_OPERAND_NULL});
 }
 
+void rs_build_br_if(rs_t *rs, rs_operand_t src1, rs_operand_t src2,
+                    rs_operand_t src3) {
+  rs_build_instr(
+      rs, (rs_instr_t){RS_OPCODE_BR_IF, RS_OPERAND_NULL, src1, src2, src3});
+}
+
+rs_operand_t rs_build_cmp_eq(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
+  rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
+  rs_build_instr(
+      rs, (rs_instr_t){RS_OPCODE_CMP_EQ, dst, src1, src2, RS_OPERAND_NULL});
+  return dst;
+}
+
+rs_operand_t rs_build_cmp_lt(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
+  rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
+  rs_build_instr(
+      rs, (rs_instr_t){RS_OPCODE_CMP_LT, dst, src1, src2, RS_OPERAND_NULL});
+  return dst;
+}
+
+rs_operand_t rs_build_cmp_gt(rs_t *rs, rs_operand_t src1, rs_operand_t src2) {
+  rs_operand_t dst = RS_OPERAND_REG(rs->next_dst_vreg++);
+  rs_build_instr(
+      rs, (rs_instr_t){RS_OPCODE_CMP_GT, dst, src1, src2, RS_OPERAND_NULL});
+  return dst;
+}
+
 bool rs_instr_is_terminator(rs_instr_t instr) {
-  return instr.opcode == RS_OPCODE_RET || instr.opcode == RS_OPCODE_BR;
+  return instr.opcode == RS_OPCODE_RET || instr.opcode == RS_OPCODE_BR ||
+         instr.opcode == RS_OPCODE_BR_IF;
 }
 
 static rs_register_t rs_allocate_register(rs_t *rs) {

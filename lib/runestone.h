@@ -153,16 +153,20 @@ typedef struct {
  * intermediate representation, such as move, load, add, and branch.
  */
 #define RS_OPCODES(X)                                                          \
-  X(MOVE, "move")   /**< Move opcode. */                                       \
-  X(COPY, "copy")   /**< Copy opcode. */                                       \
-  X(LOAD, "load")   /**< Load opcode. */                                       \
-  X(STORE, "store") /**< Store opcode. */                                      \
-  X(ADD, "add")     /**< Add opcode. */                                        \
-  X(SUB, "sub")     /**< Sub opcode. */                                        \
-  X(MULT, "mult")   /**< Mult opcode. */                                       \
-  X(DIV, "div")     /**< Div opcode. */                                        \
-  X(RET, "ret")     /**< Return opcode. */                                     \
-  X(BR, "br")       /**< Branch opcode. */
+  X(MOVE, "move")     /**< Move opcode. */                                     \
+  X(COPY, "copy")     /**< Copy opcode. */                                     \
+  X(LOAD, "load")     /**< Load opcode. */                                     \
+  X(STORE, "store")   /**< Store opcode. */                                    \
+  X(ADD, "add")       /**< Add opcode. */                                      \
+  X(SUB, "sub")       /**< Sub opcode. */                                      \
+  X(MULT, "mult")     /**< Mult opcode. */                                     \
+  X(DIV, "div")       /**< Div opcode. */                                      \
+  X(RET, "ret")       /**< Return opcode. */                                   \
+  X(BR, "br")         /**< Branch opcode. */                                   \
+  X(BR_IF, "br_if")   /**< Branch if value != 0. */                            \
+  X(CMP_EQ, "cmp_eq") /**< result = (a == b) */                                \
+  X(CMP_LT, "cmp_lt") /**< result = (a < b) */                                 \
+  X(CMP_GT, "cmp_gt") /**< result = (a > b) */
 
 /**
  * @enum rs_opcode_t
@@ -573,6 +577,45 @@ void rs_build_ret(rs_t *rs, rs_operand_t src);
  * @param[in] src The operand representing the target of the branch.
  */
 void rs_build_br(rs_t *rs, rs_operand_t src);
+
+/**
+ * @brief Builds a conditional branch instruction.
+ * @param[inout] rs The Runestone state.
+ * @param[in] src1 The operand to compare.
+ * @param[in] src2 The operand representing the target of the branch if the
+ * condition is met.
+ * @param[in] src3 The operand representing the target of the branch if the
+ * condition is not met.
+ */
+void rs_build_br_if(rs_t *rs, rs_operand_t src1, rs_operand_t src2,
+                    rs_operand_t src3);
+
+/**
+ * @brief Builds a equiality comparison instruction.
+ * @param[inout] rs The Runestone state.
+ * @param[in] src1 The first operand.
+ * @param[in] src2 The second operand.
+ * @return The operand used as the destination in the instruction.
+ */
+rs_operand_t rs_build_cmp_eq(rs_t *rs, rs_operand_t src1, rs_operand_t src2);
+
+/**
+ * @brief Builds a less-than comparison instruction.
+ * @param[inout] rs The Runestone state.
+ * @param[in] src1 The first operand.
+ * @param[in] src2 The second operand.
+ * @return The operand used as the destination in the instruction.
+ */
+rs_operand_t rs_build_cmp_lt(rs_t *rs, rs_operand_t src1, rs_operand_t src2);
+
+/**
+ * @brief Builds a greater-than comparison instruction.
+ * @param[inout] rs The Runestone state.
+ * @param[in] src1 The first operand.
+ * @param[in] src2 The second operand.
+ * @return The operand used as the destination in the instruction.
+ */
+rs_operand_t rs_build_cmp_gt(rs_t *rs, rs_operand_t src1, rs_operand_t src2);
 
 /**
  * @brief Checks if an instruction is a terminator.
