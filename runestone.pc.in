@@ -1,0 +1,10 @@
+prefix=@PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: runestone
+Description: Modern Compiler Backend written using pure C
+Version: 0.1.0
+Libs: -L${libdir} -lrs
+Cflags: -I${includedir}/runestone
