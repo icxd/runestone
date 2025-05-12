@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -88,28 +89,31 @@ $(function() {
 <code>#include &quot;<a class="el" href="cvector__utils_8h_source.html">cvector_utils.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cvector_8h_source.html">cvector.h</a>&quot;</code><br />
 <code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for runestone.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="runestone_8c__incl.png" border="0" usemap="#alib_2runestone_8c" alt=""/></div>
 <map name="alib_2runestone_8c" id="alib_2runestone_8c">
-<area shape="rect" title=" " alt="" coords="459,5,565,31"/>
+<area shape="rect" title=" " alt="" coords="485,5,592,31"/>
 <area shape="rect" href="runestone_8h.html" title="Public interface for the Runestone intermediate representation (IR) and code generation infrastructur..." alt="" coords="192,79,283,104"/>
-<area shape="poly" title=" " alt="" coords="469,33,296,78,294,73,467,28"/>
+<area shape="poly" title=" " alt="" coords="491,33,296,79,295,74,490,28"/>
 <area shape="rect" title=" " alt="" coords="288,152,349,177"/>
-<area shape="poly" title=" " alt="" coords="465,33,416,52,392,65,370,81,346,110,330,140,325,138,342,107,366,77,389,60,414,47,463,28"/>
+<area shape="poly" title=" " alt="" coords="486,30,426,48,397,63,370,81,346,109,330,140,325,138,341,106,366,77,394,58,425,43,484,25"/>
 <area shape="rect" href="cvector_8h.html" title="cvector heap implemented using C library malloc()" alt="" coords="425,152,501,177"/>
-<area shape="poly" title=" " alt="" coords="510,32,473,140,468,138,505,30"/>
+<area shape="poly" title=" " alt="" coords="535,32,477,141,473,139,530,30"/>
 <area shape="rect" title=" " alt="" coords="364,225,428,251"/>
-<area shape="poly" title=" " alt="" coords="502,33,459,82,434,116,414,153,405,183,400,212,395,211,400,182,410,151,430,113,454,79,498,29"/>
+<area shape="poly" title=" " alt="" coords="525,33,469,81,439,115,414,153,404,183,400,212,394,211,399,181,410,151,435,112,466,77,521,29"/>
 <area shape="rect" title=" " alt="" coords="457,225,527,251"/>
-<area shape="poly" title=" " alt="" coords="516,31,520,94,519,135,515,178,505,213,500,212,509,177,514,135,514,94,511,31"/>
+<area shape="poly" title=" " alt="" coords="540,31,531,94,515,178,504,213,499,212,509,177,526,93,535,31"/>
 <area shape="rect" title=" " alt="" coords="554,225,619,251"/>
-<area shape="poly" title=" " alt="" coords="520,30,539,78,582,211,577,213,533,80,515,32"/>
+<area shape="poly" title=" " alt="" coords="544,30,584,211,579,212,539,32"/>
 <area shape="rect" href="cvector__utils_8h.html" title="extends the cvector library" alt="" coords="627,79,733,104"/>
-<area shape="poly" title=" " alt="" coords="540,28,641,71,639,76,538,33"/>
+<area shape="poly" title=" " alt="" coords="563,28,646,70,644,75,560,33"/>
 <area shape="rect" title=" " alt="" coords="757,79,827,104"/>
-<area shape="poly" title=" " alt="" coords="558,28,745,75,744,81,556,33"/>
+<area shape="poly" title=" " alt="" coords="580,28,744,74,743,79,579,33"/>
+<area shape="rect" title=" " alt="" coords="851,79,914,104"/>
+<area shape="poly" title=" " alt="" coords="593,26,838,76,837,81,592,32"/>
 <area shape="rect" title=" " alt="" coords="5,152,80,177"/>
 <area shape="poly" title=" " alt="" coords="207,107,88,150,86,145,205,102"/>
 <area shape="rect" title=" " alt="" coords="104,152,173,177"/>
@@ -124,8 +128,15 @@ Include dependency graph for runestone.c:</div>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrs__pressure__stats__t.html">rs_pressure_stats_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a3024ccd4a9af5109d24e6c57565d74a1" id="r_a3024ccd4a9af5109d24e6c57565d74a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a3024ccd4a9af5109d24e6c57565d74a1">_POSIX_C_SOURCE</a>&#160;&#160;&#160;200809L</td></tr>
+<tr class="separator:a3024ccd4a9af5109d24e6c57565d74a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9922dbc0a1cc217fd34196a554a9d8b8" id="r_a9922dbc0a1cc217fd34196a554a9d8b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a9922dbc0a1cc217fd34196a554a9d8b8">RS_TARGET</a>(_,  upper,  count, ...)</td></tr>
 <tr class="separator:a9922dbc0a1cc217fd34196a554a9d8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92966abd03439f832dafee48f3dd3c16" id="r_a92966abd03439f832dafee48f3dd3c16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a92966abd03439f832dafee48f3dd3c16">RS_TARGET</a>(lower,  upper, ...)</td></tr>
@@ -203,6 +214,14 @@ Functions</h2></td></tr>
 <tr class="memitem:ga99ff5be0b1666a34954468ab6ec86268" id="r_ga99ff5be0b1666a34954468ab6ec86268"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga99ff5be0b1666a34954468ab6ec86268">rs_instr_is_terminator</a> (<a class="el" href="structrs__instr__t.html">rs_instr_t</a> instr)</td></tr>
 <tr class="memdesc:ga99ff5be0b1666a34954468ab6ec86268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an instruction is a terminator.  <br /></td></tr>
 <tr class="separator:ga99ff5be0b1666a34954468ab6ec86268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe98fe28e94d2f14727e09ac38ba30db" id="r_afe98fe28e94d2f14727e09ac38ba30db"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#afe98fe28e94d2f14727e09ac38ba30db">rs_get_preferred_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga5b48c8653be44d84482b1d7ed019d44e">rs_opcode_t</a> opcode)</td></tr>
+<tr class="separator:afe98fe28e94d2f14727e09ac38ba30db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89818f1c4d5b45b36d84bedf3ce2ec93" id="r_a89818f1c4d5b45b36d84bedf3ce2ec93"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a89818f1c4d5b45b36d84bedf3ce2ec93">rs_track_register_pressure</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> *bb)</td></tr>
+<tr class="separator:a89818f1c4d5b45b36d84bedf3ce2ec93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef1584d673753f1f3776c91e6c7e5633" id="r_aef1584d673753f1f3776c91e6c7e5633"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#aef1584d673753f1f3776c91e6c7e5633">rs_can_coalesce</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, size_t vreg1, size_t vreg2)</td></tr>
+<tr class="separator:aef1584d673753f1f3776c91e6c7e5633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6397ac9659bc5ad59563e5df5078f329" id="r_a6397ac9659bc5ad59563e5df5078f329"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a6397ac9659bc5ad59563e5df5078f329">rs_try_coalesce</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> *bb)</td></tr>
+<tr class="separator:a6397ac9659bc5ad59563e5df5078f329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0132a4c40e815b135550002a39793ef1" id="r_a0132a4c40e815b135550002a39793ef1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a0132a4c40e815b135550002a39793ef1">rs_allocate_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs)</td></tr>
 <tr class="separator:a0132a4c40e815b135550002a39793ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49cd69451e7daa82702d4c4ba1e16ec" id="r_ac49cd69451e7daa82702d4c4ba1e16ec"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#ac49cd69451e7daa82702d4c4ba1e16ec">rs_free_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a> reg)</td></tr>
@@ -210,8 +229,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1241715f8b5f9767ae55bec794e28f83" id="r_ga1241715f8b5f9767ae55bec794e28f83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga1241715f8b5f9767ae55bec794e28f83">rs_get_free_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs)</td></tr>
 <tr class="memdesc:ga1241715f8b5f9767ae55bec794e28f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a free hardware register from the register pool.  <br /></td></tr>
 <tr class="separator:ga1241715f8b5f9767ae55bec794e28f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29fb288fad72b815c780adcf3563a147" id="r_a29fb288fad72b815c780adcf3563a147"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a29fb288fad72b815c780adcf3563a147">rs_analyze_operand</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, size_t i, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> operand)</td></tr>
-<tr class="separator:a29fb288fad72b815c780adcf3563a147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga134400f2ab34a21b321aee4de74e6392" id="r_ga134400f2ab34a21b321aee4de74e6392"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga134400f2ab34a21b321aee4de74e6392">rs_get_register</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, size_t vreg)</td></tr>
 <tr class="memdesc:ga134400f2ab34a21b321aee4de74e6392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physical register assigned to a virtual register.  <br /></td></tr>
 <tr class="separator:ga134400f2ab34a21b321aee4de74e6392"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,6 +238,8 @@ Functions</h2></td></tr>
 <tr class="separator:ga0c77e806cea7763fc4fd1a9a404d333f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a410aab2f186219141c3d2a977e00fed4" id="r_a410aab2f186219141c3d2a977e00fed4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a410aab2f186219141c3d2a977e00fed4">rs_alloc_and_free_lifetimes</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> *block)</td></tr>
 <tr class="separator:a410aab2f186219141c3d2a977e00fed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22049d4a290960dca087f839395bba70" id="r_a22049d4a290960dca087f839395bba70"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a22049d4a290960dca087f839395bba70">rs_analyze_operand</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, size_t i, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> operand, <a class="el" href="group__Runestone.html#ga5b48c8653be44d84482b1d7ed019d44e">rs_opcode_t</a> opcode)</td></tr>
+<tr class="separator:a22049d4a290960dca087f839395bba70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad65a8fe463f065ce298ca5ab43a93977" id="r_gad65a8fe463f065ce298ca5ab43a93977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gad65a8fe463f065ce298ca5ab43a93977">rs_analyze_lifetimes</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs)</td></tr>
 <tr class="memdesc:gad65a8fe463f065ce298ca5ab43a93977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes and determines the lifetimes of virtual registers for allocation.  <br /></td></tr>
 <tr class="separator:gad65a8fe463f065ce298ca5ab43a93977"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,8 +282,24 @@ Variables</h2></td></tr>
 <tr class="separator:a98e79f62b94f76380cabb7be356ea0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace0eac9001b68a07fed909aac83ac8de" id="r_ace0eac9001b68a07fed909aac83ac8de"><td class="memItemLeft" align="right" valign="top">static FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#ace0eac9001b68a07fed909aac83ac8de">debug_stream</a> = NULL</td></tr>
 <tr class="separator:ace0eac9001b68a07fed909aac83ac8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94cbafdbd5885805dc209ddae586725d" id="r_a94cbafdbd5885805dc209ddae586725d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structrs__pressure__stats__t.html">rs_pressure_stats_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runestone_8c.html#a94cbafdbd5885805dc209ddae586725d">pressure_stats</a> = {0}</td></tr>
+<tr class="separator:a94cbafdbd5885805dc209ddae586725d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a3024ccd4a9af5109d24e6c57565d74a1" name="a3024ccd4a9af5109d24e6c57565d74a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3024ccd4a9af5109d24e6c57565d74a1">&#9670;&#160;</a></span>_POSIX_C_SOURCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _POSIX_C_SOURCE&#160;&#160;&#160;200809L</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9922dbc0a1cc217fd34196a554a9d8b8" name="a9922dbc0a1cc217fd34196a554a9d8b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9922dbc0a1cc217fd34196a554a9d8b8">&#9670;&#160;</a></span>RS_TARGET <span class="overload">[1/2]</span></h2>
 
@@ -540,8 +575,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a29fb288fad72b815c780adcf3563a147" name="a29fb288fad72b815c780adcf3563a147"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29fb288fad72b815c780adcf3563a147">&#9670;&#160;</a></span>rs_analyze_operand()</h2>
+<a id="a22049d4a290960dca087f839395bba70" name="a22049d4a290960dca087f839395bba70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22049d4a290960dca087f839395bba70">&#9670;&#160;</a></span>rs_analyze_operand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -565,7 +600,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
-          <td class="paramname"><em>operand</em>&#160;</td>
+          <td class="paramname"><em>operand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__Runestone.html#ga5b48c8653be44d84482b1d7ed019d44e">rs_opcode_t</a>&#160;</td>
+          <td class="paramname"><em>opcode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -610,6 +651,48 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aef1584d673753f1f3776c91e6c7e5633" name="aef1584d673753f1f3776c91e6c7e5633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef1584d673753f1f3776c91e6c7e5633">&#9670;&#160;</a></span>rs_can_coalesce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool rs_can_coalesce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>vreg1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>vreg2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac49cd69451e7daa82702d4c4ba1e16ec" name="ac49cd69451e7daa82702d4c4ba1e16ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac49cd69451e7daa82702d4c4ba1e16ec">&#9670;&#160;</a></span>rs_free_register()</h2>
 
@@ -630,6 +713,42 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a>&#160;</td>
           <td class="paramname"><em>reg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe98fe28e94d2f14727e09ac38ba30db" name="afe98fe28e94d2f14727e09ac38ba30db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe98fe28e94d2f14727e09ac38ba30db">&#9670;&#160;</a></span>rs_get_preferred_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a> rs_get_preferred_register </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__Runestone.html#ga5b48c8653be44d84482b1d7ed019d44e">rs_opcode_t</a>&#160;</td>
+          <td class="paramname"><em>opcode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -688,6 +807,78 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a89818f1c4d5b45b36d84bedf3ce2ec93" name="a89818f1c4d5b45b36d84bedf3ce2ec93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89818f1c4d5b45b36d84bedf3ce2ec93">&#9670;&#160;</a></span>rs_track_register_pressure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void rs_track_register_pressure </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> *&#160;</td>
+          <td class="paramname"><em>bb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6397ac9659bc5ad59563e5df5078f329" name="a6397ac9659bc5ad59563e5df5078f329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6397ac9659bc5ad59563e5df5078f329">&#9670;&#160;</a></span>rs_try_coalesce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void rs_try_coalesce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> *&#160;</td>
+          <td class="paramname"><em>bb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a98e79f62b94f76380cabb7be356ea0c8" name="a98e79f62b94f76380cabb7be356ea0c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a98e79f62b94f76380cabb7be356ea0c8">&#9670;&#160;</a></span>debug_enabled</h2>
@@ -722,6 +913,28 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">FILE* debug_stream = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94cbafdbd5885805dc209ddae586725d" name="a94cbafdbd5885805dc209ddae586725d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94cbafdbd5885805dc209ddae586725d">&#9670;&#160;</a></span>pressure_stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrs__pressure__stats__t.html">rs_pressure_stats_t</a> pressure_stats = {0}</td>
         </tr>
       </table>
   </td>

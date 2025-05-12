@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3',1,'X:&#160;runestone.h'],['../runestone_8h.html#a7bd6903d238c88413346dbe2ec53f2c5',1,'X:&#160;runestone.h']]]
+  ['rs_5ftarget_0',['rs_target',['../runestone_8c.html#a9922dbc0a1cc217fd34196a554a9d8b8',1,'RS_TARGET:&#160;runestone.c'],['../runestone_8c.html#a92966abd03439f832dafee48f3dd3c16',1,'RS_TARGET:&#160;runestone.c']]]
 ];
