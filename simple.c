@@ -1,8 +1,7 @@
 #include "lib/runestone.h"
 #include <stdio.h>
 
-int main(void)
-{
+int main(void) {
   rs_set_debug(true, stderr);
 
   rs_t rs;
@@ -29,8 +28,7 @@ int main(void)
 
   {
     FILE *fp = fopen("simple.S", "w");
-    if (!fp)
-    {
+    if (!fp) {
       perror("fopen() failed");
       return 1;
     }

@@ -17,10 +17,14 @@ void rs_set_debug(bool enabled, FILE *stream) {
   debug_stream = stream ? stream : stderr;
 }
 
-static void debug_log(const char *format, ...) {
+#define debug_log(...) _debug_log(__FILE__, __LINE__, __VA_ARGS__)
+static void _debug_log(const char *file, int line, const char *format, ...) {
   if (!debug_enabled || !debug_stream)
     return;
 
+  fprintf(debug_stream,
+          RS_COLOR_BOLD "%s:%d: " RS_COLOR_CYAN "Debug: " RS_COLOR_RESET, file,
+          line);
   va_list args;
   va_start(args, format);
   vfprintf(debug_stream, format, args);
@@ -45,12 +49,16 @@ static void free_basic_block(void *ptr) {
 
 void rs_init(rs_t *rs, rs_target_t target) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
   if (target >= RS_TARGET_COUNT) {
-    fprintf(stderr, "Error: Invalid target %d\n", target);
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                       "Invalid target %d\n",
+            target);
     return;
   }
 
@@ -90,7 +98,8 @@ void rs_free(rs_t *rs) {
 
 size_t rs_append_basic_block(rs_t *rs, const char *name) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return SIZE_MAX;
   }
 
@@ -127,12 +136,16 @@ size_t rs_append_basic_block(rs_t *rs, const char *name) {
 
 void rs_position_at_basic_block(rs_t *rs, size_t block_id) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
   if (block_id >= cvector_size(rs->basic_blocks)) {
-    fprintf(stderr, "Error: Invalid basic block index %zu\n", block_id);
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                       "Invalid basic block index %zu\n",
+            block_id);
     return;
   }
 
@@ -164,31 +177,39 @@ static bool is_valid_operand(rs_t *rs, rs_operand_t operand) {
 
 void rs_build_instr(rs_t *rs, rs_instr_t instr) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
   if (rs->current_basic_block == -1) {
-    fprintf(stderr, "Error: No basic block selected\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "No basic block selected\n");
     return;
   }
 
   if (rs->current_basic_block >= (ptrdiff_t)cvector_size(rs->basic_blocks)) {
-    fprintf(stderr, "Error: Invalid basic block index %ld\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                       "Invalid basic block index %ld\n",
             rs->current_basic_block);
     return;
   }
 
   rs_basic_block_t *bb = rs->basic_blocks[rs->current_basic_block];
   if (!bb) {
-    fprintf(stderr, "Error: Invalid basic block at index %ld\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                       "Invalid basic block at index %ld\n",
             rs->current_basic_block);
     return;
   }
 
   if (!is_valid_operand(rs, instr.dest) || !is_valid_operand(rs, instr.src1) ||
       !is_valid_operand(rs, instr.src2) || !is_valid_operand(rs, instr.src3)) {
-    fprintf(stderr, "Error: Invalid operand in instruction %s\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                       "Invalid operand in instruction %s\n",
             rs_opcode_to_str(instr.opcode));
     return;
   }
@@ -441,7 +462,8 @@ static void rs_try_coalesce(rs_t *rs, rs_basic_block_t *bb) {
 
 static rs_register_t rs_allocate_register(rs_t *rs) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return RS_REG_SPILL;
   }
 
@@ -456,7 +478,10 @@ static rs_register_t rs_allocate_register(rs_t *rs) {
   rs_register_t reg = rs_get_free_register(rs);
   if (reg != RS_REG_SPILL) {
     if (!is_valid_register(rs, reg)) {
-      fprintf(stderr, "Error: Invalid register allocation %d\n", reg);
+      fprintf(stderr,
+              RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                         "Invalid register allocation %d\n",
+              reg);
       return RS_REG_SPILL;
     }
     debug_log("Found free register %d", reg);
@@ -517,18 +542,23 @@ static rs_register_t rs_allocate_register(rs_t *rs) {
     return lru_reg;
   }
 
-  fprintf(stderr, "Error: No registers available for allocation\n");
+  fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+          "Error: " RS_COLOR_RESET "No registers available for allocation\n");
   return RS_REG_SPILL;
 }
 
 static void rs_free_register(rs_t *rs, rs_register_t reg) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
   if (!is_valid_register(rs, reg)) {
-    fprintf(stderr, "Error: Attempting to free invalid register %d\n", reg);
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "Attempting to free invalid register %d\n",
+            reg);
     return;
   }
 
@@ -545,7 +575,8 @@ static void rs_free_register(rs_t *rs, rs_register_t reg) {
 
 rs_register_t rs_get_free_register(rs_t *rs) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return RS_REG_SPILL;
   }
 
@@ -562,12 +593,16 @@ rs_register_t rs_get_free_register(rs_t *rs) {
 
 rs_register_t rs_get_register(rs_t *rs, size_t vreg) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return RS_REG_SPILL;
   }
 
   if (vreg >= RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %zu out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %zu out of bounds (max: %d)\n",
             vreg, RS_MAX_REGS - 1);
     return RS_REG_SPILL;
   }
@@ -580,7 +615,11 @@ rs_register_t rs_get_register(rs_t *rs, size_t vreg) {
 
   rs_register_t reg = rs_allocate_register(rs);
   if (reg == RS_REG_SPILL) {
-    fprintf(stderr, "Error: Failed to allocate register for vreg %zu\n", vreg);
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Failed to allocate register for vreg %zu\n",
+            vreg);
     return RS_REG_SPILL;
   }
 
@@ -617,7 +656,9 @@ const char **rs_get_register_names(rs_target_t target) {
 
 static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
   if (!rs || !block) {
-    fprintf(stderr, "Error: Invalid parameters for lifetime analysis\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Invalid parameters for lifetime analysis\n");
     return;
   }
 
@@ -649,7 +690,9 @@ static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
         rs_register_t reg = rs_get_register(rs, lifetime->vreg);
         if (reg == RS_REG_SPILL) {
           fprintf(stderr,
-                  "Error: Register allocation failed for vreg %zu at "
+                  RS_COLOR_RED RS_COLOR_BOLD
+                  "Error: " RS_COLOR_RESET
+                  "Register allocation failed for vreg %zu at "
                   "instruction %zu\n",
                   lifetime_index, ip);
           return;
@@ -667,7 +710,8 @@ static void rs_alloc_and_free_lifetimes(rs_t *rs, rs_basic_block_t *block) {
 static void rs_analyze_operand(rs_t *rs, size_t i, rs_operand_t operand,
                                rs_opcode_t opcode) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
@@ -675,7 +719,10 @@ static void rs_analyze_operand(rs_t *rs, size_t i, rs_operand_t operand,
     return;
 
   if ((uint16_t)operand.vreg >= (uint16_t)RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %d out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %d out of bounds (max: %d)\n",
             operand.vreg, RS_MAX_REGS - 1);
     return;
   }
@@ -703,7 +750,8 @@ static void rs_analyze_operand(rs_t *rs, size_t i, rs_operand_t operand,
 
 void rs_analyze_lifetimes(rs_t *rs) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
@@ -730,7 +778,10 @@ void rs_analyze_lifetimes(rs_t *rs) {
        block_id++) {
     rs_basic_block_t *bb = rs->basic_blocks[block_id];
     if (!bb) {
-      fprintf(stderr, "Error: Invalid basic block at index %zu\n", block_id);
+      fprintf(stderr,
+              RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                         "Invalid basic block at index %zu\n",
+              block_id);
       continue;
     }
 
@@ -779,7 +830,8 @@ void rs_analyze_lifetimes(rs_t *rs) {
 
 void rs_finalize(rs_t *rs) {
   if (!rs) {
-    fprintf(stderr, "Error: NULL Runestone state pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET "NULL Runestone state pointer\n");
     return;
   }
 
@@ -787,13 +839,19 @@ void rs_finalize(rs_t *rs) {
   for (size_t i = 0; i < cvector_size(rs->basic_blocks); i++) {
     rs_basic_block_t *bb = rs->basic_blocks[i];
     if (!bb) {
-      fprintf(stderr, "Error: Invalid basic block at index %zu\n", i);
+      fprintf(stderr,
+              RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                         "Invalid basic block at index %zu\n",
+              i);
       has_error = true;
       continue;
     }
 
     if (cvector_size(bb->instructions) == 0) {
-      fprintf(stderr, "Error: Empty basic block '%s'\n", bb->name);
+      fprintf(stderr,
+              RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                         "Empty basic block '%s'\n",
+              bb->name);
       has_error = true;
       continue;
     }
@@ -801,7 +859,9 @@ void rs_finalize(rs_t *rs) {
     if (!rs_instr_is_terminator(
             bb->instructions[cvector_size(bb->instructions) - 1])) {
       fprintf(stderr,
-              "Error: Missing terminator instruction in basic block '%s'\n",
+              RS_COLOR_RED RS_COLOR_BOLD
+              "Error: " RS_COLOR_RESET
+              "Missing terminator instruction in basic block '%s'\n",
               bb->name);
       has_error = true;
     }
@@ -885,7 +945,8 @@ void rs_generate(rs_t *rs, FILE *fp) {
 
 void rs_regmap_init(rs_register_map_t *map) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return;
   }
 
@@ -897,7 +958,8 @@ void rs_regmap_init(rs_register_map_t *map) {
 
 void rs_regmap_free(rs_register_map_t *map) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return;
   }
 
@@ -907,18 +969,25 @@ void rs_regmap_free(rs_register_map_t *map) {
 
 void rs_regmap_insert(rs_register_map_t *map, size_t key, rs_register_t value) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return;
   }
 
   if (key >= RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %zu out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %zu out of bounds (max: %d)\n",
             key, RS_MAX_REGS - 1);
     return;
   }
 
   if ((uint16_t)value >= (uint16_t)RS_MAX_REGS) {
-    fprintf(stderr, "Error: Physical register %d out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Physical register %d out of bounds (max: %d)\n",
             value, RS_MAX_REGS - 1);
     return;
   }
@@ -933,12 +1002,16 @@ void rs_regmap_insert(rs_register_map_t *map, size_t key, rs_register_t value) {
 
 rs_register_t rs_regmap_get(rs_register_map_t *map, size_t key) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return RS_REG_SPILL;
   }
 
   if (key >= RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %zu out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %zu out of bounds (max: %d)\n",
             key, RS_MAX_REGS - 1);
     return RS_REG_SPILL;
   }
@@ -957,12 +1030,16 @@ rs_register_t rs_regmap_get(rs_register_map_t *map, size_t key) {
 
 bool rs_regmap_contains(rs_register_map_t *map, size_t key) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return false;
   }
 
   if (key >= RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %zu out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %zu out of bounds (max: %d)\n",
             key, RS_MAX_REGS - 1);
     return false;
   }
@@ -981,12 +1058,16 @@ bool rs_regmap_contains(rs_register_map_t *map, size_t key) {
 
 void rs_regmap_remove(rs_register_map_t *map, size_t key) {
   if (!map) {
-    fprintf(stderr, "Error: NULL register map pointer\n");
+    fprintf(stderr, RS_COLOR_RED RS_COLOR_BOLD "Error: " RS_COLOR_RESET
+                                               "NULL register map pointer\n");
     return;
   }
 
   if (key >= RS_MAX_REGS) {
-    fprintf(stderr, "Error: Virtual register %zu out of bounds (max: %d)\n",
+    fprintf(stderr,
+            RS_COLOR_RED RS_COLOR_BOLD
+            "Error: " RS_COLOR_RESET
+            "Virtual register %zu out of bounds (max: %d)\n",
             key, RS_MAX_REGS - 1);
     return;
   }
