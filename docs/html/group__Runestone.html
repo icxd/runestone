@@ -182,6 +182,14 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga6d95fa5cb03e3737df867b707f39a21d" id="r_ga6d95fa5cb03e3737df867b707f39a21d"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga6d95fa5cb03e3737df867b707f39a21d">rs_register_t</a></td></tr>
 <tr class="separator:ga6d95fa5cb03e3737df867b707f39a21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2085e91c8b692c6df33f41894b4c298" id="r_gaa2085e91c8b692c6df33f41894b4c298"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__instr__t.html">rs_instr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaa2085e91c8b692c6df33f41894b4c298">rs_instructions_t</a></td></tr>
+<tr class="separator:gaa2085e91c8b692c6df33f41894b4c298"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga850bf20a07257cd897c2e16ed29bc750" id="r_ga850bf20a07257cd897c2e16ed29bc750"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga850bf20a07257cd897c2e16ed29bc750">rs_basic_blocks_t</a></td></tr>
+<tr class="separator:ga850bf20a07257cd897c2e16ed29bc750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84a681857f0ab41c81aba0dd08095710" id="r_ga84a681857f0ab41c81aba0dd08095710"><td class="memItemLeft" align="right" valign="top">typedef bool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga84a681857f0ab41c81aba0dd08095710">rs_register_pool_t</a></td></tr>
+<tr class="separator:ga84a681857f0ab41c81aba0dd08095710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73ddc235c75c788931bb2e5fedc46339" id="r_ga73ddc235c75c788931bb2e5fedc46339"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structrs__map__entry__t.html">rs_map_entry_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga73ddc235c75c788931bb2e5fedc46339">rs_map_entries_t</a></td></tr>
+<tr class="separator:ga73ddc235c75c788931bb2e5fedc46339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -210,6 +218,11 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc">RS_OPCODE_RET</a>
 , <a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4">RS_OPCODE_BR</a>
+, <a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878">RS_OPCODE_BR_IF</a>
+, <a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c">RS_OPCODE_CMP_EQ</a>
+, <br />
+&#160;&#160;<a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e">RS_OPCODE_CMP_LT</a>
+, <a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e">RS_OPCODE_CMP_GT</a>
 , <a class="el" href="group__Runestone.html#gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47">RS_OPCODE_COUNT</a>
 <br />
  }</td></tr>
@@ -249,6 +262,9 @@ Functions</h2></td></tr>
 <tr class="separator:ga58b5d44d5e8f8df106c687e360539852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0c77e806cea7763fc4fd1a9a404d333f" id="r_ga0c77e806cea7763fc4fd1a9a404d333f"><td class="memItemLeft" align="right" valign="top">const char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga0c77e806cea7763fc4fd1a9a404d333f">rs_get_register_names</a> (<a class="el" href="group__Runestone.html#ga5598ceb8ac9eb90edc0fb1ac43d531bf">rs_target_t</a> target)</td></tr>
 <tr class="separator:ga0c77e806cea7763fc4fd1a9a404d333f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaedda2b36f99baf0648687974b81449e5" id="r_gaedda2b36f99baf0648687974b81449e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaedda2b36f99baf0648687974b81449e5">rs_set_debug</a> (bool enabled, FILE *stream)</td></tr>
+<tr class="memdesc:gaedda2b36f99baf0648687974b81449e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets debug logging options.  <br /></td></tr>
+<tr class="separator:gaedda2b36f99baf0648687974b81449e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad4f2783578f194c177a097d5cbcee52a" id="r_gad4f2783578f194c177a097d5cbcee52a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gad4f2783578f194c177a097d5cbcee52a">rs_init</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="group__Runestone.html#ga5598ceb8ac9eb90edc0fb1ac43d531bf">rs_target_t</a> target)</td></tr>
 <tr class="memdesc:gad4f2783578f194c177a097d5cbcee52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Runestone IR state.  <br /></td></tr>
 <tr class="separator:gad4f2783578f194c177a097d5cbcee52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,6 +310,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ga9e8d21ba83dfc18c1dd792f5aac3cf99" id="r_ga9e8d21ba83dfc18c1dd792f5aac3cf99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga9e8d21ba83dfc18c1dd792f5aac3cf99">rs_build_br</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src)</td></tr>
 <tr class="memdesc:ga9e8d21ba83dfc18c1dd792f5aac3cf99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a branch instruction.  <br /></td></tr>
 <tr class="separator:ga9e8d21ba83dfc18c1dd792f5aac3cf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f57cdb44274b9771dff0fbc3bd22349" id="r_ga7f57cdb44274b9771dff0fbc3bd22349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga7f57cdb44274b9771dff0fbc3bd22349">rs_build_br_if</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src1, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src2, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src3)</td></tr>
+<tr class="memdesc:ga7f57cdb44274b9771dff0fbc3bd22349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a conditional branch instruction.  <br /></td></tr>
+<tr class="separator:ga7f57cdb44274b9771dff0fbc3bd22349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2bd08a22dfd456c49e42150755d57fb" id="r_gaf2bd08a22dfd456c49e42150755d57fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gaf2bd08a22dfd456c49e42150755d57fb">rs_build_cmp_eq</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src1, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src2)</td></tr>
+<tr class="memdesc:gaf2bd08a22dfd456c49e42150755d57fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a equiality comparison instruction.  <br /></td></tr>
+<tr class="separator:gaf2bd08a22dfd456c49e42150755d57fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb3a287b47c3bf2cb81fa9227013e886" id="r_gadb3a287b47c3bf2cb81fa9227013e886"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#gadb3a287b47c3bf2cb81fa9227013e886">rs_build_cmp_lt</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src1, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src2)</td></tr>
+<tr class="memdesc:gadb3a287b47c3bf2cb81fa9227013e886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a less-than comparison instruction.  <br /></td></tr>
+<tr class="separator:gadb3a287b47c3bf2cb81fa9227013e886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30c1da0227bf6df4231bda905f3d0d24" id="r_ga30c1da0227bf6df4231bda905f3d0d24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga30c1da0227bf6df4231bda905f3d0d24">rs_build_cmp_gt</a> (<a class="el" href="structrs__t.html">rs_t</a> *rs, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src1, <a class="el" href="structrs__operand__t.html">rs_operand_t</a> src2)</td></tr>
+<tr class="memdesc:ga30c1da0227bf6df4231bda905f3d0d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a greater-than comparison instruction.  <br /></td></tr>
+<tr class="separator:ga30c1da0227bf6df4231bda905f3d0d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga99ff5be0b1666a34954468ab6ec86268" id="r_ga99ff5be0b1666a34954468ab6ec86268"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Runestone.html#ga99ff5be0b1666a34954468ab6ec86268">rs_instr_is_terminator</a> (<a class="el" href="structrs__instr__t.html">rs_instr_t</a> instr)</td></tr>
 <tr class="memdesc:ga99ff5be0b1666a34954468ab6ec86268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an instruction is a terminator.  <br /></td></tr>
 <tr class="separator:ga99ff5be0b1666a34954468ab6ec86268"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -591,18 +619,22 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3">X</a>(MOVE, <span class="stringliteral">&quot;move&quot;</span>)                                          \</div>
-<div class="line">  X(COPY, <span class="stringliteral">&quot;copy&quot;</span>)                                          \</div>
-<div class="line">  X(LOAD, <span class="stringliteral">&quot;load&quot;</span>)                                          \</div>
-<div class="line">  X(STORE, <span class="stringliteral">&quot;store&quot;</span>)                                       \</div>
-<div class="line">  X(ADD, <span class="stringliteral">&quot;add&quot;</span>)                                             \</div>
-<div class="line">  X(SUB, <span class="stringliteral">&quot;sub&quot;</span>)                                             \</div>
-<div class="line">  X(MULT, <span class="stringliteral">&quot;mult&quot;</span>)                                          \</div>
-<div class="line">  X(DIV, <span class="stringliteral">&quot;div&quot;</span>)                                             \</div>
-<div class="line">  X(RET, <span class="stringliteral">&quot;ret&quot;</span>)                                          \</div>
-<div class="line">  X(BR, <span class="stringliteral">&quot;br&quot;</span>)</div>
+<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3">X</a>(MOVE, <span class="stringliteral">&quot;move&quot;</span>)               \</div>
+<div class="line">  X(COPY, <span class="stringliteral">&quot;copy&quot;</span>)               \</div>
+<div class="line">  X(LOAD, <span class="stringliteral">&quot;load&quot;</span>)               \</div>
+<div class="line">  X(STORE, <span class="stringliteral">&quot;store&quot;</span>)            \</div>
+<div class="line">  X(ADD, <span class="stringliteral">&quot;add&quot;</span>)                  \</div>
+<div class="line">  X(SUB, <span class="stringliteral">&quot;sub&quot;</span>)                  \</div>
+<div class="line">  X(MULT, <span class="stringliteral">&quot;mult&quot;</span>)               \</div>
+<div class="line">  X(DIV, <span class="stringliteral">&quot;div&quot;</span>)                  \</div>
+<div class="line">  X(RET, <span class="stringliteral">&quot;ret&quot;</span>)               \</div>
+<div class="line">  X(BR, <span class="stringliteral">&quot;br&quot;</span>)                 \</div>
+<div class="line">  X(BR_IF, <span class="stringliteral">&quot;br_if&quot;</span>)    \</div>
+<div class="line">  X(CMP_EQ, <span class="stringliteral">&quot;cmp_eq&quot;</span>)      \</div>
+<div class="line">  X(CMP_LT, <span class="stringliteral">&quot;cmp_lt&quot;</span>)       \</div>
+<div class="line">  X(CMP_GT, <span class="stringliteral">&quot;cmp_gt&quot;</span>)</div>
 <div class="ttc" id="arunestone_8h_html_a826edd40636cbaa44266b97c8c6a4fa3"><div class="ttname"><a href="runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3">X</a></div><div class="ttdeci">#define X(name)</div><div class="ttdef"><b>Definition</b> runestone.h:106</div></div>
-</div><!-- fragment --><p>Branch opcode. </p>
+</div><!-- fragment --><p>result = (a &gt; b) </p>
 
 </div>
 </div>
@@ -717,10 +749,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3">X</a>(NULL)                                            \</div>
-<div class="line">  X(INT64)                                    \</div>
-<div class="line">  X(ADDR)                    \</div>
-<div class="line">  X(REG)                                              \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="runestone_8h.html#a826edd40636cbaa44266b97c8c6a4fa3">X</a>(NULL)                           \</div>
+<div class="line">  X(INT64)                   \</div>
+<div class="line">  X(ADDR)   \</div>
+<div class="line">  X(REG)                             \</div>
 <div class="line">  X(BB)</div>
 </div><!-- fragment -->
 <p>Macro for defining the available operand types. </p>
@@ -849,7 +881,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                                     \</div>
+<b>Value:</b><div class="fragment"><div class="line"> \</div>
 <div class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *rs_target_##lower##_reg_names[] = {__VA_ARGS__};</div>
 </div><!-- fragment -->
 <p>Define a target's register set. </p>
@@ -891,14 +923,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                                                                          \</div>
-<div class="line">  <span class="keywordtype">void</span> rs_generate_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp);                                \</div>
-                                                                          \<div class="line">  <span class="keywordtype">void</span> rs_generate_instr_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp, <a class="code hl_struct" href="structrs__instr__t.html">rs_instr_t</a> instr);        \</div>
-                                                                          \<div class="line">  <span class="keywordtype">void</span> rs_generate_operand_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp, <a class="code hl_struct" href="structrs__operand__t.html">rs_operand_t</a> operand,   \</div>
+<b>Value:</b><div class="fragment"><div class="line">                                                                        \</div>
+<div class="line">  <span class="keywordtype">void</span> rs_generate_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp);                              \</div>
+                                                                        \<div class="line">  <span class="keywordtype">void</span> rs_generate_instr_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp, <a class="code hl_struct" href="structrs__instr__t.html">rs_instr_t</a> instr);      \</div>
+                                                                        \<div class="line">  <span class="keywordtype">void</span> rs_generate_operand_##lower(<a class="code hl_struct" href="structrs__t.html">rs_t</a> *rs, FILE *fp, <a class="code hl_struct" href="structrs__operand__t.html">rs_operand_t</a> operand, \</div>
 <div class="line">                                   <span class="keywordtype">bool</span> dereference);</div>
-<div class="ttc" id="astructrs__instr__t_html"><div class="ttname"><a href="structrs__instr__t.html">rs_instr_t</a></div><div class="ttdoc">Represents a Runestone instruction.</div><div class="ttdef"><b>Definition</b> runestone.h:222</div></div>
-<div class="ttc" id="astructrs__operand__t_html"><div class="ttname"><a href="structrs__operand__t.html">rs_operand_t</a></div><div class="ttdoc">Represents a polymorphic operand used in instructions.</div><div class="ttdef"><b>Definition</b> runestone.h:122</div></div>
-<div class="ttc" id="astructrs__t_html"><div class="ttname"><a href="structrs__t.html">rs_t</a></div><div class="ttdoc">Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers,...</div><div class="ttdef"><b>Definition</b> runestone.h:450</div></div>
+<div class="ttc" id="astructrs__instr__t_html"><div class="ttname"><a href="structrs__instr__t.html">rs_instr_t</a></div><div class="ttdoc">Represents a Runestone instruction.</div><div class="ttdef"><b>Definition</b> runestone.h:235</div></div>
+<div class="ttc" id="astructrs__operand__t_html"><div class="ttname"><a href="structrs__operand__t.html">rs_operand_t</a></div><div class="ttdoc">Represents a polymorphic operand used in instructions.</div><div class="ttdef"><b>Definition</b> runestone.h:123</div></div>
+<div class="ttc" id="astructrs__t_html"><div class="ttname"><a href="structrs__t.html">rs_t</a></div><div class="ttdoc">Represents the entire state of the Runestone IR, including target, basic blocks, virtual registers,...</div><div class="ttdef"><b>Definition</b> runestone.h:472</div></div>
 </div><!-- fragment -->
 <p>Define a target's register set. </p>
 <p>This macro defines the set of register names for a specific target. It associates a target identifier with a list of register names, which will be used during the code generation process to generate assembly code for that target.</p>
@@ -925,13 +957,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="group__Runestone.html#gad6a67337461280e8d42013c4d0f753ea">RS_TARGET</a>(x86_64_linux_nasm, X86_64_LINUX_NASM, 14, <span class="stringliteral">&quot;rax&quot;</span>, <span class="stringliteral">&quot;rbx&quot;</span>, <span class="stringliteral">&quot;rcx&quot;</span>,     \</div>
-<div class="line">            <span class="stringliteral">&quot;rdx&quot;</span>, <span class="stringliteral">&quot;rsi&quot;</span>, <span class="stringliteral">&quot;rdi&quot;</span>, <span class="stringliteral">&quot;r8&quot;</span>, <span class="stringliteral">&quot;r9&quot;</span>, <span class="stringliteral">&quot;r10&quot;</span>, <span class="stringliteral">&quot;r11&quot;</span>, <span class="stringliteral">&quot;r12&quot;</span>, <span class="stringliteral">&quot;r13&quot;</span>,       \</div>
-<div class="line">            <span class="stringliteral">&quot;r14&quot;</span>, <span class="stringliteral">&quot;r15&quot;</span>)                                                      \</div>
-<div class="line">  RS_TARGET(aarch64_macos_gas, AARCH64_MACOS_GAS, 17, <span class="stringliteral">&quot;x9&quot;</span>, <span class="stringliteral">&quot;x10&quot;</span>, <span class="stringliteral">&quot;x11&quot;</span>,      \</div>
-<div class="line">            <span class="stringliteral">&quot;x12&quot;</span>, <span class="stringliteral">&quot;x13&quot;</span>, <span class="stringliteral">&quot;x14&quot;</span>, <span class="stringliteral">&quot;x15&quot;</span>, <span class="stringliteral">&quot;x19&quot;</span>, <span class="stringliteral">&quot;x20&quot;</span>, <span class="stringliteral">&quot;x21&quot;</span>, <span class="stringliteral">&quot;x22&quot;</span>, <span class="stringliteral">&quot;x23&quot;</span>,     \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="group__Runestone.html#gad6a67337461280e8d42013c4d0f753ea">RS_TARGET</a>(x86_64_linux_nasm, X86_64_LINUX_NASM, 14, <span class="stringliteral">&quot;rax&quot;</span>, <span class="stringliteral">&quot;rbx&quot;</span>, <span class="stringliteral">&quot;rcx&quot;</span>, \</div>
+<div class="line">            <span class="stringliteral">&quot;rdx&quot;</span>, <span class="stringliteral">&quot;rsi&quot;</span>, <span class="stringliteral">&quot;rdi&quot;</span>, <span class="stringliteral">&quot;r8&quot;</span>, <span class="stringliteral">&quot;r9&quot;</span>, <span class="stringliteral">&quot;r10&quot;</span>, <span class="stringliteral">&quot;r11&quot;</span>, <span class="stringliteral">&quot;r12&quot;</span>, <span class="stringliteral">&quot;r13&quot;</span>,   \</div>
+<div class="line">            <span class="stringliteral">&quot;r14&quot;</span>, <span class="stringliteral">&quot;r15&quot;</span>)                                                  \</div>
+<div class="line">  RS_TARGET(aarch64_macos_gas, AARCH64_MACOS_GAS, 17, <span class="stringliteral">&quot;x9&quot;</span>, <span class="stringliteral">&quot;x10&quot;</span>, <span class="stringliteral">&quot;x11&quot;</span>,  \</div>
+<div class="line">            <span class="stringliteral">&quot;x12&quot;</span>, <span class="stringliteral">&quot;x13&quot;</span>, <span class="stringliteral">&quot;x14&quot;</span>, <span class="stringliteral">&quot;x15&quot;</span>, <span class="stringliteral">&quot;x19&quot;</span>, <span class="stringliteral">&quot;x20&quot;</span>, <span class="stringliteral">&quot;x21&quot;</span>, <span class="stringliteral">&quot;x22&quot;</span>, <span class="stringliteral">&quot;x23&quot;</span>, \</div>
 <div class="line">            <span class="stringliteral">&quot;x24&quot;</span>, <span class="stringliteral">&quot;x25&quot;</span>, <span class="stringliteral">&quot;x26&quot;</span>, <span class="stringliteral">&quot;x27&quot;</span>, <span class="stringliteral">&quot;x28&quot;</span>)</div>
-<div class="ttc" id="agroup__Runestone_html_gad6a67337461280e8d42013c4d0f753ea"><div class="ttname"><a href="group__Runestone.html#gad6a67337461280e8d42013c4d0f753ea">RS_TARGET</a></div><div class="ttdeci">#define RS_TARGET(lower, _, count,...)</div><div class="ttdoc">Define a target's register set.</div><div class="ttdef"><b>Definition</b> runestone.h:407</div></div>
+<div class="ttc" id="agroup__Runestone_html_gad6a67337461280e8d42013c4d0f753ea"><div class="ttname"><a href="group__Runestone.html#gad6a67337461280e8d42013c4d0f753ea">RS_TARGET</a></div><div class="ttdeci">#define RS_TARGET(lower, _, count,...)</div><div class="ttdoc">Define a target's register set.</div><div class="ttdef"><b>Definition</b> runestone.h:427</div></div>
 </div><!-- fragment -->
 <p>Define the supported targets and their associated register sets. </p>
 <p>This macro, <code>RS_TARGETS</code>, defines the output targets in the Runestone project. Each target represents a specific combination of architecture, operating system, and assembler, and includes a list of general-purpose registers associated with that target. These registers are used for code generation in assembly format, and each target is configured for a specific assembly syntax (e.g., NASM for x86_64 on Linux, GAS for AArch64 on macOS).</p>
@@ -957,6 +989,62 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga850bf20a07257cd897c2e16ed29bc750" name="ga850bf20a07257cd897c2e16ed29bc750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga850bf20a07257cd897c2e16ed29bc750">&#9670;&#160;</a></span>rs_basic_blocks_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structrs__basic__block__t.html">rs_basic_block_t</a>* * <a class="el" href="group__Runestone.html#ga850bf20a07257cd897c2e16ed29bc750">rs_basic_blocks_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa2085e91c8b692c6df33f41894b4c298" name="gaa2085e91c8b692c6df33f41894b4c298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa2085e91c8b692c6df33f41894b4c298">&#9670;&#160;</a></span>rs_instructions_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structrs__instr__t.html">rs_instr_t</a>* <a class="el" href="group__Runestone.html#gaa2085e91c8b692c6df33f41894b4c298">rs_instructions_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga73ddc235c75c788931bb2e5fedc46339" name="ga73ddc235c75c788931bb2e5fedc46339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73ddc235c75c788931bb2e5fedc46339">&#9670;&#160;</a></span>rs_map_entries_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structrs__map__entry__t.html">rs_map_entry_t</a>* <a class="el" href="group__Runestone.html#ga73ddc235c75c788931bb2e5fedc46339">rs_map_entries_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga84a681857f0ab41c81aba0dd08095710" name="ga84a681857f0ab41c81aba0dd08095710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga84a681857f0ab41c81aba0dd08095710">&#9670;&#160;</a></span>rs_register_pool_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef bool* <a class="el" href="group__Runestone.html#ga84a681857f0ab41c81aba0dd08095710">rs_register_pool_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ga6d95fa5cb03e3737df867b707f39a21d" name="ga6d95fa5cb03e3737df867b707f39a21d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6d95fa5cb03e3737df867b707f39a21d">&#9670;&#160;</a></span>rs_register_t</h2>
 
@@ -1006,6 +1094,14 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc" name="gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc"></a>RS_OPCODE_RET&#160;</td><td class="fielddoc"><p>Return opcode. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4" name="gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4"></a>RS_OPCODE_BR&#160;</td><td class="fielddoc"><p>Branch opcode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878" name="gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878"></a>RS_OPCODE_BR_IF&#160;</td><td class="fielddoc"><p>Branch if value != 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c" name="gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c"></a>RS_OPCODE_CMP_EQ&#160;</td><td class="fielddoc"><p>result = (a == b) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e" name="gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e"></a>RS_OPCODE_CMP_LT&#160;</td><td class="fielddoc"><p>result = (a &lt; b) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e" name="gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e"></a>RS_OPCODE_CMP_GT&#160;</td><td class="fielddoc"><p>result = (a &gt; b) </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47" name="gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47"></a>RS_OPCODE_COUNT&#160;</td><td class="fielddoc"><p>Number of defined opcodes. </p>
 </td></tr>
@@ -1214,6 +1310,192 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga7f57cdb44274b9771dff0fbc3bd22349" name="ga7f57cdb44274b9771dff0fbc3bd22349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f57cdb44274b9771dff0fbc3bd22349">&#9670;&#160;</a></span>rs_build_br_if()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rs_build_br_if </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a conditional branch instruction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rs</td><td>The Runestone state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>The operand to compare. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>The operand representing the target of the branch if the condition is met. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src3</td><td>The operand representing the target of the branch if the condition is not met. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaf2bd08a22dfd456c49e42150755d57fb" name="gaf2bd08a22dfd456c49e42150755d57fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf2bd08a22dfd456c49e42150755d57fb">&#9670;&#160;</a></span>rs_build_cmp_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrs__operand__t.html">rs_operand_t</a> rs_build_cmp_eq </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a equiality comparison instruction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rs</td><td>The Runestone state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>The first operand. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>The second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The operand used as the destination in the instruction. </dd></dl>
+
+</div>
+</div>
+<a id="ga30c1da0227bf6df4231bda905f3d0d24" name="ga30c1da0227bf6df4231bda905f3d0d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30c1da0227bf6df4231bda905f3d0d24">&#9670;&#160;</a></span>rs_build_cmp_gt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrs__operand__t.html">rs_operand_t</a> rs_build_cmp_gt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a greater-than comparison instruction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rs</td><td>The Runestone state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>The first operand. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>The second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The operand used as the destination in the instruction. </dd></dl>
+
+</div>
+</div>
+<a id="gadb3a287b47c3bf2cb81fa9227013e886" name="gadb3a287b47c3bf2cb81fa9227013e886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadb3a287b47c3bf2cb81fa9227013e886">&#9670;&#160;</a></span>rs_build_cmp_lt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrs__operand__t.html">rs_operand_t</a> rs_build_cmp_lt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrs__t.html">rs_t</a> *&#160;</td>
+          <td class="paramname"><em>rs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrs__operand__t.html">rs_operand_t</a>&#160;</td>
+          <td class="paramname"><em>src2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a less-than comparison instruction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rs</td><td>The Runestone state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>The first operand. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>The second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The operand used as the destination in the instruction. </dd></dl>
 
 </div>
 </div>
@@ -2475,6 +2757,43 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">map</td><td>Pointer to the register map. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The virtual register ID whose mapping should be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaedda2b36f99baf0648687974b81449e5" name="gaedda2b36f99baf0648687974b81449e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaedda2b36f99baf0648687974b81449e5">&#9670;&#160;</a></span>rs_set_debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rs_set_debug </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>stream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets debug logging options. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>Whether debug logging should be enabled. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>The file stream to write debug messages to (NULL for stderr). </td></tr>
   </table>
   </dd>
 </dl>

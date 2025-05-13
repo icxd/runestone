@@ -1,0 +1,1028 @@
+\doxysection{lib/cvector.h File Reference}
+\hypertarget{cvector_8h}{}\label{cvector_8h}\index{lib/cvector.h@{lib/cvector.h}}
+
+
+cvector heap implemented using C library malloc()  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for cvector.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{cvector_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cvector_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cvector_8h_af3d06757e0888987fef7a7babe94de7c}{cvector\+\_\+clib\+\_\+free}}~free
+\item 
+\#define \mbox{\hyperlink{cvector_8h_aaf9107eb00a5820019a1c2fe153c7841}{cvector\+\_\+clib\+\_\+malloc}}~malloc
+\item 
+\#define \mbox{\hyperlink{cvector_8h_a53fa4e36c43ca9d05439f6705b5aab15}{cvector\+\_\+clib\+\_\+calloc}}~calloc
+\item 
+\#define \mbox{\hyperlink{cvector_8h_ad5b85d38544055588ae258da77dab4c9}{cvector\+\_\+clib\+\_\+realloc}}~realloc
+\item 
+\#define \mbox{\hyperlink{cvector_8h_ab1d0d9234b82766dac323f75b5d30993}{cvector\+\_\+clib\+\_\+assert}}~assert
+\item 
+\#define \mbox{\hyperlink{cvector_8h_a8c52b04d498e47e114764712d43d5b5e}{cvector\+\_\+clib\+\_\+memcpy}}~memcpy
+\item 
+\#define \mbox{\hyperlink{cvector_8h_ad7f9847fc6ab968bf0220164d6164ee3}{cvector\+\_\+clib\+\_\+memmove}}~memmove
+\item 
+\#define \mbox{\hyperlink{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}{cvector\+\_\+vector\+\_\+type}}(type)~type \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+vector\+\_\+type -\/ The vector type used in this library \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a8fc6997e5f1c633b652491bf85cd8e87}{cvector}}(type)~\mbox{\hyperlink{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}{cvector\+\_\+vector\+\_\+type}}(type)
+\begin{DoxyCompactList}\small\item\em cvector -\/ Syntactic sugar to retrieve a vector type \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_abe57157beb6c0fbc805abf8d7bed4ad0}{cvector\+\_\+iterator}}(type)~\mbox{\hyperlink{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}{cvector\+\_\+vector\+\_\+type}}(type)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+iterator -\/ The iterator type used for cvector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)~   (\&((\mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*})(vec))\mbox{[}-\/1\mbox{]})
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+vec\+\_\+to\+\_\+base -\/ For internal use, converts a vector pointer to a metadata pointer \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a4fc0284be6f353599f8235f31b2c77c5}{cvector\+\_\+base\+\_\+to\+\_\+vec}}(ptr)~   ((void \texorpdfstring{$\ast$}{*})\&((\mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \texorpdfstring{$\ast$}{*})(ptr))\mbox{[}1\mbox{]})
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+base\+\_\+to\+\_\+vec -\/ For internal use, converts a metadata pointer to a vector pointer \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0}{cvector\+\_\+capacity}}(vec)~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$capacity \+: (size\+\_\+t)0)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+capacity -\/ gets the current capacity of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec)~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$size \+: (size\+\_\+t)0)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+size -\/ gets the current size of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}{cvector\+\_\+elem\+\_\+destructor}}(vec)~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$elem\+\_\+destructor \+: NULL)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+elem\+\_\+destructor -\/ get the element destructor function used to clean up elements \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_ab04da6896f480bb7924eb594ccce692f}{cvector\+\_\+empty}}(vec)~   (\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) == 0)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+empty -\/ returns non-\/zero if the vector is empty \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a96eaf0cc51f35b727a49cdc2e2d3756c}{cvector\+\_\+reserve}}(vec,  n)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+reserve -\/ Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a74ec592d1121f28b921e5bd18ca35bef}{cvector\+\_\+init}}(vec,  capacity,  elem\+\_\+destructor\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+init -\/ Initialize a vector. The vector must be NULL for this to do anything. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_acd7efc1d27d73ec127a24a1bff637c05}{cvector\+\_\+erase}}(vec,  i)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+erase -\/ removes the element at index i from the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a5f659f0461d718050527a952b68f5199}{cvector\+\_\+clear}}(vec)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+clear -\/ erase all of the elements in the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a6e20ad1fe1bd18ae792d346aabbf21b3}{cvector\+\_\+free}}(vec)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+free -\/ frees all memory associated with the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a30eec18d65f78194b3c72217b83f4334}{cvector\+\_\+begin}}(vec)~   (vec)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+begin -\/ returns an iterator to first element of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_af0c4654a78847e695ccff00a6a5a1e5d}{cvector\+\_\+end}}(vec)~   ((vec) ? \&((vec)\mbox{[}\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec)\mbox{]}) \+: NULL)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+end -\/ returns an iterator to one past the last element of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a7a7cb921c2efe5ab4ed56bf3c814b711}{cvector\+\_\+compute\+\_\+next\+\_\+grow}}(size)~   ((size) ? ((size) $<$$<$ 1) \+: 1)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+compute\+\_\+next\+\_\+grow -\/ returns an the computed size in next vector grow size is increased by multiplication of 2 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a1ef12b137ccdc8de1f51fae4f74f9850}{cvector\+\_\+push\+\_\+back}}(vec,  value)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+push\+\_\+back -\/ adds an element to the end of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a5993d28e0153d8126f73efcb1f0caba8}{cvector\+\_\+insert}}(vec,  pos,  val)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+insert -\/ insert element at position pos to the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a9c96b528d13e8d724376173ce11e6938}{cvector\+\_\+pop\+\_\+back}}(vec)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+pop\+\_\+back -\/ removes the last element from the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_aadb48aef10cdbb5751b22a8b433dbdad}{cvector\+\_\+copy}}(from,  to)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+copy -\/ copy a vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_ad91889b0928d9ba122f5abfccaa644fc}{cvector\+\_\+swap}}(vec,  other,  type)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+swap -\/ exchanges the content of the vector by the content of another vector of the same type \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_abd51ef4560362650e1b258d19d518bbf}{cvector\+\_\+set\+\_\+capacity}}(vec,  size)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+set\+\_\+capacity -\/ For internal use, sets the capacity variable of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_acc4bbd2870e44bad82544f85108f157c}{cvector\+\_\+set\+\_\+size}}(vec,  \+\_\+size)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+set\+\_\+size -\/ For internal use, sets the size variable of the vector \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_ace97a721f4a5d54768ea7b54011255e5}{cvector\+\_\+set\+\_\+elem\+\_\+destructor}}(vec,  elem\+\_\+destructor\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+set\+\_\+elem\+\_\+destructor -\/ set the element destructor function used to clean up removed elements. The vector must NOT be NULL for this to do anything. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a98e2af840169618525d7c18597c4dc03}{cvector\+\_\+grow}}(vec,  count)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+grow -\/ For internal use, ensures that the vector is at least {\ttfamily count} elements big \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_aabfa026a9f74d3c480a677c5ef50e23b}{cvector\+\_\+shrink\+\_\+to\+\_\+fit}}(vec)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+shrink\+\_\+to\+\_\+fit -\/ requests the container to reduce its capacity to fit its size \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}{cvector\+\_\+at}}(vec,  n)~   ((vec) ? (((int)(n) $<$ 0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (size\+\_\+t)(n) $>$= \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec)) ? NULL \+: \&(vec)\mbox{[}n\mbox{]}) \+: NULL)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+at -\/ returns a reference to the element at position n in the vector. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_a5ab607cb62a54603053df074eb0a8370}{cvector\+\_\+front}}(vec)~   ((vec) ? ((\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) $>$ 0) ? \mbox{\hyperlink{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}{cvector\+\_\+at}}(vec, 0) \+: NULL) \+: NULL)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+front -\/ returns a reference to the first element in the vector. Unlike member cvector\+\_\+begin, which returns an iterator to this same element, this function returns a direct reference. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_ac803087f9d51ad88f7430657dc31e26a}{cvector\+\_\+back}}(vec)~   ((vec) ? ((\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) $>$ 0) ? \mbox{\hyperlink{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}{cvector\+\_\+at}}(vec, \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) -\/ 1) \+: NULL) \+: NULL)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+back -\/ returns a reference to the last element in the vector.\+Unlike member cvector\+\_\+end, which returns an iterator just past this element, this function returns a direct reference. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{cvector_8h_add6f3f8e999b58bb823897e3a4a08170}{cvector\+\_\+resize}}(vec,  count,  value)
+\begin{DoxyCompactList}\small\item\em cvector\+\_\+resize -\/ resizes the container to contain count elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}{cvector\+\_\+elem\+\_\+destructor\+\_\+t}}) (void \texorpdfstring{$\ast$}{*}elem\+\_\+ptr)
+\item 
+typedef struct \mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \mbox{\hyperlink{cvector_8h_a074fcb11ef6dd568563bbf41a5dc6095}{cvector\+\_\+metadata\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+cvector heap implemented using C library malloc() 
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2015 Evan Teran, License\+: The MIT License (MIT) 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{cvector_8h_a8fc6997e5f1c633b652491bf85cd8e87}\label{cvector_8h_a8fc6997e5f1c633b652491bf85cd8e87} 
+\index{cvector.h@{cvector.h}!cvector@{cvector}}
+\index{cvector@{cvector}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector}{cvector}}
+{\footnotesize\ttfamily \#define cvector(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})~\mbox{\hyperlink{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}{cvector\+\_\+vector\+\_\+type}}(type)}
+
+
+
+cvector -\/ Syntactic sugar to retrieve a vector type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of vector to act on. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}\label{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0} 
+\index{cvector.h@{cvector.h}!cvector\_at@{cvector\_at}}
+\index{cvector\_at@{cvector\_at}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_at}{cvector\_at}}
+{\footnotesize\ttfamily \#define cvector\+\_\+at(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{n }\end{DoxyParamCaption})~   ((vec) ? (((int)(n) $<$ 0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (size\+\_\+t)(n) $>$= \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec)) ? NULL \+: \&(vec)\mbox{[}n\mbox{]}) \+: NULL)}
+
+
+
+cvector\+\_\+at -\/ returns a reference to the element at position n in the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em n} & -\/ position of an element in the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the element at the specified position in the vector. 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ac803087f9d51ad88f7430657dc31e26a}\label{cvector_8h_ac803087f9d51ad88f7430657dc31e26a} 
+\index{cvector.h@{cvector.h}!cvector\_back@{cvector\_back}}
+\index{cvector\_back@{cvector\_back}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_back}{cvector\_back}}
+{\footnotesize\ttfamily \#define cvector\+\_\+back(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? ((\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) $>$ 0) ? \mbox{\hyperlink{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}{cvector\+\_\+at}}(vec, \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) -\/ 1) \+: NULL) \+: NULL)}
+
+
+
+cvector\+\_\+back -\/ returns a reference to the last element in the vector.\+Unlike member cvector\+\_\+end, which returns an iterator just past this element, this function returns a direct reference. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the last element in the vector. 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a4fc0284be6f353599f8235f31b2c77c5}\label{cvector_8h_a4fc0284be6f353599f8235f31b2c77c5} 
+\index{cvector.h@{cvector.h}!cvector\_base\_to\_vec@{cvector\_base\_to\_vec}}
+\index{cvector\_base\_to\_vec@{cvector\_base\_to\_vec}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_base\_to\_vec}{cvector\_base\_to\_vec}}
+{\footnotesize\ttfamily \#define cvector\+\_\+base\+\_\+to\+\_\+vec(\begin{DoxyParamCaption}\item[{}]{ptr }\end{DoxyParamCaption})~   ((void \texorpdfstring{$\ast$}{*})\&((\mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \texorpdfstring{$\ast$}{*})(ptr))\mbox{[}1\mbox{]})}
+
+
+
+cvector\+\_\+base\+\_\+to\+\_\+vec -\/ For internal use, converts a metadata pointer to a vector pointer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & -\/ pointer to the metadata \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the vector 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a30eec18d65f78194b3c72217b83f4334}\label{cvector_8h_a30eec18d65f78194b3c72217b83f4334} 
+\index{cvector.h@{cvector.h}!cvector\_begin@{cvector\_begin}}
+\index{cvector\_begin@{cvector\_begin}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_begin}{cvector\_begin}}
+{\footnotesize\ttfamily \#define cvector\+\_\+begin(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   (vec)}
+
+
+
+cvector\+\_\+begin -\/ returns an iterator to first element of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the first element (or NULL) 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0}\label{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0} 
+\index{cvector.h@{cvector.h}!cvector\_capacity@{cvector\_capacity}}
+\index{cvector\_capacity@{cvector\_capacity}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_capacity}{cvector\_capacity}}
+{\footnotesize\ttfamily \#define cvector\+\_\+capacity(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$capacity \+: (size\+\_\+t)0)}
+
+
+
+cvector\+\_\+capacity -\/ gets the current capacity of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the capacity as a size\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a5f659f0461d718050527a952b68f5199}\label{cvector_8h_a5f659f0461d718050527a952b68f5199} 
+\index{cvector.h@{cvector.h}!cvector\_clear@{cvector\_clear}}
+\index{cvector\_clear@{cvector\_clear}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clear}{cvector\_clear}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clear(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}{cvector\_elem\_destructor\_t}}\ cv\_clear\_elem\_dtor\_\_\ =\ \mbox{\hyperlink{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}{cvector\_elem\_destructor}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ if\ (cv\_clear\_elem\_dtor\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_clear\_i\_\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ for\ (cv\_clear\_i\_\_\ =\ 0;\ cv\_clear\_i\_\_\ <\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec);\ ++cv\_clear\_i\_\_)\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cv\_clear\_elem\_dtor\_\_(\&(vec)[cv\_clear\_i\_\_]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_set\_size(vec,\ 0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+clear -\/ erase all of the elements in the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ab1d0d9234b82766dac323f75b5d30993}\label{cvector_8h_ab1d0d9234b82766dac323f75b5d30993} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_assert@{cvector\_clib\_assert}}
+\index{cvector\_clib\_assert@{cvector\_clib\_assert}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_assert}{cvector\_clib\_assert}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+assert~assert}
+
+\Hypertarget{cvector_8h_a53fa4e36c43ca9d05439f6705b5aab15}\label{cvector_8h_a53fa4e36c43ca9d05439f6705b5aab15} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_calloc@{cvector\_clib\_calloc}}
+\index{cvector\_clib\_calloc@{cvector\_clib\_calloc}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_calloc}{cvector\_clib\_calloc}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+calloc~calloc}
+
+\Hypertarget{cvector_8h_af3d06757e0888987fef7a7babe94de7c}\label{cvector_8h_af3d06757e0888987fef7a7babe94de7c} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_free@{cvector\_clib\_free}}
+\index{cvector\_clib\_free@{cvector\_clib\_free}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_free}{cvector\_clib\_free}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+free~free}
+
+\Hypertarget{cvector_8h_aaf9107eb00a5820019a1c2fe153c7841}\label{cvector_8h_aaf9107eb00a5820019a1c2fe153c7841} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_malloc@{cvector\_clib\_malloc}}
+\index{cvector\_clib\_malloc@{cvector\_clib\_malloc}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_malloc}{cvector\_clib\_malloc}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+malloc~malloc}
+
+\Hypertarget{cvector_8h_a8c52b04d498e47e114764712d43d5b5e}\label{cvector_8h_a8c52b04d498e47e114764712d43d5b5e} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_memcpy@{cvector\_clib\_memcpy}}
+\index{cvector\_clib\_memcpy@{cvector\_clib\_memcpy}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_memcpy}{cvector\_clib\_memcpy}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+memcpy~memcpy}
+
+\Hypertarget{cvector_8h_ad7f9847fc6ab968bf0220164d6164ee3}\label{cvector_8h_ad7f9847fc6ab968bf0220164d6164ee3} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_memmove@{cvector\_clib\_memmove}}
+\index{cvector\_clib\_memmove@{cvector\_clib\_memmove}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_memmove}{cvector\_clib\_memmove}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+memmove~memmove}
+
+\Hypertarget{cvector_8h_ad5b85d38544055588ae258da77dab4c9}\label{cvector_8h_ad5b85d38544055588ae258da77dab4c9} 
+\index{cvector.h@{cvector.h}!cvector\_clib\_realloc@{cvector\_clib\_realloc}}
+\index{cvector\_clib\_realloc@{cvector\_clib\_realloc}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_clib\_realloc}{cvector\_clib\_realloc}}
+{\footnotesize\ttfamily \#define cvector\+\_\+clib\+\_\+realloc~realloc}
+
+\Hypertarget{cvector_8h_a7a7cb921c2efe5ab4ed56bf3c814b711}\label{cvector_8h_a7a7cb921c2efe5ab4ed56bf3c814b711} 
+\index{cvector.h@{cvector.h}!cvector\_compute\_next\_grow@{cvector\_compute\_next\_grow}}
+\index{cvector\_compute\_next\_grow@{cvector\_compute\_next\_grow}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_compute\_next\_grow}{cvector\_compute\_next\_grow}}
+{\footnotesize\ttfamily \#define cvector\+\_\+compute\+\_\+next\+\_\+grow(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~   ((size) ? ((size) $<$$<$ 1) \+: 1)}
+
+
+
+cvector\+\_\+compute\+\_\+next\+\_\+grow -\/ returns an the computed size in next vector grow size is increased by multiplication of 2 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & -\/ current size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size after next vector grow 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_aadb48aef10cdbb5751b22a8b433dbdad}\label{cvector_8h_aadb48aef10cdbb5751b22a8b433dbdad} 
+\index{cvector.h@{cvector.h}!cvector\_copy@{cvector\_copy}}
+\index{cvector\_copy@{cvector\_copy}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_copy}{cvector\_copy}}
+{\footnotesize\ttfamily \#define cvector\+\_\+copy(\begin{DoxyParamCaption}\item[{}]{from,  }\item[{}]{to }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ ((from))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_grow(to,\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(from));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_set\_size(to,\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(from));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_clib\_memcpy((to),\ (from),\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(from)\ *\ \textcolor{keyword}{sizeof}(*(from)));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+copy -\/ copy a vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & -\/ the original vector \\
+\hline
+{\em to} & -\/ destination to which the function copy to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}\label{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb} 
+\index{cvector.h@{cvector.h}!cvector\_elem\_destructor@{cvector\_elem\_destructor}}
+\index{cvector\_elem\_destructor@{cvector\_elem\_destructor}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_elem\_destructor}{cvector\_elem\_destructor}}
+{\footnotesize\ttfamily \#define cvector\+\_\+elem\+\_\+destructor(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$elem\+\_\+destructor \+: NULL)}
+
+
+
+cvector\+\_\+elem\+\_\+destructor -\/ get the element destructor function used to clean up elements 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the function pointer as cvector\+\_\+elem\+\_\+destructor\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ab04da6896f480bb7924eb594ccce692f}\label{cvector_8h_ab04da6896f480bb7924eb594ccce692f} 
+\index{cvector.h@{cvector.h}!cvector\_empty@{cvector\_empty}}
+\index{cvector\_empty@{cvector\_empty}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_empty}{cvector\_empty}}
+{\footnotesize\ttfamily \#define cvector\+\_\+empty(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   (\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) == 0)}
+
+
+
+cvector\+\_\+empty -\/ returns non-\/zero if the vector is empty 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non-\/zero if empty, zero if non-\/empty 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_af0c4654a78847e695ccff00a6a5a1e5d}\label{cvector_8h_af0c4654a78847e695ccff00a6a5a1e5d} 
+\index{cvector.h@{cvector.h}!cvector\_end@{cvector\_end}}
+\index{cvector\_end@{cvector\_end}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_end}{cvector\_end}}
+{\footnotesize\ttfamily \#define cvector\+\_\+end(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? \&((vec)\mbox{[}\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec)\mbox{]}) \+: NULL)}
+
+
+
+cvector\+\_\+end -\/ returns an iterator to one past the last element of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to one past the last element (or NULL) 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_acd7efc1d27d73ec127a24a1bff637c05}\label{cvector_8h_acd7efc1d27d73ec127a24a1bff637c05} 
+\index{cvector.h@{cvector.h}!cvector\_erase@{cvector\_erase}}
+\index{cvector\_erase@{cvector\_erase}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_erase}{cvector\_erase}}
+{\footnotesize\ttfamily \#define cvector\+\_\+erase(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cv\_erase\_sz\_\_\ =\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ if\ ((i)\ <\ cv\_erase\_sz\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}{cvector\_elem\_destructor\_t}}\ cv\_erase\_elem\_dtor\_\_\ =\ \mbox{\hyperlink{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}{cvector\_elem\_destructor}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (cv\_erase\_elem\_dtor\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cv\_erase\_elem\_dtor\_\_(\&(vec)[i]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cvector\_set\_size((vec),\ cv\_erase\_sz\_\_\ -\/\ 1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cvector\_clib\_memmove(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (vec)\ +\ (i),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (vec)\ +\ (i)\ +\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(*(vec))\ *\ (cv\_erase\_sz\_\_\ -\/\ 1\ -\/\ (i)));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+erase -\/ removes the element at index i from the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em i} & -\/ index of element to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a6e20ad1fe1bd18ae792d346aabbf21b3}\label{cvector_8h_a6e20ad1fe1bd18ae792d346aabbf21b3} 
+\index{cvector.h@{cvector.h}!cvector\_free@{cvector\_free}}
+\index{cvector\_free@{cvector\_free}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_free}{cvector\_free}}
+{\footnotesize\ttfamily \#define cvector\+\_\+free(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *cv\_free\_p\_\_\ =\ \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\_vec\_to\_base}}(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}{cvector\_elem\_destructor\_t}}\ cv\_free\_elem\_dtor\_\_\ =\ \mbox{\hyperlink{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}{cvector\_elem\_destructor}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ if\ (cv\_free\_elem\_dtor\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_free\_i\_\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ for\ (cv\_free\_i\_\_\ =\ 0;\ cv\_free\_i\_\_\ <\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec);\ ++cv\_free\_i\_\_)\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cv\_free\_elem\_dtor\_\_(\&(vec)[cv\_free\_i\_\_]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_clib\_free(cv\_free\_p\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+free -\/ frees all memory associated with the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a5ab607cb62a54603053df074eb0a8370}\label{cvector_8h_a5ab607cb62a54603053df074eb0a8370} 
+\index{cvector.h@{cvector.h}!cvector\_front@{cvector\_front}}
+\index{cvector\_front@{cvector\_front}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_front}{cvector\_front}}
+{\footnotesize\ttfamily \#define cvector\+\_\+front(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? ((\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\+\_\+size}}(vec) $>$ 0) ? \mbox{\hyperlink{cvector_8h_a6839c945aa7d5e8dc95ec6c2fc9c98c0}{cvector\+\_\+at}}(vec, 0) \+: NULL) \+: NULL)}
+
+
+
+cvector\+\_\+front -\/ returns a reference to the first element in the vector. Unlike member cvector\+\_\+begin, which returns an iterator to this same element, this function returns a direct reference. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the first element in the vector container. 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a98e2af840169618525d7c18597c4dc03}\label{cvector_8h_a98e2af840169618525d7c18597c4dc03} 
+\index{cvector.h@{cvector.h}!cvector\_grow@{cvector\_grow}}
+\index{cvector\_grow@{cvector\_grow}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_grow}{cvector\_grow}}
+{\footnotesize\ttfamily \#define cvector\+\_\+grow(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{count }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cv\_grow\_sz\_\_\ =\ (count)\ *\ \textcolor{keyword}{sizeof}(*(vec))\ +\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structcvector__metadata__t}{cvector\_metadata\_t}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *cv\_grow\_p1\_\_\ =\ \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\_vec\_to\_base}}(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *cv\_grow\_p2\_\_\ =\ \mbox{\hyperlink{cvector_8h_ad5b85d38544055588ae258da77dab4c9}{cvector\_clib\_realloc}}(cv\_grow\_p1\_\_,\ cv\_grow\_sz\_\_);\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_clib\_assert(cv\_grow\_p2\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ (vec)\ =\ \mbox{\hyperlink{cvector_8h_a4fc0284be6f353599f8235f31b2c77c5}{cvector\_base\_to\_vec}}(cv\_grow\_p2\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *cv\_grow\_p\_\_\ =\ \mbox{\hyperlink{cvector_8h_aaf9107eb00a5820019a1c2fe153c7841}{cvector\_clib\_malloc}}(cv\_grow\_sz\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_clib\_assert(cv\_grow\_p\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ (vec)\ =\ \mbox{\hyperlink{cvector_8h_a4fc0284be6f353599f8235f31b2c77c5}{cvector\_base\_to\_vec}}(cv\_grow\_p\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_set\_size((vec),\ 0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_set\_elem\_destructor((vec),\ NULL);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ cvector\_set\_capacity((vec),\ (count));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+grow -\/ For internal use, ensures that the vector is at least {\ttfamily count} elements big 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em count} & -\/ the new capacity to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a74ec592d1121f28b921e5bd18ca35bef}\label{cvector_8h_a74ec592d1121f28b921e5bd18ca35bef} 
+\index{cvector.h@{cvector.h}!cvector\_init@{cvector\_init}}
+\index{cvector\_init@{cvector\_init}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_init}{cvector\_init}}
+{\footnotesize\ttfamily \#define cvector\+\_\+init(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{capacity,  }\item[{}]{elem\+\_\+destructor\+\_\+fn }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (!(vec))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_reserve((vec),\ capacity);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_set\_elem\_destructor((vec),\ (elem\_destructor\_fn));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+init -\/ Initialize a vector. The vector must be NULL for this to do anything. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em capacity} & -\/ vector capacity to reserve \\
+\hline
+{\em elem\+\_\+destructor\+\_\+fn} & -\/ element destructor function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a5993d28e0153d8126f73efcb1f0caba8}\label{cvector_8h_a5993d28e0153d8126f73efcb1f0caba8} 
+\index{cvector.h@{cvector.h}!cvector\_insert@{cvector\_insert}}
+\index{cvector\_insert@{cvector\_insert}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_insert}{cvector\_insert}}
+{\footnotesize\ttfamily \#define cvector\+\_\+insert(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{pos,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_insert\_cap\_\_\ =\ \mbox{\hyperlink{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0}{cvector\_capacity}}(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (cv\_insert\_cap\_\_\ <=\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_grow((vec),\ \mbox{\hyperlink{cvector_8h_a7a7cb921c2efe5ab4ed56bf3c814b711}{cvector\_compute\_next\_grow}}(cv\_insert\_cap\_\_));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ ((pos)\ <\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_clib\_memmove(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ (vec)\ +\ (pos)\ +\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ (vec)\ +\ (pos),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(*(vec))\ *\ ((\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec))\ -\/\ (pos)));\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ (vec)[(pos)]\ =\ (val);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ cvector\_set\_size((vec),\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec)\ +\ 1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+insert -\/ insert element at position pos to the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em pos} & -\/ position in the vector where the new elements are inserted. \\
+\hline
+{\em val} & -\/ value to be copied (or moved) to the inserted elements. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_abe57157beb6c0fbc805abf8d7bed4ad0}\label{cvector_8h_abe57157beb6c0fbc805abf8d7bed4ad0} 
+\index{cvector.h@{cvector.h}!cvector\_iterator@{cvector\_iterator}}
+\index{cvector\_iterator@{cvector\_iterator}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_iterator}{cvector\_iterator}}
+{\footnotesize\ttfamily \#define cvector\+\_\+iterator(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})~\mbox{\hyperlink{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}{cvector\+\_\+vector\+\_\+type}}(type)}
+
+
+
+cvector\+\_\+iterator -\/ The iterator type used for cvector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of iterator to act on. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cvector_8h_a9c96b528d13e8d724376173ce11e6938}\label{cvector_8h_a9c96b528d13e8d724376173ce11e6938} 
+\index{cvector.h@{cvector.h}!cvector\_pop\_back@{cvector\_pop\_back}}
+\index{cvector\_pop\_back@{cvector\_pop\_back}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_pop\_back}{cvector\_pop\_back}}
+{\footnotesize\ttfamily \#define cvector\+\_\+pop\+\_\+back(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}{cvector\_elem\_destructor\_t}}\ cv\_pop\_back\_elem\_dtor\_\_\ =\ \mbox{\hyperlink{cvector_8h_ad35611fe80b5dd19c233c0e74e6373cb}{cvector\_elem\_destructor}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (cv\_pop\_back\_elem\_dtor\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cv\_pop\_back\_elem\_dtor\_\_(\&(vec)[\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec)\ -\/\ 1]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ cvector\_set\_size((vec),\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec)\ -\/\ 1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+pop\+\_\+back -\/ removes the last element from the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a1ef12b137ccdc8de1f51fae4f74f9850}\label{cvector_8h_a1ef12b137ccdc8de1f51fae4f74f9850} 
+\index{cvector.h@{cvector.h}!cvector\_push\_back@{cvector\_push\_back}}
+\index{cvector\_push\_back@{cvector\_push\_back}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_push\_back}{cvector\_push\_back}}
+{\footnotesize\ttfamily \#define cvector\+\_\+push\+\_\+back(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_push\_back\_cap\_\_\ =\ \mbox{\hyperlink{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0}{cvector\_capacity}}(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (cv\_push\_back\_cap\_\_\ <=\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_grow((vec),\ \mbox{\hyperlink{cvector_8h_a7a7cb921c2efe5ab4ed56bf3c814b711}{cvector\_compute\_next\_grow}}(cv\_push\_back\_cap\_\_));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ (vec)[\mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec)]\ =\ (value);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ cvector\_set\_size((vec),\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec)\ +\ 1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+push\+\_\+back -\/ adds an element to the end of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em value} & -\/ the value to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a96eaf0cc51f35b727a49cdc2e2d3756c}\label{cvector_8h_a96eaf0cc51f35b727a49cdc2e2d3756c} 
+\index{cvector.h@{cvector.h}!cvector\_reserve@{cvector\_reserve}}
+\index{cvector\_reserve@{cvector\_reserve}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_reserve}{cvector\_reserve}}
+{\footnotesize\ttfamily \#define cvector\+\_\+reserve(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_reserve\_cap\_\_\ =\ \mbox{\hyperlink{cvector_8h_a37ab2921b0dab37bd7c2d8a06d1a49d0}{cvector\_capacity}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (cv\_reserve\_cap\_\_\ <\ (n))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_grow((vec),\ (n));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+reserve -\/ Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em n} & -\/ Minimum capacity for the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_add6f3f8e999b58bb823897e3a4a08170}\label{cvector_8h_add6f3f8e999b58bb823897e3a4a08170} 
+\index{cvector.h@{cvector.h}!cvector\_resize@{cvector\_resize}}
+\index{cvector\_resize@{cvector\_resize}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_resize}{cvector\_resize}}
+{\footnotesize\ttfamily \#define cvector\+\_\+resize(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{count,  }\item[{}]{value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_resize\_count\_\_\ =\ (size\_t)(count);\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cv\_resize\_sz\_\_\ =\ \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\_vec\_to\_base}}(vec)-\/>size;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ if\ (cv\_resize\_count\_\_\ >\ cv\_resize\_sz\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cvector\_reserve((vec),\ cv\_resize\_count\_\_);\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cvector\_set\_size((vec),\ cv\_resize\_count\_\_);\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (vec)[cv\_resize\_sz\_\_++]\ =\ (value);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (cv\_resize\_sz\_\_\ <\ cv\_resize\_count\_\_);\ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ while\ (cv\_resize\_count\_\_\ <\ cv\_resize\_sz\_\_-\/-\/)\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cvector\_pop\_back(vec);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+resize -\/ resizes the container to contain count elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em count} & -\/ new size of the vector \\
+\hline
+{\em value} & -\/ the value to initialize new elements with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_abd51ef4560362650e1b258d19d518bbf}\label{cvector_8h_abd51ef4560362650e1b258d19d518bbf} 
+\index{cvector.h@{cvector.h}!cvector\_set\_capacity@{cvector\_set\_capacity}}
+\index{cvector\_set\_capacity@{cvector\_set\_capacity}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_set\_capacity}{cvector\_set\_capacity}}
+{\footnotesize\ttfamily \#define cvector\+\_\+set\+\_\+capacity(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_vec\_to\_base(vec)-\/>capacity\ =\ (size);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+set\+\_\+capacity -\/ For internal use, sets the capacity variable of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em size} & -\/ the new capacity to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ace97a721f4a5d54768ea7b54011255e5}\label{cvector_8h_ace97a721f4a5d54768ea7b54011255e5} 
+\index{cvector.h@{cvector.h}!cvector\_set\_elem\_destructor@{cvector\_set\_elem\_destructor}}
+\index{cvector\_set\_elem\_destructor@{cvector\_set\_elem\_destructor}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_set\_elem\_destructor}{cvector\_set\_elem\_destructor}}
+{\footnotesize\ttfamily \#define cvector\+\_\+set\+\_\+elem\+\_\+destructor(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{elem\+\_\+destructor\+\_\+fn }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_vec\_to\_base(vec)-\/>elem\_destructor\ =\ (elem\_destructor\_fn);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+set\+\_\+elem\+\_\+destructor -\/ set the element destructor function used to clean up removed elements. The vector must NOT be NULL for this to do anything. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em elem\+\_\+destructor\+\_\+fn} & -\/ function pointer of type cvector\+\_\+elem\+\_\+destructor\+\_\+t used to destroy elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_acc4bbd2870e44bad82544f85108f157c}\label{cvector_8h_acc4bbd2870e44bad82544f85108f157c} 
+\index{cvector.h@{cvector.h}!cvector\_set\_size@{cvector\_set\_size}}
+\index{cvector\_set\_size@{cvector\_set\_size}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_set\_size}{cvector\_set\_size}}
+{\footnotesize\ttfamily \#define cvector\+\_\+set\+\_\+size(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{\+\_\+size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_vec\_to\_base(vec)-\/>size\ =\ (\_size);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+set\+\_\+size -\/ For internal use, sets the size variable of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+{\em \+\_\+size} & -\/ the new capacity to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_aabfa026a9f74d3c480a677c5ef50e23b}\label{cvector_8h_aabfa026a9f74d3c480a677c5ef50e23b} 
+\index{cvector.h@{cvector.h}!cvector\_shrink\_to\_fit@{cvector\_shrink\_to\_fit}}
+\index{cvector\_shrink\_to\_fit@{cvector\_shrink\_to\_fit}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_shrink\_to\_fit}{cvector\_shrink\_to\_fit}}
+{\footnotesize\ttfamily \#define cvector\+\_\+shrink\+\_\+to\+\_\+fit(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cv\_shrink\_to\_fit\_sz\_\_\ =\ \mbox{\hyperlink{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}{cvector\_size}}(vec);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_grow(vec,\ cv\_shrink\_to\_fit\_sz\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+shrink\+\_\+to\+\_\+fit -\/ requests the container to reduce its capacity to fit its size 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813}\label{cvector_8h_a0e1016ecc53bdd49b5f31266778ba813} 
+\index{cvector.h@{cvector.h}!cvector\_size@{cvector\_size}}
+\index{cvector\_size@{cvector\_size}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_size}{cvector\_size}}
+{\footnotesize\ttfamily \#define cvector\+\_\+size(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   ((vec) ? \mbox{\hyperlink{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}{cvector\+\_\+vec\+\_\+to\+\_\+base}}(vec)-\/$>$size \+: (size\+\_\+t)0)}
+
+
+
+cvector\+\_\+size -\/ gets the current size of the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the size as a size\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_ad91889b0928d9ba122f5abfccaa644fc}\label{cvector_8h_ad91889b0928d9ba122f5abfccaa644fc} 
+\index{cvector.h@{cvector.h}!cvector\_swap@{cvector\_swap}}
+\index{cvector\_swap@{cvector\_swap}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_swap}{cvector\_swap}}
+{\footnotesize\ttfamily \#define cvector\+\_\+swap(\begin{DoxyParamCaption}\item[{}]{vec,  }\item[{}]{other,  }\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (vec\ \&\&\ other)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ cvector\_vector\_type(type)\ cv\_swap\_\_\ =\ vec;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ vec\ =\ other;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ other\ =\ cv\_swap\_\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+cvector\+\_\+swap -\/ exchanges the content of the vector by the content of another vector of the same type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the original vector \\
+\hline
+{\em other} & -\/ the other vector to swap content with \\
+\hline
+{\em type} & -\/ the type of both vectors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95}\label{cvector_8h_adde42fb9bcc2bbb590b5ba5835a88e95} 
+\index{cvector.h@{cvector.h}!cvector\_vec\_to\_base@{cvector\_vec\_to\_base}}
+\index{cvector\_vec\_to\_base@{cvector\_vec\_to\_base}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_vec\_to\_base}{cvector\_vec\_to\_base}}
+{\footnotesize\ttfamily \#define cvector\+\_\+vec\+\_\+to\+\_\+base(\begin{DoxyParamCaption}\item[{}]{vec }\end{DoxyParamCaption})~   (\&((\mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*})(vec))\mbox{[}-\/1\mbox{]})}
+
+
+
+cvector\+\_\+vec\+\_\+to\+\_\+base -\/ For internal use, converts a vector pointer to a metadata pointer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & -\/ the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the metadata pointer of the vector 
+\end{DoxyReturn}
+\Hypertarget{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2}\label{cvector_8h_a9acc6bd0ef16d9575440cce7f49281b2} 
+\index{cvector.h@{cvector.h}!cvector\_vector\_type@{cvector\_vector\_type}}
+\index{cvector\_vector\_type@{cvector\_vector\_type}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_vector\_type}{cvector\_vector\_type}}
+{\footnotesize\ttfamily \#define cvector\+\_\+vector\+\_\+type(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})~type \texorpdfstring{$\ast$}{*}}
+
+
+
+cvector\+\_\+vector\+\_\+type -\/ The vector type used in this library 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of vector to act on. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c}\label{cvector_8h_a4a11f920c0d215a5d2647ec29f0a124c} 
+\index{cvector.h@{cvector.h}!cvector\_elem\_destructor\_t@{cvector\_elem\_destructor\_t}}
+\index{cvector\_elem\_destructor\_t@{cvector\_elem\_destructor\_t}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_elem\_destructor\_t}{cvector\_elem\_destructor\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} cvector\+\_\+elem\+\_\+destructor\+\_\+t) (void \texorpdfstring{$\ast$}{*}elem\+\_\+ptr)}
+
+\Hypertarget{cvector_8h_a074fcb11ef6dd568563bbf41a5dc6095}\label{cvector_8h_a074fcb11ef6dd568563bbf41a5dc6095} 
+\index{cvector.h@{cvector.h}!cvector\_metadata\_t@{cvector\_metadata\_t}}
+\index{cvector\_metadata\_t@{cvector\_metadata\_t}!cvector.h@{cvector.h}}
+\doxysubsubsection{\texorpdfstring{cvector\_metadata\_t}{cvector\_metadata\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}} \mbox{\hyperlink{structcvector__metadata__t}{cvector\+\_\+metadata\+\_\+t}}}
+

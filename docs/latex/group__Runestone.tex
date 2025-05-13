@@ -87,6 +87,14 @@ struct \mbox{\hyperlink{structrs__t}{rs\+\_\+t}}
 \begin{DoxyCompactItemize}
 \item 
 typedef uint8\+\_\+t \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}{rs\+\_\+basic\+\_\+blocks\+\_\+t}}
+\item 
+typedef bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}{rs\+\_\+register\+\_\+pool\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{structrs__map__entry__t}{rs\+\_\+map\+\_\+entry\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}{rs\+\_\+map\+\_\+entries\+\_\+t}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -114,6 +122,11 @@ enum \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\
 , \newline
 \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea70e1a4677cd18af7872974eaaa92e7bc}{RS\+\_\+\+OPCODE\+\_\+\+RET}}
 , \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4}{RS\+\_\+\+OPCODE\+\_\+\+BR}}
+, \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878}{RS\+\_\+\+OPCODE\+\_\+\+BR\+\_\+\+IF}}
+, \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c}{RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+EQ}}
+, \newline
+\mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e}{RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+LT}}
+, \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e}{RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+GT}}
 , \mbox{\hyperlink{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}{RS\+\_\+\+OPCODE\+\_\+\+COUNT}}
  \}
 \begin{DoxyCompactList}\small\item\em The available instructions in the Runestone IR. \end{DoxyCompactList}\item 
@@ -143,6 +156,8 @@ size\+\_\+t \mbox{\hyperlink{group__Runestone_ga58b5d44d5e8f8df106c687e360539852
 \item 
 const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga0c77e806cea7763fc4fd1a9a404d333f}{rs\+\_\+get\+\_\+register\+\_\+names}} (\mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \item 
+void \mbox{\hyperlink{group__Runestone_gaedda2b36f99baf0648687974b81449e5}{rs\+\_\+set\+\_\+debug}} (bool enabled, FILE \texorpdfstring{$\ast$}{*}stream)
+\begin{DoxyCompactList}\small\item\em Sets debug logging options. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__Runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\+\_\+init}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \begin{DoxyCompactList}\small\item\em Initializes the Runestone IR state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__Runestone_gab0f592439168f8ccac37be8f8392eb75}{rs\+\_\+free}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
@@ -173,6 +188,14 @@ void \mbox{\hyperlink{group__Runestone_gadb1083765b8f1336be52e59e2d634b1c}{rs\+\
 \begin{DoxyCompactList}\small\item\em Builds a return instruction. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__Runestone_ga9e8d21ba83dfc18c1dd792f5aac3cf99}{rs\+\_\+build\+\_\+br}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src)
 \begin{DoxyCompactList}\small\item\em Builds a branch instruction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Runestone_ga7f57cdb44274b9771dff0fbc3bd22349}{rs\+\_\+build\+\_\+br\+\_\+if}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src3)
+\begin{DoxyCompactList}\small\item\em Builds a conditional branch instruction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_gaf2bd08a22dfd456c49e42150755d57fb}{rs\+\_\+build\+\_\+cmp\+\_\+eq}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\begin{DoxyCompactList}\small\item\em Builds a equiality comparison instruction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_gadb3a287b47c3bf2cb81fa9227013e886}{rs\+\_\+build\+\_\+cmp\+\_\+lt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\begin{DoxyCompactList}\small\item\em Builds a less-\/than comparison instruction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_ga30c1da0227bf6df4231bda905f3d0d24}{rs\+\_\+build\+\_\+cmp\+\_\+gt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\begin{DoxyCompactList}\small\item\em Builds a greater-\/than comparison instruction. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{group__Runestone_ga99ff5be0b1666a34954468ab6ec86268}{rs\+\_\+instr\+\_\+is\+\_\+terminator}} (\mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} instr)
 \begin{DoxyCompactList}\small\item\em Checks if an instruction is a terminator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{group__Runestone_ga1241715f8b5f9767ae55bec794e28f83}{rs\+\_\+get\+\_\+free\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
@@ -314,19 +337,23 @@ Maximum number of registers. \Hypertarget{group__Runestone_ga8c1834c4f9033c4366f
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(MOVE,\ \textcolor{stringliteral}{"{}move"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(COPY,\ \textcolor{stringliteral}{"{}copy"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(LOAD,\ \textcolor{stringliteral}{"{}load"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(STORE,\ \textcolor{stringliteral}{"{}store"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(ADD,\ \textcolor{stringliteral}{"{}add"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(SUB,\ \textcolor{stringliteral}{"{}sub"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(MULT,\ \textcolor{stringliteral}{"{}mult"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(DIV,\ \textcolor{stringliteral}{"{}div"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(RET,\ \textcolor{stringliteral}{"{}ret"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(BR,\ \textcolor{stringliteral}{"{}br"{}})}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(MOVE,\ \textcolor{stringliteral}{"{}move"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(COPY,\ \textcolor{stringliteral}{"{}copy"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(LOAD,\ \textcolor{stringliteral}{"{}load"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(STORE,\ \textcolor{stringliteral}{"{}store"{}})\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(ADD,\ \textcolor{stringliteral}{"{}add"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(SUB,\ \textcolor{stringliteral}{"{}sub"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(MULT,\ \textcolor{stringliteral}{"{}mult"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(DIV,\ \textcolor{stringliteral}{"{}div"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(RET,\ \textcolor{stringliteral}{"{}ret"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(BR,\ \textcolor{stringliteral}{"{}br"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(BR\_IF,\ \textcolor{stringliteral}{"{}br\_if"{}})\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(CMP\_EQ,\ \textcolor{stringliteral}{"{}cmp\_eq"{}})\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(CMP\_LT,\ \textcolor{stringliteral}{"{}cmp\_lt"{}})\ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(CMP\_GT,\ \textcolor{stringliteral}{"{}cmp\_gt"{}})}
 
 \end{DoxyCode}
-Branch opcode. \Hypertarget{group__Runestone_gaf4a944d5f256054e13fdda2b988dde70}\label{group__Runestone_gaf4a944d5f256054e13fdda2b988dde70} 
+result = (a \texorpdfstring{$>$}{>} b) \Hypertarget{group__Runestone_gaf4a944d5f256054e13fdda2b988dde70}\label{group__Runestone_gaf4a944d5f256054e13fdda2b988dde70} 
 \index{Runestone IR API@{Runestone IR API}!RS\_OPERAND\_ADDR@{RS\_OPERAND\_ADDR}}
 \index{RS\_OPERAND\_ADDR@{RS\_OPERAND\_ADDR}!Runestone IR API@{Runestone IR API}}
 \doxysubsubsection{\texorpdfstring{RS\_OPERAND\_ADDR}{RS\_OPERAND\_ADDR}}
@@ -384,10 +411,10 @@ Operand constructor for register.
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(INT64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(ADDR)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ X(REG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{runestone_8h_a826edd40636cbaa44266b97c8c6a4fa3}{X}}(NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(INT64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(ADDR)\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ X(REG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ X(BB)}
 
 \end{DoxyCode}
@@ -442,7 +469,7 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \(\backslash\)}
 \DoxyCodeLine{\ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *rs\_target\_\#\#lower\#\#\_reg\_names[]\ =\ \{\_\_VA\_ARGS\_\_\};}
 
 \end{DoxyCode}
@@ -474,10 +501,10 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-                                                                          \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_instr\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);\ \ \ \ \ \ \ \ \(\backslash\)}
-                                                                          \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_operand\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ operand,\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+                                                                        \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_instr\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__instr__t}{rs\_instr\_t}}\ instr);\ \ \ \ \ \ \(\backslash\)}
+                                                                        \(\backslash\)\DoxyCodeLine{\ \ \textcolor{keywordtype}{void}\ rs\_generate\_operand\_\#\#lower(\mbox{\hyperlink{structrs__t}{rs\_t}}\ *rs,\ FILE\ *fp,\ \mbox{\hyperlink{structrs__operand__t}{rs\_operand\_t}}\ operand,\ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dereference);}
 
 \end{DoxyCode}
@@ -509,11 +536,11 @@ Example usage\+:
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{group__Runestone_gad6a67337461280e8d42013c4d0f753ea}{RS\_TARGET}}(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ \textcolor{stringliteral}{"{}rax"{}},\ \textcolor{stringliteral}{"{}rbx"{}},\ \textcolor{stringliteral}{"{}rcx"{}},\ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rdx"{}},\ \textcolor{stringliteral}{"{}rsi"{}},\ \textcolor{stringliteral}{"{}rdi"{}},\ \textcolor{stringliteral}{"{}r8"{}},\ \textcolor{stringliteral}{"{}r9"{}},\ \textcolor{stringliteral}{"{}r10"{}},\ \textcolor{stringliteral}{"{}r11"{}},\ \textcolor{stringliteral}{"{}r12"{}},\ \textcolor{stringliteral}{"{}r13"{}},\ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}r14"{}},\ \textcolor{stringliteral}{"{}r15"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ \textcolor{stringliteral}{"{}x9"{}},\ \textcolor{stringliteral}{"{}x10"{}},\ \textcolor{stringliteral}{"{}x11"{}},\ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x12"{}},\ \textcolor{stringliteral}{"{}x13"{}},\ \textcolor{stringliteral}{"{}x14"{}},\ \textcolor{stringliteral}{"{}x15"{}},\ \textcolor{stringliteral}{"{}x19"{}},\ \textcolor{stringliteral}{"{}x20"{}},\ \textcolor{stringliteral}{"{}x21"{}},\ \textcolor{stringliteral}{"{}x22"{}},\ \textcolor{stringliteral}{"{}x23"{}},\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{group__Runestone_gad6a67337461280e8d42013c4d0f753ea}{RS\_TARGET}}(x86\_64\_linux\_nasm,\ X86\_64\_LINUX\_NASM,\ 14,\ \textcolor{stringliteral}{"{}rax"{}},\ \textcolor{stringliteral}{"{}rbx"{}},\ \textcolor{stringliteral}{"{}rcx"{}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rdx"{}},\ \textcolor{stringliteral}{"{}rsi"{}},\ \textcolor{stringliteral}{"{}rdi"{}},\ \textcolor{stringliteral}{"{}r8"{}},\ \textcolor{stringliteral}{"{}r9"{}},\ \textcolor{stringliteral}{"{}r10"{}},\ \textcolor{stringliteral}{"{}r11"{}},\ \textcolor{stringliteral}{"{}r12"{}},\ \textcolor{stringliteral}{"{}r13"{}},\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}r14"{}},\ \textcolor{stringliteral}{"{}r15"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ RS\_TARGET(aarch64\_macos\_gas,\ AARCH64\_MACOS\_GAS,\ 17,\ \textcolor{stringliteral}{"{}x9"{}},\ \textcolor{stringliteral}{"{}x10"{}},\ \textcolor{stringliteral}{"{}x11"{}},\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x12"{}},\ \textcolor{stringliteral}{"{}x13"{}},\ \textcolor{stringliteral}{"{}x14"{}},\ \textcolor{stringliteral}{"{}x15"{}},\ \textcolor{stringliteral}{"{}x19"{}},\ \textcolor{stringliteral}{"{}x20"{}},\ \textcolor{stringliteral}{"{}x21"{}},\ \textcolor{stringliteral}{"{}x22"{}},\ \textcolor{stringliteral}{"{}x23"{}},\ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}x24"{}},\ \textcolor{stringliteral}{"{}x25"{}},\ \textcolor{stringliteral}{"{}x26"{}},\ \textcolor{stringliteral}{"{}x27"{}},\ \textcolor{stringliteral}{"{}x28"{}})}
 
 \end{DoxyCode}
@@ -539,6 +566,30 @@ Placeholder for temporary registers. ~\newline
  
 
 \doxysubsection{Typedef Documentation}
+\Hypertarget{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}\label{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750} 
+\index{Runestone IR API@{Runestone IR API}!rs\_basic\_blocks\_t@{rs\_basic\_blocks\_t}}
+\index{rs\_basic\_blocks\_t@{rs\_basic\_blocks\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_basic\_blocks\_t}{rs\_basic\_blocks\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}}\texorpdfstring{$\ast$}{*} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga850bf20a07257cd897c2e16ed29bc750}{rs\+\_\+basic\+\_\+blocks\+\_\+t}}}
+
+\Hypertarget{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}\label{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298} 
+\index{Runestone IR API@{Runestone IR API}!rs\_instructions\_t@{rs\_instructions\_t}}
+\index{rs\_instructions\_t@{rs\_instructions\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_instructions\_t}{rs\_instructions\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_gaa2085e91c8b692c6df33f41894b4c298}{rs\+\_\+instructions\+\_\+t}}}
+
+\Hypertarget{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}\label{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339} 
+\index{Runestone IR API@{Runestone IR API}!rs\_map\_entries\_t@{rs\_map\_entries\_t}}
+\index{rs\_map\_entries\_t@{rs\_map\_entries\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_map\_entries\_t}{rs\_map\_entries\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrs__map__entry__t}{rs\+\_\+map\+\_\+entry\+\_\+t}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga73ddc235c75c788931bb2e5fedc46339}{rs\+\_\+map\+\_\+entries\+\_\+t}}}
+
+\Hypertarget{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}\label{group__Runestone_ga84a681857f0ab41c81aba0dd08095710} 
+\index{Runestone IR API@{Runestone IR API}!rs\_register\_pool\_t@{rs\_register\_pool\_t}}
+\index{rs\_register\_pool\_t@{rs\_register\_pool\_t}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_register\_pool\_t}{rs\_register\_pool\_t}}
+{\footnotesize\ttfamily typedef bool\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__Runestone_ga84a681857f0ab41c81aba0dd08095710}{rs\+\_\+register\+\_\+pool\+\_\+t}}}
+
 \Hypertarget{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}\label{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d} 
 \index{Runestone IR API@{Runestone IR API}!rs\_register\_t@{rs\_register\_t}}
 \index{rs\_register\_t@{rs\_register\_t}!Runestone IR API@{Runestone IR API}}
@@ -597,6 +648,22 @@ RS\+\_\+\+OPCODE\+\_\+\+RET&Return opcode. \\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_BR@{RS\_OPCODE\_BR}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_BR@{RS\_OPCODE\_BR}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea8cc4c984e8cfa93f6cda2b2a650ef1b4} 
 RS\+\_\+\+OPCODE\+\_\+\+BR&Branch opcode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_BR\_IF@{RS\_OPCODE\_BR\_IF}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_BR\_IF@{RS\_OPCODE\_BR\_IF}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea58244794484e8c781625922433d70878} 
+RS\+\_\+\+OPCODE\+\_\+\+BR\+\_\+\+IF&Branch if value != 0. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_CMP\_EQ@{RS\_OPCODE\_CMP\_EQ}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_CMP\_EQ@{RS\_OPCODE\_CMP\_EQ}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea4be1a84fba9cf22071db2c24fb5a543c} 
+RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+EQ&result = (a == b) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_CMP\_LT@{RS\_OPCODE\_CMP\_LT}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_CMP\_LT@{RS\_OPCODE\_CMP\_LT}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea1291b67f71d4be381f8d96abd6d0500e} 
+RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+LT&result = (a \texorpdfstring{$<$}{<} b) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_CMP\_GT@{RS\_OPCODE\_CMP\_GT}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_CMP\_GT@{RS\_OPCODE\_CMP\_GT}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44ea50b64d87080e6cea115921cbe773390e} 
+RS\+\_\+\+OPCODE\+\_\+\+CMP\+\_\+\+GT&result = (a \texorpdfstring{$>$}{>} b) \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{RS\_OPCODE\_COUNT@{RS\_OPCODE\_COUNT}!Runestone IR API@{Runestone IR API}}\index{Runestone IR API@{Runestone IR API}!RS\_OPCODE\_COUNT@{RS\_OPCODE\_COUNT}}}\Hypertarget{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47}\label{group__Runestone_gga5b48c8653be44d84482b1d7ed019d44eaa756d97de66985fb09b768f45b58ab47} 
@@ -751,6 +818,93 @@ Builds a branch instruction.
 \mbox{\texttt{ in}}  & {\em src} & The operand representing the target of the branch. \\
 \hline
 \end{DoxyParams}
+\Hypertarget{group__Runestone_ga7f57cdb44274b9771dff0fbc3bd22349}\label{group__Runestone_ga7f57cdb44274b9771dff0fbc3bd22349} 
+\index{Runestone IR API@{Runestone IR API}!rs\_build\_br\_if@{rs\_build\_br\_if}}
+\index{rs\_build\_br\_if@{rs\_build\_br\_if}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_build\_br\_if()}{rs\_build\_br\_if()}}
+{\footnotesize\ttfamily void rs\+\_\+build\+\_\+br\+\_\+if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src1,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src2,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src3 }\end{DoxyParamCaption})}
+
+
+
+Builds a conditional branch instruction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em rs} & The Runestone state. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src1} & The operand to compare. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src2} & The operand representing the target of the branch if the condition is met. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src3} & The operand representing the target of the branch if the condition is not met. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__Runestone_gaf2bd08a22dfd456c49e42150755d57fb}\label{group__Runestone_gaf2bd08a22dfd456c49e42150755d57fb} 
+\index{Runestone IR API@{Runestone IR API}!rs\_build\_cmp\_eq@{rs\_build\_cmp\_eq}}
+\index{rs\_build\_cmp\_eq@{rs\_build\_cmp\_eq}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_build\_cmp\_eq()}{rs\_build\_cmp\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+build\+\_\+cmp\+\_\+eq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src1,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src2 }\end{DoxyParamCaption})}
+
+
+
+Builds a equiality comparison instruction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em rs} & The Runestone state. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src1} & The first operand. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src2} & The second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The operand used as the destination in the instruction. 
+\end{DoxyReturn}
+\Hypertarget{group__Runestone_ga30c1da0227bf6df4231bda905f3d0d24}\label{group__Runestone_ga30c1da0227bf6df4231bda905f3d0d24} 
+\index{Runestone IR API@{Runestone IR API}!rs\_build\_cmp\_gt@{rs\_build\_cmp\_gt}}
+\index{rs\_build\_cmp\_gt@{rs\_build\_cmp\_gt}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_build\_cmp\_gt()}{rs\_build\_cmp\_gt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+build\+\_\+cmp\+\_\+gt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src1,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src2 }\end{DoxyParamCaption})}
+
+
+
+Builds a greater-\/than comparison instruction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em rs} & The Runestone state. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src1} & The first operand. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src2} & The second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The operand used as the destination in the instruction. 
+\end{DoxyReturn}
+\Hypertarget{group__Runestone_gadb3a287b47c3bf2cb81fa9227013e886}\label{group__Runestone_gadb3a287b47c3bf2cb81fa9227013e886} 
+\index{Runestone IR API@{Runestone IR API}!rs\_build\_cmp\_lt@{rs\_build\_cmp\_lt}}
+\index{rs\_build\_cmp\_lt@{rs\_build\_cmp\_lt}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_build\_cmp\_lt()}{rs\_build\_cmp\_lt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} rs\+\_\+build\+\_\+cmp\+\_\+lt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src1,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{src2 }\end{DoxyParamCaption})}
+
+
+
+Builds a less-\/than comparison instruction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em rs} & The Runestone state. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src1} & The first operand. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src2} & The second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The operand used as the destination in the instruction. 
+\end{DoxyReturn}
 \Hypertarget{group__Runestone_gae420b181cc470de475b2663040c46d16}\label{group__Runestone_gae420b181cc470de475b2663040c46d16} 
 \index{Runestone IR API@{Runestone IR API}!rs\_build\_copy@{rs\_build\_copy}}
 \index{rs\_build\_copy@{rs\_build\_copy}!Runestone IR API@{Runestone IR API}}
@@ -1381,6 +1535,23 @@ This function removes the entry associated with the given virtual register ID ({
 \mbox{\texttt{ in,out}}  & {\em map} & Pointer to the register map. \\
 \hline
 \mbox{\texttt{ in}}  & {\em key} & The virtual register ID whose mapping should be removed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__Runestone_gaedda2b36f99baf0648687974b81449e5}\label{group__Runestone_gaedda2b36f99baf0648687974b81449e5} 
+\index{Runestone IR API@{Runestone IR API}!rs\_set\_debug@{rs\_set\_debug}}
+\index{rs\_set\_debug@{rs\_set\_debug}!Runestone IR API@{Runestone IR API}}
+\doxysubsubsection{\texorpdfstring{rs\_set\_debug()}{rs\_set\_debug()}}
+{\footnotesize\ttfamily void rs\+\_\+set\+\_\+debug (\begin{DoxyParamCaption}\item[{bool}]{enabled,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{stream }\end{DoxyParamCaption})}
+
+
+
+Sets debug logging options. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em enabled} & Whether debug logging should be enabled. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stream} & The file stream to write debug messages to (NULL for stderr). \\
 \hline
 \end{DoxyParams}
 

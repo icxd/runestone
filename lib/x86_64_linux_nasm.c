@@ -1,3 +1,4 @@
+#include "cvector_utils.h"
 #include "runestone.h"
 #include <assert.h>
 
@@ -5,16 +6,18 @@ void rs_generate_x86_64_linux_nasm(rs_t *rs, FILE *fp) {
   fprintf(fp, "section .text\n");
   fprintf(fp, "global _start:\n");
   fprintf(fp, "_start:\n");
-  for (size_t i = 0; i < rs->basic_blocks_count; i++) {
-    rs_basic_block_t *bb = rs->basic_blocks[i];
-    fprintf(fp, ".%s:\n", bb->name);
 
-    for (size_t j = 0; j < bb->instruction_count; j++) {
-      rs_instr_t instr = bb->instructions[j];
-      rs_generate_instr_x86_64_linux_nasm(rs, fp, instr);
+  rs_basic_block_t **bb_it;
+  cvector_for_each_in(bb_it, rs->basic_blocks) {
+    fprintf(fp, ".%s:\n", (*bb_it)->name);
+
+    rs_instr_t *instr_it;
+    cvector_for_each_in(instr_it, (*bb_it)->instructions) {
+      rs_generate_instr_x86_64_linux_nasm(rs, fp, *instr_it);
     }
   }
 }
+
 void rs_generate_instr_x86_64_linux_nasm(rs_t *rs, FILE *fp, rs_instr_t instr) {
   fprintf(fp, "  ; ");
   rs_dump_instr(rs, fp, instr);

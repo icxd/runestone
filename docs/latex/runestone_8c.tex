@@ -5,15 +5,27 @@
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
-Include dependency graph for runestone.\+c\+:\nopagebreak
+{\ttfamily \#include "{}cvector\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}cvector.\+h"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+Include dependency graph for runestone.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{runestone_8c__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrs__pressure__stats__t}{rs\+\_\+pressure\+\_\+stats\+\_\+t}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{runestone_8c_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~200809L
 \item 
 \#define \mbox{\hyperlink{runestone_8c_a9922dbc0a1cc217fd34196a554a9d8b8}{RS\+\_\+\+TARGET}}(\+\_\+,  upper,  count, ...)
 \item 
@@ -22,7 +34,13 @@ Include dependency graph for runestone.\+c\+:\nopagebreak
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{group___runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\+\_\+init}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
+void \mbox{\hyperlink{group__Runestone_gaedda2b36f99baf0648687974b81449e5}{rs\+\_\+set\+\_\+debug}} (bool enabled, FILE \texorpdfstring{$\ast$}{*}stream)
+\begin{DoxyCompactList}\small\item\em Sets debug logging options. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{runestone_8c_ae1ef1a908f8be9252be7f7beb893d3f7}{debug\+\_\+log}} (const char \texorpdfstring{$\ast$}{*}format,...)
+\item 
+static void \mbox{\hyperlink{runestone_8c_a2a34feb6a7493d6027a6998de7d7223e}{free\+\_\+basic\+\_\+block}} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+void \mbox{\hyperlink{group__Runestone_gad4f2783578f194c177a097d5cbcee52a}{rs\+\_\+init}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group__Runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \begin{DoxyCompactList}\small\item\em Initializes the Runestone IR state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___runestone_gab0f592439168f8ccac37be8f8392eb75}{rs\+\_\+free}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
 \begin{DoxyCompactList}\small\item\em Frees the resources used by the Runestone IR state. \end{DoxyCompactList}\item 
@@ -30,6 +48,10 @@ size\+\_\+t \mbox{\hyperlink{group___runestone_gae94ad3f4b0764d8824a57aae32d79ab
 \begin{DoxyCompactList}\small\item\em Appends a new basic block to the IR. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___runestone_ga5ea095ec06e5d27ded04f63cc57a57e1}{rs\+\_\+position\+\_\+at\+\_\+basic\+\_\+block}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t block\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Positions the cursor at the specified basic block. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{runestone_8c_a18fcc63ecd25ee3fb574aeb13eb1fa26}{is\+\_\+valid\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} reg)
+\item 
+static bool \mbox{\hyperlink{runestone_8c_a0b863a4edba8e6c9c145545d79dd8f52}{is\+\_\+valid\+\_\+operand}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} operand)
+\item 
 void \mbox{\hyperlink{runestone_8c_ad4fe12acb074001521208d6bf82ff5f4}{rs\+\_\+build\+\_\+instr}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} instr)
 \item 
 \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group___runestone_gac07ff699ec340fd6592b6ce8851013d3}{rs\+\_\+build\+\_\+move}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src)
@@ -52,25 +74,31 @@ void \mbox{\hyperlink{group___runestone_gadb1083765b8f1336be52e59e2d634b1c}{rs\+
 \begin{DoxyCompactList}\small\item\em Builds a return instruction. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___runestone_ga9e8d21ba83dfc18c1dd792f5aac3cf99}{rs\+\_\+build\+\_\+br}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src)
 \begin{DoxyCompactList}\small\item\em Builds a branch instruction. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group___runestone_ga7f57cdb44274b9771dff0fbc3bd22349}{rs\+\_\+build\+\_\+br\+\_\+if}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src3)
+void \mbox{\hyperlink{group__Runestone_ga7f57cdb44274b9771dff0fbc3bd22349}{rs\+\_\+build\+\_\+br\+\_\+if}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src3)
 \begin{DoxyCompactList}\small\item\em Builds a conditional branch instruction. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group___runestone_gaf2bd08a22dfd456c49e42150755d57fb}{rs\+\_\+build\+\_\+cmp\+\_\+eq}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_gaf2bd08a22dfd456c49e42150755d57fb}{rs\+\_\+build\+\_\+cmp\+\_\+eq}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
 \begin{DoxyCompactList}\small\item\em Builds a equiality comparison instruction. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group___runestone_gadb3a287b47c3bf2cb81fa9227013e886}{rs\+\_\+build\+\_\+cmp\+\_\+lt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_gadb3a287b47c3bf2cb81fa9227013e886}{rs\+\_\+build\+\_\+cmp\+\_\+lt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
 \begin{DoxyCompactList}\small\item\em Builds a less-\/than comparison instruction. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group___runestone_ga30c1da0227bf6df4231bda905f3d0d24}{rs\+\_\+build\+\_\+cmp\+\_\+gt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
+\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} \mbox{\hyperlink{group__Runestone_ga30c1da0227bf6df4231bda905f3d0d24}{rs\+\_\+build\+\_\+cmp\+\_\+gt}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src1, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} src2)
 \begin{DoxyCompactList}\small\item\em Builds a greater-\/than comparison instruction. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{group___runestone_ga99ff5be0b1666a34954468ab6ec86268}{rs\+\_\+instr\+\_\+is\+\_\+terminator}} (\mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} instr)
+bool \mbox{\hyperlink{group__Runestone_ga99ff5be0b1666a34954468ab6ec86268}{rs\+\_\+instr\+\_\+is\+\_\+terminator}} (\mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}} instr)
 \begin{DoxyCompactList}\small\item\em Checks if an instruction is a terminator. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{runestone_8c_a0132a4c40e815b135550002a39793ef1}{rs\+\_\+allocate\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
+static \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{runestone_8c_afe98fe28e94d2f14727e09ac38ba30db}{rs\+\_\+get\+\_\+preferred\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} opcode)
+\item 
+static void \mbox{\hyperlink{runestone_8c_a89818f1c4d5b45b36d84bedf3ce2ec93}{rs\+\_\+track\+\_\+register\+\_\+pressure}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}bb)
+\item 
+static bool \mbox{\hyperlink{runestone_8c_aef1584d673753f1f3776c91e6c7e5633}{rs\+\_\+can\+\_\+coalesce}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t vreg1, size\+\_\+t vreg2)
+\item 
+static void \mbox{\hyperlink{runestone_8c_a6397ac9659bc5ad59563e5df5078f329}{rs\+\_\+try\+\_\+coalesce}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}bb)
+\item 
+static \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{runestone_8c_a0132a4c40e815b135550002a39793ef1}{rs\+\_\+allocate\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
 \item 
 static void \mbox{\hyperlink{runestone_8c_ac49cd69451e7daa82702d4c4ba1e16ec}{rs\+\_\+free\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} reg)
 \item 
 \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{group___runestone_ga1241715f8b5f9767ae55bec794e28f83}{rs\+\_\+get\+\_\+free\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
 \begin{DoxyCompactList}\small\item\em Gets a free hardware register from the register pool. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{runestone_8c_a29fb288fad72b815c780adcf3563a147}{rs\+\_\+analyze\+\_\+operand}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t i, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} operand)
-\item 
-\mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{group___runestone_ga134400f2ab34a21b321aee4de74e6392}{rs\+\_\+get\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t vreg)
+\mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} \mbox{\hyperlink{group__Runestone_ga134400f2ab34a21b321aee4de74e6392}{rs\+\_\+get\+\_\+register}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t vreg)
 \begin{DoxyCompactList}\small\item\em Gets the physical register assigned to a virtual register. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{group___runestone_ga58b5d44d5e8f8df106c687e360539852}{rs\+\_\+get\+\_\+register\+\_\+count}} (\mbox{\hyperlink{group___runestone_ga5598ceb8ac9eb90edc0fb1ac43d531bf}{rs\+\_\+target\+\_\+t}} target)
 \item 
@@ -78,7 +106,9 @@ const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink
 \item 
 static void \mbox{\hyperlink{runestone_8c_a410aab2f186219141c3d2a977e00fed4}{rs\+\_\+alloc\+\_\+and\+\_\+free\+\_\+lifetimes}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, \mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}block)
 \item 
-void \mbox{\hyperlink{group___runestone_gad65a8fe463f065ce298ca5ab43a93977}{rs\+\_\+analyze\+\_\+lifetimes}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
+static void \mbox{\hyperlink{runestone_8c_a22049d4a290960dca087f839395bba70}{rs\+\_\+analyze\+\_\+operand}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs, size\+\_\+t i, \mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}} operand, \mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}} opcode)
+\item 
+void \mbox{\hyperlink{group__Runestone_gad65a8fe463f065ce298ca5ab43a93977}{rs\+\_\+analyze\+\_\+lifetimes}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
 \begin{DoxyCompactList}\small\item\em Analyzes and determines the lifetimes of virtual registers for allocation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___runestone_ga605bdd8ef26f438366e1b797ca940428}{rs\+\_\+finalize}} (\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}rs)
 \begin{DoxyCompactList}\small\item\em Finalizes the given Runestone instance. \end{DoxyCompactList}\item 
@@ -102,10 +132,26 @@ bool \mbox{\hyperlink{group___runestone_gaae4bc14dccdd7da71fca49f45559256f}{rs\+
 \begin{DoxyCompactList}\small\item\em Check if a virtual register ID exists in the register map. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___runestone_ga2de431eddc92fc1e0b06df6010024ea8}{rs\+\_\+regmap\+\_\+remove}} (\mbox{\hyperlink{structrs__register__map__t}{rs\+\_\+register\+\_\+map\+\_\+t}} \texorpdfstring{$\ast$}{*}map, size\+\_\+t key)
 \begin{DoxyCompactList}\small\item\em Remove a mapping for a given virtual register ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{runestone_8c_a98e79f62b94f76380cabb7be356ea0c8}{debug\+\_\+enabled}} = false
+\item 
+static FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{runestone_8c_ace0eac9001b68a07fed909aac83ac8de}{debug\+\_\+stream}} = NULL
+\item 
+static \mbox{\hyperlink{structrs__pressure__stats__t}{rs\+\_\+pressure\+\_\+stats\+\_\+t}} \mbox{\hyperlink{runestone_8c_a94cbafdbd5885805dc209ddae586725d}{pressure\+\_\+stats}} = \{0\}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
-\Hypertarget{runestone_8c_a9922dbc0a1cc217fd34196a554a9d8b8}\index{runestone.c@{runestone.c}!RS\_TARGET@{RS\_TARGET}}
+\Hypertarget{runestone_8c_a3024ccd4a9af5109d24e6c57565d74a1}\label{runestone_8c_a3024ccd4a9af5109d24e6c57565d74a1} 
+\index{runestone.c@{runestone.c}!\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}}
+\index{\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{\_POSIX\_C\_SOURCE}{\_POSIX\_C\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE~200809L}
+
+\Hypertarget{runestone_8c_a9922dbc0a1cc217fd34196a554a9d8b8}\label{runestone_8c_a9922dbc0a1cc217fd34196a554a9d8b8} 
+\index{runestone.c@{runestone.c}!RS\_TARGET@{RS\_TARGET}}
 \index{RS\_TARGET@{RS\_TARGET}!runestone.c@{runestone.c}}
 \doxysubsubsection{\texorpdfstring{RS\_TARGET}{RS\_TARGET}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{runestone_8c_a9922dbc0a1cc217fd34196a554a9d8b8} 
@@ -113,7 +159,7 @@ void \mbox{\hyperlink{group___runestone_ga2de431eddc92fc1e0b06df6010024ea8}{rs\+
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{case}\ RS\_TARGET\_\#\#upper:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{case}\ RS\_TARGET\_\#\#upper:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ count;}
 
 \end{DoxyCode}
@@ -125,14 +171,39 @@ void \mbox{\hyperlink{group___runestone_ga2de431eddc92fc1e0b06df6010024ea8}{rs\+
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{case}\ RS\_TARGET\_\#\#upper:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{case}\ RS\_TARGET\_\#\#upper:\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ rs\_target\_\#\#lower\#\#\_reg\_names;}
 
 \end{DoxyCode}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{runestone_8c_a410aab2f186219141c3d2a977e00fed4}\index{runestone.c@{runestone.c}!rs\_alloc\_and\_free\_lifetimes@{rs\_alloc\_and\_free\_lifetimes}}
+\Hypertarget{runestone_8c_ae1ef1a908f8be9252be7f7beb893d3f7}\label{runestone_8c_ae1ef1a908f8be9252be7f7beb893d3f7} 
+\index{runestone.c@{runestone.c}!debug\_log@{debug\_log}}
+\index{debug\_log@{debug\_log}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{debug\_log()}{debug\_log()}}
+{\footnotesize\ttfamily static void debug\+\_\+log (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a2a34feb6a7493d6027a6998de7d7223e}\label{runestone_8c_a2a34feb6a7493d6027a6998de7d7223e} 
+\index{runestone.c@{runestone.c}!free\_basic\_block@{free\_basic\_block}}
+\index{free\_basic\_block@{free\_basic\_block}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{free\_basic\_block()}{free\_basic\_block()}}
+{\footnotesize\ttfamily static void free\+\_\+basic\+\_\+block (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a0b863a4edba8e6c9c145545d79dd8f52}\label{runestone_8c_a0b863a4edba8e6c9c145545d79dd8f52} 
+\index{runestone.c@{runestone.c}!is\_valid\_operand@{is\_valid\_operand}}
+\index{is\_valid\_operand@{is\_valid\_operand}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_operand()}{is\_valid\_operand()}}
+{\footnotesize\ttfamily static bool is\+\_\+valid\+\_\+operand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a18fcc63ecd25ee3fb574aeb13eb1fa26}\label{runestone_8c_a18fcc63ecd25ee3fb574aeb13eb1fa26} 
+\index{runestone.c@{runestone.c}!is\_valid\_register@{is\_valid\_register}}
+\index{is\_valid\_register@{is\_valid\_register}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_register()}{is\_valid\_register()}}
+{\footnotesize\ttfamily static bool is\+\_\+valid\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}}}]{reg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a410aab2f186219141c3d2a977e00fed4}\label{runestone_8c_a410aab2f186219141c3d2a977e00fed4} 
+\index{runestone.c@{runestone.c}!rs\_alloc\_and\_free\_lifetimes@{rs\_alloc\_and\_free\_lifetimes}}
 \index{rs\_alloc\_and\_free\_lifetimes@{rs\_alloc\_and\_free\_lifetimes}!runestone.c@{runestone.c}}
 \doxysubsubsection{\texorpdfstring{rs\_alloc\_and\_free\_lifetimes()}{rs\_alloc\_and\_free\_lifetimes()}}
 {\footnotesize\ttfamily \label{runestone_8c_a410aab2f186219141c3d2a977e00fed4} 
@@ -144,11 +215,11 @@ static void rs\+\_\+alloc\+\_\+and\+\_\+free\+\_\+lifetimes (\begin{DoxyParamCap
 {\footnotesize\ttfamily \label{runestone_8c_a0132a4c40e815b135550002a39793ef1} 
 static \mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} rs\+\_\+allocate\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-\Hypertarget{runestone_8c_a29fb288fad72b815c780adcf3563a147}\index{runestone.c@{runestone.c}!rs\_analyze\_operand@{rs\_analyze\_operand}}
+\Hypertarget{runestone_8c_a22049d4a290960dca087f839395bba70}\label{runestone_8c_a22049d4a290960dca087f839395bba70} 
+\index{runestone.c@{runestone.c}!rs\_analyze\_operand@{rs\_analyze\_operand}}
 \index{rs\_analyze\_operand@{rs\_analyze\_operand}!runestone.c@{runestone.c}}
 \doxysubsubsection{\texorpdfstring{rs\_analyze\_operand()}{rs\_analyze\_operand()}}
-{\footnotesize\ttfamily \label{runestone_8c_a29fb288fad72b815c780adcf3563a147} 
-static void rs\+\_\+analyze\+\_\+operand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs}{, }\item[{size\+\_\+t}]{i}{, }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{operand}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void rs\+\_\+analyze\+\_\+operand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{size\+\_\+t}]{i,  }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{operand,  }\item[{\mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}}}]{opcode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \Hypertarget{runestone_8c_ad4fe12acb074001521208d6bf82ff5f4}\index{runestone.c@{runestone.c}!rs\_build\_instr@{rs\_build\_instr}}
 \index{rs\_build\_instr@{rs\_build\_instr}!runestone.c@{runestone.c}}
@@ -156,15 +227,62 @@ static void rs\+\_\+analyze\+\_\+operand (\begin{DoxyParamCaption}\item[{\mbox{\
 {\footnotesize\ttfamily \label{runestone_8c_ad4fe12acb074001521208d6bf82ff5f4} 
 void rs\+\_\+build\+\_\+instr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs}{, }\item[{\mbox{\hyperlink{structrs__instr__t}{rs\+\_\+instr\+\_\+t}}}]{instr}{}\end{DoxyParamCaption})}
 
-\Hypertarget{runestone_8c_ac49cd69451e7daa82702d4c4ba1e16ec}\index{runestone.c@{runestone.c}!rs\_free\_register@{rs\_free\_register}}
+\Hypertarget{runestone_8c_aef1584d673753f1f3776c91e6c7e5633}\label{runestone_8c_aef1584d673753f1f3776c91e6c7e5633} 
+\index{runestone.c@{runestone.c}!rs\_can\_coalesce@{rs\_can\_coalesce}}
+\index{rs\_can\_coalesce@{rs\_can\_coalesce}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{rs\_can\_coalesce()}{rs\_can\_coalesce()}}
+{\footnotesize\ttfamily static bool rs\+\_\+can\+\_\+coalesce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{size\+\_\+t}]{vreg1,  }\item[{size\+\_\+t}]{vreg2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_ac49cd69451e7daa82702d4c4ba1e16ec}\label{runestone_8c_ac49cd69451e7daa82702d4c4ba1e16ec} 
+\index{runestone.c@{runestone.c}!rs\_free\_register@{rs\_free\_register}}
 \index{rs\_free\_register@{rs\_free\_register}!runestone.c@{runestone.c}}
 \doxysubsubsection{\texorpdfstring{rs\_free\_register()}{rs\_free\_register()}}
 {\footnotesize\ttfamily \label{runestone_8c_ac49cd69451e7daa82702d4c4ba1e16ec} 
 static void rs\+\_\+free\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs}{, }\item[{\mbox{\hyperlink{group___runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}}}]{reg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-\Hypertarget{runestone_8c_aba4e2d2bab95411e0c4dbccec1e09123}\index{runestone.c@{runestone.c}!rs\_operand\_print@{rs\_operand\_print}}
+\Hypertarget{runestone_8c_afe98fe28e94d2f14727e09ac38ba30db}\label{runestone_8c_afe98fe28e94d2f14727e09ac38ba30db} 
+\index{runestone.c@{runestone.c}!rs\_get\_preferred\_register@{rs\_get\_preferred\_register}}
+\index{rs\_get\_preferred\_register@{rs\_get\_preferred\_register}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{rs\_get\_preferred\_register()}{rs\_get\_preferred\_register()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{group__Runestone_ga6d95fa5cb03e3737df867b707f39a21d}{rs\+\_\+register\+\_\+t}} rs\+\_\+get\+\_\+preferred\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{group__Runestone_ga5b48c8653be44d84482b1d7ed019d44e}{rs\+\_\+opcode\+\_\+t}}}]{opcode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_aba4e2d2bab95411e0c4dbccec1e09123}\label{runestone_8c_aba4e2d2bab95411e0c4dbccec1e09123} 
+\index{runestone.c@{runestone.c}!rs\_operand\_print@{rs\_operand\_print}}
 \index{rs\_operand\_print@{rs\_operand\_print}!runestone.c@{runestone.c}}
 \doxysubsubsection{\texorpdfstring{rs\_operand\_print()}{rs\_operand\_print()}}
 {\footnotesize\ttfamily \label{runestone_8c_aba4e2d2bab95411e0c4dbccec1e09123} 
 static void rs\+\_\+operand\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs}{, }\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp}{, }\item[{\mbox{\hyperlink{structrs__operand__t}{rs\+\_\+operand\+\_\+t}}}]{operand}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a89818f1c4d5b45b36d84bedf3ce2ec93}\label{runestone_8c_a89818f1c4d5b45b36d84bedf3ce2ec93} 
+\index{runestone.c@{runestone.c}!rs\_track\_register\_pressure@{rs\_track\_register\_pressure}}
+\index{rs\_track\_register\_pressure@{rs\_track\_register\_pressure}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{rs\_track\_register\_pressure()}{rs\_track\_register\_pressure()}}
+{\footnotesize\ttfamily static void rs\+\_\+track\+\_\+register\+\_\+pressure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{bb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a6397ac9659bc5ad59563e5df5078f329}\label{runestone_8c_a6397ac9659bc5ad59563e5df5078f329} 
+\index{runestone.c@{runestone.c}!rs\_try\_coalesce@{rs\_try\_coalesce}}
+\index{rs\_try\_coalesce@{rs\_try\_coalesce}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{rs\_try\_coalesce()}{rs\_try\_coalesce()}}
+{\footnotesize\ttfamily static void rs\+\_\+try\+\_\+coalesce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrs__t}{rs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rs,  }\item[{\mbox{\hyperlink{structrs__basic__block__t}{rs\+\_\+basic\+\_\+block\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{bb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{runestone_8c_a98e79f62b94f76380cabb7be356ea0c8}\label{runestone_8c_a98e79f62b94f76380cabb7be356ea0c8} 
+\index{runestone.c@{runestone.c}!debug\_enabled@{debug\_enabled}}
+\index{debug\_enabled@{debug\_enabled}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{debug\_enabled}{debug\_enabled}}
+{\footnotesize\ttfamily bool debug\+\_\+enabled = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_ace0eac9001b68a07fed909aac83ac8de}\label{runestone_8c_ace0eac9001b68a07fed909aac83ac8de} 
+\index{runestone.c@{runestone.c}!debug\_stream@{debug\_stream}}
+\index{debug\_stream@{debug\_stream}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{debug\_stream}{debug\_stream}}
+{\footnotesize\ttfamily FILE\texorpdfstring{$\ast$}{*} debug\+\_\+stream = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{runestone_8c_a94cbafdbd5885805dc209ddae586725d}\label{runestone_8c_a94cbafdbd5885805dc209ddae586725d} 
+\index{runestone.c@{runestone.c}!pressure\_stats@{pressure\_stats}}
+\index{pressure\_stats@{pressure\_stats}!runestone.c@{runestone.c}}
+\doxysubsubsection{\texorpdfstring{pressure\_stats}{pressure\_stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrs__pressure__stats__t}{rs\+\_\+pressure\+\_\+stats\+\_\+t}} pressure\+\_\+stats = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
 

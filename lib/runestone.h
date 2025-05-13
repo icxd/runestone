@@ -9,11 +9,11 @@
 #ifndef RUNESTONE_H
 #define RUNESTONE_H
 
+#include "cvector.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
-
 /**
  * @defgroup Runestone Runestone IR API
  * @brief Core types and functions for the Runestone IR.
@@ -54,7 +54,6 @@
 #define RS_COLOR_UNDERLINE _RS_ANSI(4)
 
 // Configuration constants for the Runestone IR.
-// TODO: should probably be dynamically resizable
 
 /** Maximum number of instructions. */
 #define RS_MAX_INSTR 1024
@@ -216,6 +215,8 @@ typedef struct {
   rs_operand_t src3;  /**< Operand for third source. */
 } rs_instr_t;
 
+typedef cvector(rs_instr_t) rs_instructions_t;
+
 /**
  * @struct rs_basic_block_t
  * @brief Represents a basic block in the Runestone IR.
@@ -227,12 +228,12 @@ typedef struct {
 typedef struct {
   char *name; /**< Optional name of the block. This is used for debugging or
                  labeling purposes. */
-  rs_instr_t *instructions; /**< List of instructions in the basic block. The
-                         instructions are executed sequentially. */
-  size_t
-      instruction_count; /**< The number of instructions in the basic block.
-                       This helps in iterating over the block's instructions. */
+  rs_instructions_t instructions; /**< List of instructions in the basic block.
+                         The instructions are executed sequentially. */
 } rs_basic_block_t;
+
+typedef cvector(rs_basic_block_t *) rs_basic_blocks_t;
+typedef cvector(bool) rs_register_pool_t;
 
 /**
  * @struct rs_lifetime_t
@@ -266,6 +267,8 @@ typedef struct {
   rs_register_t value; /**< Assigned physical register. */
 } rs_map_entry_t;
 
+typedef cvector(rs_map_entry_t) rs_map_entries_t;
+
 /**
  * @brief Structure representing the register map.
  *
@@ -274,9 +277,7 @@ typedef struct {
  * physical registers.
  */
 typedef struct {
-  rs_map_entry_t *entries; /**< List of register mappings. */
-  size_t count;            /**< Number of mappings. */
-  size_t capacity;         /**< Allocated capacity. */
+  rs_map_entries_t entries; /**< List of register mappings. */
 } rs_register_map_t;
 
 /**
@@ -440,17 +441,15 @@ const char **rs_get_register_names(rs_target_t target);
 typedef struct {
   rs_target_t target; /**< The currently selected target architecture. */
 
-  rs_basic_block_t **basic_blocks; /**< List of all the basic blocks. */
-  size_t basic_blocks_count; /**< Number of basic blocks in the program. */
-
-  ptrdiff_t current_basic_block; /**< Index of the currently selected basic
-                                    block, -1 if no block is selected. */
+  rs_basic_blocks_t basic_blocks; /**< List of all the basic blocks. */
+  ptrdiff_t current_basic_block;  /**< Index of the currently selected basic
+                                     block, -1 if no block is selected. */
 
   rs_lifetime_t lifetimes[256]; /**< Array of virtual register lifetimes, used
                                    for register allocation. */
 
-  bool *register_pool; /**< Array of usable hardware registers, representing
-                          free and used states. */
+  rs_register_pool_t register_pool; /**< Array of usable hardware registers,
+                          representing free and used states. */
 
   rs_register_map_t
       register_map; /**< The register map used during register allocation. */
@@ -460,6 +459,14 @@ typedef struct {
   size_t next_dst_vreg; /**< The index for the next destination virtual
                            register. */
 } rs_t;
+
+/**
+ * @brief Sets debug logging options.
+ * @param[in] enabled Whether debug logging should be enabled.
+ * @param[in] stream The file stream to write debug messages to (NULL for
+ * stderr).
+ */
+void rs_set_debug(bool enabled, FILE *stream);
 
 /**
  * @brief Initializes the Runestone IR state.

@@ -1,10 +1,4 @@
 var searchData=
 [
-  ['rs_5fbasic_5fblock_5ft_0',['rs_basic_block_t',['../structrs__basic__block__t.html',1,'']]],
-  ['rs_5finstr_5ft_1',['rs_instr_t',['../structrs__instr__t.html',1,'']]],
-  ['rs_5flifetime_5ft_2',['rs_lifetime_t',['../structrs__lifetime__t.html',1,'']]],
-  ['rs_5fmap_5fentry_5ft_3',['rs_map_entry_t',['../structrs__map__entry__t.html',1,'']]],
-  ['rs_5foperand_5ft_4',['rs_operand_t',['../structrs__operand__t.html',1,'']]],
-  ['rs_5fregister_5fmap_5ft_5',['rs_register_map_t',['../structrs__register__map__t.html',1,'']]],
-  ['rs_5ft_6',['rs_t',['../structrs__t.html',1,'']]]
+  ['cvector_5fmetadata_5ft_0',['cvector_metadata_t',['../structcvector__metadata__t.html',1,'']]]
 ];

@@ -1,14 +1,14 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdeiklnorstvx",
-  1: "r",
-  2: "arx",
-  3: "r",
-  4: "abcdeiklnorstv",
-  5: "r",
+  0: "_abcdefiklmnoprstvx",
+  1: "cr",
+  2: "acrx",
+  3: "dfir",
+  4: "abcdeiklmnoprstv",
+  5: "cr",
   6: "r",
   7: "r",
-  8: "rx",
+  8: "_crx",
   9: "air"
 };
 
